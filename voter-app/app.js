@@ -7,6 +7,7 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , search = require('./routes/search')
+  , lookup = require('./routes/lookup')
   , http = require('http')
   , path = require('path');
 
@@ -33,6 +34,9 @@ app.configure('development', function(){
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/search/track', search.byTrack);
+app.get('/search/artist', search.byArtist);
+app.get('/search/album', search.byAlbum);
+app.get('/lookup', lookup.lookup);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

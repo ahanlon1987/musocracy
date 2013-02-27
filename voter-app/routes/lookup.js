@@ -4,21 +4,25 @@ var http = require('http');
 var Q = require('q');
 
 var BASE_URL = 'http://ws.spotify.com/';
+var LOOKUP_URL = BASE_URL + 'lookup/1/.json';
 
-var SEARCH_URLS = {
-  track: BASE_URL + 'search/1/track.json',
-  artist: BASE_URL + 'search/1/artist.json',
-  album: BASE_URL + 'search/1/album.json'
-}
-
-var doSearch = function(type, req, resp) {
+exports.lookup = function(req, resp) {
   // console.log('searching by track');
-  var query = req.query.q;
-  if (!query) {
-    query = 'kanye';
+  var uri = new String(req.query.uri);
+  if (!uri) {
+    resp.writeHead(400, {'Content-Type':'application/json'});
+    resp.write(JSON.stringify({errorCode:'error.request.nouri'}));
+    return;
   }
 
-  var requestUrl = SEARCH_URLS[type] + '?q=' + query;
+  var requestUrl = LOOKUP_URL + '?uri=' + uri;
+  if (uri instanceof String && uri.indexOf('spotify:artist') >= 0) {
+    requestUrl += '&extras=album'
+  }
+  else if (uri instanceof String && uri.indexOf('spotify:album') >= 0) {
+    requestUrl += '&extras=track'
+  }
+
   // console.log('Request Url: ' + requestUrl);
   http.get(requestUrl, function(response){
     // console.log('Got Response', response);
@@ -38,16 +42,4 @@ var doSearch = function(type, req, resp) {
       resp.end();
     });
   })
-}
-
-exports.byTrack = function(req, resp) {
-  doSearch('track', req, resp);
-}
-
-exports.byArtist = function(req, resp) {
-  doSearch('artist', req, resp);
-}
-
-exports.byAlbum = function(req, resp) {
-  doSearch('album', req, resp);
 }
