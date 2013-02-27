@@ -11,5 +11,7 @@ pids
 logs
 results
 
+*.iws
+
 npm-debug.log
 node_modules
