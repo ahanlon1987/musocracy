@@ -23,4 +23,4 @@ musocracy
 * `GET /search/artist?q=QUERY`: search for artists
 * `GET /search/album?q=QUERY`: search for albums* 
 * `GET /lookup?uri=SPOTIFY_URI`: lookup metadata for specific artist, album, or track
-** ex: `GET /lookup?uri=spotify:track:6NmXV4o6bmp704aPGyTVVG`
+    * ex: `GET /lookup?uri=spotify:track:6NmXV4o6bmp704aPGyTVVG`
