@@ -11,7 +11,7 @@ define([ "jquery", "backbone","models/SearchModel" ], function( $, Backbone, Sea
         initialize: function() {
 
             // The render method is called when Category Models are added to the Collection
-            this.collection.on( "added", this.render, this );
+            this.collection.on( "reset", this.render, this );
 
         },
 
@@ -19,16 +19,13 @@ define([ "jquery", "backbone","models/SearchModel" ], function( $, Backbone, Sea
         render: function() {
 
             // Sets the view's template property
-            this.template = _.template( $( "script#categoryItems" ).html(), { "collection": this.collection } );
+            this.template = _.template( $( "script#searchResults" ).html(), { "collection": this.collection } );
 
             // Renders the view's template inside of the current listview element
-            this.$el.find("ul").html(this.template);
+            this.$el.find("ul#search-results").html(this.template);
 
             // Maintains chainability
-//            return this;
-
-            return 'test - Search View';
-
+            return this;
         }
 
     } );

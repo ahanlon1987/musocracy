@@ -46,13 +46,13 @@ function( $, Backbone, SearchCollection, QueueCollection, SearchView, QueueView)
         queue: function() {
             var currentView = this.queueView;
 
-            // If there are no collections in the current Category View
+            //TODO always refresh? probably...
             if(!currentView.collection.length) {
 
                 // Show's the jQuery Mobile loading icon
                 $.mobile.loading( "show" );
 
-            // Fetches the Collection of Queue Models for the current Queue View
+                // Fetches the Collection of Queue Models for the current Queue View
                 currentView.collection.fetch().done( function() {
 
                     // Programatically changes to the current categories page
@@ -61,7 +61,6 @@ function( $, Backbone, SearchCollection, QueueCollection, SearchView, QueueView)
                 } );
 
             }
-            //TODO always refresh? probably...
             // If there already collections in the current Queue View
             else {
 
@@ -75,34 +74,19 @@ function( $, Backbone, SearchCollection, QueueCollection, SearchView, QueueView)
         search: function(query) {
             var currentView = this.searchView;
 
+            // Show's the jQuery Mobile loading icon
+            $.mobile.loading( "show" );
 
-            // If there are no collections in the current Search View
-            if(!currentView.collection.length) {
+            currentView.collection.url = '/search/track?q=' + query;
 
-                // Show's the jQuery Mobile loading icon
-                $.mobile.loading( "show" );
+            // Fetches the Collection of Search Result Models for the current Search View
+            currentView.collection.fetch().done( function() {
 
-                //TODO this will hit our service
-                currentView.collection.url = 'http://ws.spotify.com/search/1/track.json?q=' + query;
+                $.mobile.loading( "hide" );
 
-                // Fetches the Collection of Search Result Models for the current Search View
-                currentView.collection.fetch().done( function() {
+                //TODO
 
-                    // Programatically changes to the current Search page
-                    $.mobile.changePage( "#search", { reverse: false, changeHash: false } );
-
-                } );
-
-            }
-
-            //TODO probably always want to re-fetch
-            // If there already collections in the current Search View
-            else {
-                // Programatically changes to the current Search page
-                $.mobile.changePage( "#search", { reverse: false, changeHash: false } );
-
-            }
-
+            } );
 
         }
 

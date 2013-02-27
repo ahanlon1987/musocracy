@@ -42,7 +42,7 @@
     </div>
 
     <div data-role="content">
-        <ul data-role="listview" data-inset="true">
+        <ul id="search-results" data-role="listview" data-inset="true">
         </ul>
     </div><!-- /content -->
 </div>
@@ -51,8 +51,8 @@
 
 <div id="queue" data-role="page" data-title="Musocracy">
     <div data-role="header">
-            <h1>Musocracy</h1>
-        </div><!-- /header -->
+        <h1>Musocracy</h1>
+    </div><!-- /header -->
     <div id="tab-container-queue" data-role="navbar" data-iconpos="left">
         <ul>
             <li>
@@ -75,9 +75,6 @@
 
 </div>
 
-<script type="text/javascript" >
-
-</script>
 
 
 
@@ -92,6 +89,18 @@
     <% }); %>
 
 </script>
+
+<script id="searchResults" type="text/template">
+
+    <% _.each( collection.toJSON(), function( song, id ) { %>
+    <li class="ui-li ui-li-static ui-btn-up-c ui-corner-top">
+        <a href="javascript:;" onclick="alert('Action for song');"  data-icon="plus" data-iconpos="left" data-transition="slide" ><%= song.name%> </a>
+    </li>
+
+    <% }); %>
+
+</script>
+
 
 </body>
 </html>
