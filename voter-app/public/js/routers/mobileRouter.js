@@ -12,10 +12,10 @@ function( $, Backbone, SearchCollection, QueueCollection, SearchView, QueueView)
         initialize: function() {
 
             // Instantiates a new Search  View
-            this.searchView = new SearchView( { el: "#search", collection: new SearchCollection ( [] , { type: "search" } ) } );
+            this.searchView = new SearchView( { el: "#content-wrapper", collection: new SearchCollection ( [] , { type: "search" } ) } );
 
             // Instantiates a new Queue View
-            this.queueView= new QueueView( { el: "#queue", collection: new QueueCollection( [] , { type: "queue" } ) } );
+            this.queueView= new QueueView( { el: "#content-wrapper", collection: new QueueCollection( [] , { type: "queue" } ) } );
 
             // Tells Backbone to start watching for hashchange events
             Backbone.history.start();
@@ -28,18 +28,18 @@ function( $, Backbone, SearchCollection, QueueCollection, SearchView, QueueView)
             // When there is no hash bang on the url, the home method is called
             "": "home",
 
-            //#queue, show the current queue
             "queue" : "queue",
 
-            //#search, show the search view
+            "search" : "search",
+
             "search?:query" : "search"
 
         },
 
         // Home method
         home: function() {
-            // Programatically changes to the queue page
-            $.mobile.changePage( "#queue" , { reverse: false, changeHash: false } );
+            // Programatically changes to the search page
+            $.mobile.changePage( "#search" , { reverse: false, changeHash: true } );
 
         },
 
@@ -55,41 +55,36 @@ function( $, Backbone, SearchCollection, QueueCollection, SearchView, QueueView)
                 // Fetches the Collection of Queue Models for the current Queue View
                 currentView.collection.fetch().done( function() {
 
-                    // Programatically changes to the current categories page
-                    $.mobile.changePage( "#queue", { reverse: false, changeHash: false } );
+                    $.mobile.loading( "hide" );
 
+                    // Programatically changes to the current categories page
                 } );
 
+            } else {
+                this.queueView.render();
             }
-            // If there already collections in the current Queue View
-            else {
-
-                // Programatically changes to the current categories page
-                $.mobile.changePage( "#queue", { reverse: false, changeHash: false } );
-
-            }
-
         },
 
         search: function(query) {
             var currentView = this.searchView;
 
             // Show's the jQuery Mobile loading icon
-            $.mobile.loading( "show" );
 
-            currentView.collection.url = '/search/track?q=' + query;
+            if(query){
 
-            // Fetches the Collection of Search Result Models for the current Search View
-            currentView.collection.fetch().done( function() {
+                $.mobile.loading( "show" );
+                currentView.collection.url = '/search/track?q=' + query;
+                // Fetches the Collection of Search Result Models for the current Search View
+                currentView.collection.fetch().done( function() {
 
-                $.mobile.loading( "hide" );
+                    $.mobile.loading( "hide" );
 
-                //TODO
-
-            } );
-
+                } );
+            } else {
+                this.searchView.render();
+//                currentView.collection.reset();
+            }
         }
-
     } );
 
     // Returns the Router class

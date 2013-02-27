@@ -13,7 +13,7 @@
 <body>
 
 
-<div id="search" data-role="page" data-title="Musocracy">
+<div id="home" data-role="page" data-title="Musocracy">
 
     <div data-role="header">
         <h1>Musocracy</h1>
@@ -33,46 +33,21 @@
         </ul>
     </div>
 
-    <div data-role="fieldcontain">
-        <form id="search-form" action="#search?" >
-            <label for="song-search">
-            </label>
-            <input name="song-search" id="" placeholder="Artist or Song Name" value="" type="search" />
-        </form>
+
+    <div id="content-wrapper">
+        <div data-role="fieldcontain">
+            <form id="search-form" action="#search?" >
+                <label for="song-search">
+                </label>
+                <input name="song-search" id="" placeholder="Artist or Song Name" value="" type="search" />
+            </form>
+        </div>
+
+        <div data-role="content">
+            <ul id="results" data-role="listview" data-inset="true">
+            </ul>
+        </div>
     </div>
-
-    <div data-role="content">
-        <ul id="search-results" data-role="listview" data-inset="true">
-        </ul>
-    </div><!-- /content -->
-</div>
-
-
-
-<div id="queue" data-role="page" data-title="Musocracy">
-    <div data-role="header">
-        <h1>Musocracy</h1>
-    </div><!-- /header -->
-    <div id="tab-container-queue" data-role="navbar" data-iconpos="left">
-        <ul>
-            <li>
-                <a href="#queue" data-transition="fade" data-theme="b" data-icon="check" class="ui-btn-active">
-                    Queue
-                </a>
-            </li>
-            <li>
-                <a href="#search" data-transition="fade" data-theme="b" data-icon="search" >
-                    Search
-                </a>
-            </li>
-        </ul>
-    </div>
-
-    <div data-role="content">
-        <ul id="song-list" data-role="listview" data-inset="true">
-        </ul>
-    </div><!-- /content -->
-
 </div>
 
 

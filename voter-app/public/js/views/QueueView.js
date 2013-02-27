@@ -22,7 +22,7 @@ define([ "jquery", "backbone","models/QueueModel" ], function( $, Backbone, Queu
             this.template = _.template( $( "script#queuedItems" ).html(), { "collection": this.collection } );
 
             // Renders the view's template inside of the current listview element
-            this.$el.find("ul#song-list").html(this.template);
+            this.$el.find("ul#results").html(this.template);
 
             // Maintains chainability
             return this;
