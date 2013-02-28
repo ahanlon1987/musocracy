@@ -72,13 +72,18 @@
     function vote(href){
         alert('Voting for ' + href);
 
-        //TODO post this href to the /vote endpoint
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open('POST','/vote/' + href, true);
+        xmlhttp.send(href);
+
     }
 
     function addToQueue(href) {
         alert('Adding ' + href + ' to the queue');
 
-        //TODO post this href to the /queue endpoint
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open('POST','/queue/' + href ,true);
+        xmlhttp.send(href);
     }
 
 </script>

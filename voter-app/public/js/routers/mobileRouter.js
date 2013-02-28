@@ -44,34 +44,28 @@ function( $, Backbone, SearchCollection, QueueCollection, SearchView, QueueView)
         },
 
         queue: function() {
+
+            //Everytime the user hits queue we'll refresh
+
             var currentView = this.queueView;
 
-            //TODO always refresh? probably...
-            if(!currentView.collection.length) {
+            // Show's the jQuery Mobile loading icon
+            $.mobile.loading( "show" );
 
-                // Show's the jQuery Mobile loading icon
-                $.mobile.loading( "show" );
+            // Fetches the Collection of Queue Models for the current Queue View
+            currentView.collection.fetch().done( function() {
 
-                // Fetches the Collection of Queue Models for the current Queue View
-                currentView.collection.fetch().done( function() {
+                $.mobile.loading( "hide" );
 
-                    $.mobile.loading( "hide" );
+                // Programatically changes to the current categories page
+            } );
 
-                    // Programatically changes to the current categories page
-                } );
-
-            } else {
-                this.queueView.render();
-            }
         },
 
         search: function(query) {
             var currentView = this.searchView;
 
-            // Show's the jQuery Mobile loading icon
-
             if(query){
-
                 $.mobile.loading( "show" );
                 currentView.collection.url = '/search/track?q=' + query;
                 // Fetches the Collection of Search Result Models for the current Search View
