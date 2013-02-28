@@ -6,8 +6,8 @@
     <meta name="description" content="">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" />
+    <!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />-->
+    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
     <script src="js/lib/require.js" data-main="js/mobile"></script>
 </head>
 <body>
@@ -32,50 +32,53 @@
             </li>
         </ul>
     </div>
-
-
     <div id="content-wrapper">
+
         <div data-role="fieldcontain">
             <form id="search-form" action="#search?" >
                 <label for="song-search">
                 </label>
-                <input name="song-search" id="" placeholder="Artist or Song Name" value="" type="search" />
+                <input name="song-search" placeholder="Artist or Song Name" value="" type="search" />
             </form>
         </div>
-
         <div data-role="content">
-            <ul id="results" data-role="listview" data-inset="true">
+            <ul id="results" data-divider-theme="b" data-role="listview" data-inset="true">
             </ul>
         </div>
+
     </div>
 </div>
-
-
-
 
 <!-- Underscore Template that is used to display all of the Song Models -->
 <script id="queuedItems" type="text/template">
 
     <% _.each( collection.toJSON(), function( song, id ) { %>
-    <li class="ui-li ui-li-static ui-btn-up-c ui-corner-top">
-        <a href="#" onclick="alert('Voted for song');"  data-icon="plus" data-iconpos="left" data-transition="slide" >"<%= song.name%></a>
-    </li>
+    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c">
+         <div class="ui-btn-inner ui-li">
+             <div class="ui-btn-text">
+                 <a href="javascript:;" onclick="alert('Voted for song');"  class="ui-link-inherit" data-transition="slide" >"<%= song.name%></a>
+             </div>
+             <span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span>
+         </div>
+     </li>
 
     <% }); %>
 
 </script>
-
 <script id="searchResults" type="text/template">
 
     <% _.each( collection.toJSON(), function( song, id ) { %>
-    <li class="ui-li ui-li-static ui-btn-up-c ui-corner-top">
-        <a href="javascript:;" onclick="alert('Action for song');"  data-icon="plus" data-iconpos="left" data-transition="slide" ><%= song.name%> </a>
+    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c">
+        <div class="ui-btn-inner ui-li">
+            <div class="ui-btn-text">
+                <a href="javascript:;" onclick="alert('Action for song');"  class=ui-link-inherit data-transition="slide" ><%= song.name%> </a>
+            </div>
+            <span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span>
+        </div>
     </li>
-
     <% }); %>
 
 </script>
-
 
 </body>
 </html>
