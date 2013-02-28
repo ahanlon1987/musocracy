@@ -49,6 +49,8 @@ function( $, Backbone, SearchCollection, QueueCollection, SearchView, QueueView)
 
             var currentView = this.queueView;
 
+            currentView.collection.url = '/location/1/votes';
+
             // Show's the jQuery Mobile loading icon
             $.mobile.loading( "show" );
 

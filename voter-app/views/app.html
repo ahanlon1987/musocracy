@@ -52,42 +52,23 @@
 
     <% _.each( collection.toJSON(), function( song, id ) { %>
     <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="plus" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c">
-         <div class="ui-btn-inner ui-li">
-             <div class="ui-btn-text">
-                 <a href="javascript:;" onclick="vote('<%= song.href%>')"  class="ui-link-inherit" data-transition="slide" >
-                     <span ><%=song.votes%></span>
-                     <span><%= song.name%></span>
-                 </a>
-             </div>
-             <span class="ui-icon ui-icon-arrow-u ui-icon-shadow">&nbsp;</span>
-         </div>
-     </li>
+        <div class="ui-btn-inner ui-li">
+            <div class="ui-btn-text">
+                <a href="javascript:;" onclick="vote('<%= song.trackId%>')"  class="ui-link-inherit" data-transition="slide" >
+                    <span ><%=song.voteCount%></span>
+                    <span><%= song.trackId%></span>
+                </a>
+            </div>
+            <span class="ui-icon ui-icon-arrow-u ui-icon-shadow">&nbsp;</span>
+        </div>
+    </li>
 
     <% }); %>
 
 </script>
 
-<script type="text/javascript">
 
-    function vote(href){
-        console.log('Voting for ' + href);
 
-        //TODO location ID
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open('POST','/location/1/votes/' + href, true);
-        xmlhttp.send(href);
-
-    }
-
-    function addToQueue(href) {
-        console.log('Adding ' + href + ' to the queue');
-
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open('POST','/queue/' + href ,true);
-        xmlhttp.send(href);
-    }
-
-</script>
 
 <script id="searchResults" type="text/template">
 
@@ -95,7 +76,7 @@
     <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c">
         <div class="ui-btn-inner ui-li">
             <div class="ui-btn-text">
-                <a href="javascript:;" onclick="addToQueue('<%=song.href%>')"  class=ui-link-inherit data-transition="slide" ><%= song.name%> </a>
+                <a href="javascript:;" onclick="vote('<%=song.href%>')"  class="ui-link-inherit" data-transition="slide" ><%= song.name%> </a>
             </div>
             <span class="ui-icon ui-icon-plus ui-icon-shadow">&nbsp;</span>
         </div>
@@ -103,6 +84,30 @@
     <% }); %>
 
 </script>
+
+<script type="text/javascript" id="">
+
+     //TODO put this someplace it belongs.
+     //TODO re-fetch queueCollection on success
+    function vote(trackId){
+         console.log('Voting for ' + trackId);
+
+         var xmlhttp = new XMLHttpRequest();
+         xmlhttp.onreadystatechange = function(){
+             if(this.readyState == this.DONE) {
+                 if(this.status == 200)
+                     console.log('200 returned from vote service');
+
+             }
+         };
+
+        //TODO location id
+         xmlhttp.open('POST','/location/1/votes/' + trackId, true);
+         xmlhttp.send(trackId);
+
+     }
+</script>
+
 
 </body>
 </html>

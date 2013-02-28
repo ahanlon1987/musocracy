@@ -7,7 +7,7 @@ exports.addVote = function(req, resp) {
 
     if(args instanceof Array) {
         var locationId = args[1],
-               trackId = args[2];
+            trackId = args[2];
 
         votingService.addVote(locationId, {trackId: trackId}, {
             success:function(result) {
@@ -26,19 +26,24 @@ exports.addVote = function(req, resp) {
 };
 
 exports.getVotes = function(req, resp) {
-    var locationId = req.query.locationId;
-    votingService.getVotes(locationId, {
-        success:function(results) {
-            resp.writeHead(200, {'Content-Type':'application/json'});
-            resp.write(JSON.stringify(results));
-            resp.end();
-        },
-        error:function(err) {
-            resp.writeHead(500);
-            resp.write(err);
-            resp.end();
-        }
-    })
+
+    var args = req.url.match(req.route.regexp);
+    if(args instanceof Array) {
+        var locationId = args[1];
+
+        votingService.getVotes(locationId, {
+            success:function(results) {
+                resp.writeHead(200, {'Content-Type':'application/json'});
+                resp.write(JSON.stringify(results));
+                resp.end();
+            },
+            error:function(err) {
+                resp.writeHead(500);
+                resp.write(err);
+                resp.end();
+            }
+        })
+    }
 };
 
 // exports.addVote = addVote;

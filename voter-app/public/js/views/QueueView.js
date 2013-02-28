@@ -11,7 +11,7 @@ define([ "jquery", "backbone","models/QueueModel" ], function( $, Backbone, Queu
         initialize: function() {
 
             // The render method is called when Song Models are added to the Collection
-            this.collection.on( "added", this.render, this );
+            this.collection.on( "reset", this.render, this );
 
         },
 

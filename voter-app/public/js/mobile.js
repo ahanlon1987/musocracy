@@ -52,10 +52,4 @@ require([ "jquery", "backbone", "routers/mobileRouter" ], function( $, Backbone,
     });
 
 
-
-
-
-
-
-
 } );
