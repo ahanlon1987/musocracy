@@ -18,15 +18,12 @@ define([ "jquery","backbone","models/QueueModel" ], function( $, Backbone, Queue
         // Sets the Collection model property to be a Category Model
         model: QueueModel,
 
-        //TODO what does the fetch look like
         jsonArray: [
 
-            { "name": "Call me, Maybe", "type": "blah blah" },
-            { "name": "Naughty By Nature", "type": "blah3 blah3" },
-            { "name": "Single Ladies", "type": "blah2 blah2" }
-
+            { votes:"11", "name": "Juicy", "href" : "spotify:track:5ByAIlEEnxYdvpnezg7HTX"},
+            { votes:"5", "name": "Ready To Die The Remaster", "href":"spotify:track:2g8HN35AnVGIk7B8yMucww" },
+            { votes:"4", "name": "Hypnotize - Amended Version", "href": "spotify:track:1oLIBuedMjAbHlO4WTGJi3" }
         ],
-
 
         // Overriding the Backbone.sync method (the Backbone.fetch method calls the sync method when trying to fetch data)
         sync: function( method, model, options ) {

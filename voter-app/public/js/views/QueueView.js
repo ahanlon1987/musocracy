@@ -27,7 +27,6 @@ define([ "jquery", "backbone","models/QueueModel" ], function( $, Backbone, Queu
             // Maintains chainability
             return this;
 
-
         }
 
     } );

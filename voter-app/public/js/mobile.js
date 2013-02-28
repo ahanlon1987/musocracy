@@ -36,7 +36,7 @@ require([ "jquery", "backbone", "routers/mobileRouter" ], function( $, Backbone,
 			// Disabling this will prevent jQuery Mobile from handling hash changes
 			$.mobile.hashListeningEnabled = false;
 		}
-	)
+	);
 
 	require( [ "jquerymobile" ], function() {
 		// Instantiates a new Backbone.js Mobile Router
@@ -44,11 +44,18 @@ require([ "jquery", "backbone", "routers/mobileRouter" ], function( $, Backbone,
 	});
 
 
-    //Handles search action, //TODO encoding?
+    //Handles search action,
     $("#search-form").submit(function() {
         var query = $('input[name="song-search"]').val();
         window.location.href = '#search?' + query;
         return false;
     });
+
+
+
+
+
+
+
 
 } );

@@ -2,7 +2,7 @@
 // ===================
 
 // Includes file dependencies
-define([ "jquery","backbone","models/SearchModel" ], function( $, Backbone, SearchModel) {
+define([ "jquery","backbone","models/SearchModel"], function( $, Backbone, SearchModel) {
 
     // Extends Backbone.Router
     var Collection = Backbone.Collection.extend( {
@@ -19,7 +19,7 @@ define([ "jquery","backbone","models/SearchModel" ], function( $, Backbone, Sear
         model: SearchModel,
 
         parse: function(response){
-            console.log('inside parse.');
+
             return response.tracks;
 
         }
