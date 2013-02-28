@@ -70,16 +70,17 @@
 <script type="text/javascript">
 
     function vote(href){
-        alert('Voting for ' + href);
+        console.log('Voting for ' + href);
 
+        //TODO location ID
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open('POST','/vote/' + href, true);
+        xmlhttp.open('POST','/location/1/votes/' + href, true);
         xmlhttp.send(href);
 
     }
 
     function addToQueue(href) {
-        alert('Adding ' + href + ' to the queue');
+        console.log('Adding ' + href + ' to the queue');
 
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open('POST','/queue/' + href ,true);

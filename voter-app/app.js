@@ -43,8 +43,8 @@ app.get('/search/track', search.byTrack);
 app.get('/search/artist', search.byArtist);
 app.get('/search/album', search.byAlbum);
 app.get('/lookup', lookup.lookup);
-app.get('/votes', votes.getVotes);
-app.get('/votes/add', votes.addVote);
+app.get('/location/:id/votes', votes.getVotes);
+app.post('/location/:id/votes/:trackId', votes.addVote);
 
 
 var mongoClient = new MongoClient(new MongoServer('127.0.0.1', 27017));
