@@ -9,7 +9,13 @@ var express = require('express')
   , search = require('./routes/search')
   , lookup = require('./routes/lookup')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , MongoClient = require('mongodb').MongoClient
+  , MongoServer = require('mongodb').Server 
+  , votingService = require('./services/votingService').votingService
+  , votes = require('./routes/votes');
+
+
 
 var app = express();
 
@@ -37,7 +43,27 @@ app.get('/search/track', search.byTrack);
 app.get('/search/artist', search.byArtist);
 app.get('/search/album', search.byAlbum);
 app.get('/lookup', lookup.lookup);
+app.get('/votes', votes.getVotes);
+app.get('/votes/add', votes.addVote);
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log("Express server listening on port " + app.get('port'));
+
+var mongoClient = new MongoClient(new MongoServer('127.0.0.1', 27017));
+mongoClient.open(function(err, mongoClient) {
+  if (err) throw err;
+
+  var db = mongoClient.db('musocracy');
+  votingService.setDb(db);
+  http.createServer(app).listen(app.get('port'), function(){
+    console.log("Express server listening on port " + app.get('port'));
+  });
 });
+
+// var MONGO_URL = 'mongo://127.0.0.1:27017/musocracy';
+// MongoClient.connect(MONGO_URL, function(err, db) {
+//   if (err) throw err;
+
+//   votingService.setDb(db);
+//   http.createServer(app).listen(app.get('port'), function(){
+//     console.log("Express server listening on port " + app.get('port'));
+//   });
+// });
