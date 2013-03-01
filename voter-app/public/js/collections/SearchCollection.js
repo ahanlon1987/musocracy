@@ -15,6 +15,11 @@ define([ "jquery","backbone","models/SearchModel"], function( $, Backbone, Searc
 
         },
 
+        //TODO Should probably sort sever side.
+        comparator:function(model){
+          return model.get('voteCount');
+        },
+
         // Sets the Collection model property to be a Search Model
         model: SearchModel,
 

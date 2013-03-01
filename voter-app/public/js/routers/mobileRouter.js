@@ -2,8 +2,8 @@
 // =============
 
 // Includes file dependencies
-define([ "jquery","backbone", "../collections/SearchCollection", "../collections/QueueCollection", "../views/SearchView", "../views/QueueView"],
-function( $, Backbone, SearchCollection, QueueCollection, SearchView, QueueView) {
+define([ "jquery","backbone", "../collections/SearchCollection", "../collections/QueueCollection", "../views/SearchView", "../views/QueueView", "../util/persist"],
+function( $, Backbone, SearchCollection, QueueCollection, SearchView, QueueView, Persist) {
 
     // Extends Backbone.Router
     var MusocracyRouter = Backbone.Router.extend( {
@@ -19,6 +19,8 @@ function( $, Backbone, SearchCollection, QueueCollection, SearchView, QueueView)
 
             // Tells Backbone to start watching for hashchange events
             Backbone.history.start();
+
+            this.persist = Persist;
 
         },
 
