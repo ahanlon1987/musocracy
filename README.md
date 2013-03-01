@@ -24,3 +24,5 @@ musocracy
 * `GET /search/album?q=QUERY`: search for albums* 
 * `GET /lookup?uri=SPOTIFY_URI`: lookup metadata for specific artist, album, or track
     * ex: `GET /lookup?uri=spotify:track:6NmXV4o6bmp704aPGyTVVG`
+* 'POST /location/{id}/votes/{trackId}' : vote for a track at a specific location
+* 'GET /location/{id}/votes' : returns all votes for a given location
