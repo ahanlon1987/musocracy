@@ -54,7 +54,7 @@
     <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="plus" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c">
         <div class="ui-btn-inner ui-li">
             <div class="ui-btn-text">
-                <a href="javascript:;" onclick="router.persist.vote('<%= song.trackId%>')"  class="ui-link-inherit" data-transition="slide" >
+                <a href="javascript:;" onclick="router.persist.vote('<%= song.trackId%>')"  class="ui-link-inherit <%=song.disableVote%>" data-transition="slide" >
                     <span ><%=song.voteCount%></span>
                     <span><%= song.trackId%></span>
                 </a>

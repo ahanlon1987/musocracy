@@ -58,10 +58,7 @@ function( $, Backbone, SearchCollection, QueueCollection, SearchView, QueueView,
 
             // Fetches the Collection of Queue Models for the current Queue View
             currentView.collection.fetch().done( function() {
-
                 $.mobile.loading( "hide" );
-
-                // Programatically changes to the current categories page
             } );
 
         },
@@ -74,9 +71,7 @@ function( $, Backbone, SearchCollection, QueueCollection, SearchView, QueueView,
                 currentView.collection.url = '/search/track?q=' + query;
                 // Fetches the Collection of Search Result Models for the current Search View
                 currentView.collection.fetch().done( function() {
-
                     $.mobile.loading( "hide" );
-
                 } );
             } else {
                 this.searchView.render();

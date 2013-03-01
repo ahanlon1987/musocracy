@@ -2,7 +2,7 @@
 // =============
 
 // Includes file dependencies
-define([ "jquery", "backbone" ], function( $, Backbone) {
+define([ "jquery", "backbone"], function( $, Backbone, QueueCollection) {
 
     var Persist = {
 
@@ -12,20 +12,29 @@ define([ "jquery", "backbone" ], function( $, Backbone) {
 
             console.log('Voting for ' + trackId);
             var xmlhttp = new XMLHttpRequest();
+            var that = this;
+
 
             xmlhttp.onreadystatechange = function(){
                 if(this.readyState == this.DONE) {
-                    if(this.status == 200)
+                    if(this.status == 200) {
                         console.log('200 returned from vote service');
+                        that.previousVotes.push(trackId);
 
-                } else {
-                    console.log('vote failed. this error message blows.');
+                        router.queue();
+
+                    } else {
+                        console.log('vote failed. this error message blows.');
+                    }
                 }
             };
             xmlhttp.open('POST','/location/1/votes/' + trackId, true);
             xmlhttp.send(trackId);
 
-        }
+
+        },
+
+        previousVotes:[]
 
     };
 

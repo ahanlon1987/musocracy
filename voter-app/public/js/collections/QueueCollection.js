@@ -2,16 +2,13 @@
 // ===================
 
 // Includes file dependencies
-define([ "jquery","backbone","models/QueueModel" ], function( $, Backbone, QueueModel ) {
+define([ "jquery","backbone","models/QueueModel"], function( $, Backbone, QueueModel) {
 
-    // Extends Backbone.Router
+    // Extends Backbone.Collection
     var Collection = Backbone.Collection.extend( {
 
         // The Collection constructor
         initialize: function( models, options ) {
-
-            // Sets the type instance property (ie. Queue)
-            this.type = options.type;
 
         },
 
@@ -19,17 +16,12 @@ define([ "jquery","backbone","models/QueueModel" ], function( $, Backbone, Queue
         model: QueueModel,
 
         parse: function(response) {
-            console.log('inside QueueCollection#parse');
-
-            this.add(response);
-
             return response;
-
         }
 
     } );
 
-    // Returns the Model class
+    // Returns the Collection class
     return Collection;
 
 } );

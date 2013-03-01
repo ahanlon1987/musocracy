@@ -2,7 +2,7 @@
 // =============
 
 // Includes file dependencies
-define([ "jquery", "backbone","models/QueueModel" ], function( $, Backbone, QueueModel ) {
+define([ "jquery", "backbone","models/QueueModel", "util/persist" ], function( $, Backbone, QueueModel, persist ) {
 
     // Extends Backbone.View
     var QueueView = Backbone.View.extend( {
@@ -17,6 +17,18 @@ define([ "jquery", "backbone","models/QueueModel" ], function( $, Backbone, Queu
 
         // Renders all of the Category models on the UI
         render: function() {
+
+            _.each(this.collection.models, function(model){
+                if ($.inArray(model.get('trackId'), persist.previousVotes) >= 0){
+                      model.set('disableVote', 'ui-disabled');
+                }
+            });
+
+            //Order by vote count
+            this.collection.comparator = function (song) {
+              return -song.get("voteCount");
+            };
+            this.collection.sort({silent: true});
 
             // Sets the view's template property
             this.template = _.template( $( "script#queuedItems" ).html(), { "collection": this.collection } );
