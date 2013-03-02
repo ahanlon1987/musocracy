@@ -5,10 +5,13 @@ exports.addVote = function(req, resp) {
 
     var args = req.url.match(req.route.regexp);
 
-    if(args instanceof Array) {
-        var locationId = args[1],
-            trackId = args[2];
+    // if(args instanceof Array) {
+    //     var locationId = args[1],
+    //         trackId = args[2];
 
+        var locationId = req.params.locationId;
+        var trackId = req.params.trackId;
+        console.log('Votes.js: locationId=' + locationId + '; trackId=' + trackId);
         votingService.addVote(locationId, {trackId: trackId}, {
             success:function(result) {
                 console.log('successfully added vote');
@@ -22,7 +25,7 @@ exports.addVote = function(req, resp) {
                 resp.end();
             }
         })
-    }
+    // }
 };
 
 exports.getVotes = function(req, resp) {
