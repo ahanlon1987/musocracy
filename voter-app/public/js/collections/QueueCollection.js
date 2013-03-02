@@ -16,7 +16,9 @@ define([ "jquery","backbone","models/QueueModel"], function( $, Backbone, QueueM
         model: QueueModel,
 
         parse: function(response) {
-            return response.playlist;
+            if(response){
+                return response.playlist;
+            }
         }
 
     } );

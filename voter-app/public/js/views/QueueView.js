@@ -22,13 +22,13 @@ define([ "jquery", "backbone","amplify", "models/QueueModel" ], function( $, Bac
 
             _.each(this.collection.models, function(model){
                 if ($.inArray(model.get('trackId'), this.amplify.store('previousVotes')) >= 0){
-                      model.set('disableVote', 'ui-disabled');
+                    model.set('disableVote', 'ui-disabled');
                 }
             });
 
             //Order by vote count
             this.collection.comparator = function (song) {
-              return -song.get("voteCount");
+                return -song.get("voteCount");
             };
             this.collection.sort({silent: true});
 
@@ -37,6 +37,21 @@ define([ "jquery", "backbone","amplify", "models/QueueModel" ], function( $, Bac
 
             // Renders the view's template inside of the current listview element
             this.$el.find("ul#results").html(this.template);
+
+            var queueView = this;
+
+            //Handles Voting action
+            $('ul#results li').click(function(e) {
+                var songHref = this.attributes['data-name'];
+                if(songHref && songHref.value){
+                    var song = queueView.collection.where({trackId:songHref.value});
+                    if(song instanceof Array){
+                        router.persist.vote(song[0]);
+                    }
+                } else {
+                    console.log('unable to determine which song to vote form');
+                }
+            });
 
             // Maintains chainability
             return this;

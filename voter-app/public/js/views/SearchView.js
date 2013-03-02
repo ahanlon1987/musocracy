@@ -31,6 +31,21 @@ define([ "jquery", "backbone","models/SearchModel" ], function( $, Backbone, Sea
             // Renders the view's template inside of the current listview element
             this.$el.find("ul#results").html(this.template);
 
+            var searchView = this;
+            //Handles Voting action
+            $('ul#results li').click(function(e) {
+                var songHref = this.attributes['data-name'];
+                if(songHref && songHref.value){
+                    var song = searchView.collection.where({href:songHref.value});
+                    if(song instanceof Array) {
+                        router.persist.vote(song[0]);
+                    }
+                } else {
+                    console.log('unable to determine which song to vote for.');
+                }
+
+            });
+
             // Maintains chainability
             return this;
         }

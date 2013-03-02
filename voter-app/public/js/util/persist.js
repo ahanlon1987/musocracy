@@ -10,21 +10,25 @@ define([ "jquery", "backbone", "amplify"], function( $, Backbone, Amplify) {
         amplify:Amplify,
 
 //        TODO location id
-//        vote:function(trackId, locationId){
-        vote:function(trackId, trackName){
+//        vote:function(track, locationId){
+        vote:function(track){
 
-            console.log('Voting for trackId: ' + trackId +', trackName: ' + trackName) ;
+            var trackId = (track.get('trackId') || track.get('href')) ;
+            var trackName = track.get('name');
+            //TODO clean up this garbage
+            var artist = (track.get('artists')[0].name || track.get('artist'));
+            console.log('Voting for trackId: ' + trackId +', trackName: ' + trackName + ', artist: ' + artist) ;
             var amp = amplify;
 
             $.ajax({
               type: "POST",
               url: '/location/1/votes/' + trackId,
-              data: {trackId:trackId, name:trackName},
+              data: {trackId:trackId, name:trackName, artist:artist},
               success: function() {
                   console.log('200 returned from vote service, storing vote in local storage');
                   var previousVotes = (amp.store('previousVotes') || []);
                   previousVotes.push(trackId);
-                  amplify.store('previousVotes', previousVotes);
+                  amp.store('previousVotes', previousVotes);
                   router.queue();
               },
               failure:function(){
