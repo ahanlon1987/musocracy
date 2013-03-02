@@ -2,7 +2,7 @@
 // =============
 
 // Includes file dependencies
-define([ "jquery", "backbone","models/QueueModel", "util/persist" ], function( $, Backbone, QueueModel, persist ) {
+define([ "jquery", "backbone","amplify", "models/QueueModel" ], function( $, Backbone, Amplify, QueueModel) {
 
     // Extends Backbone.View
     var QueueView = Backbone.View.extend( {
@@ -15,11 +15,13 @@ define([ "jquery", "backbone","models/QueueModel", "util/persist" ], function( $
 
         },
 
+        amplify:Amplify,
+
         // Renders all of the Category models on the UI
         render: function() {
 
             _.each(this.collection.models, function(model){
-                if ($.inArray(model.get('trackId'), persist.previousVotes) >= 0){
+                if ($.inArray(model.get('trackId'), this.amplify.store('previousVotes')) >= 0){
                       model.set('disableVote', 'ui-disabled');
                 }
             });

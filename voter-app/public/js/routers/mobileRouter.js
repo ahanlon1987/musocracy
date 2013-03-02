@@ -2,8 +2,8 @@
 // =============
 
 // Includes file dependencies
-define([ "jquery","backbone", "../collections/SearchCollection", "../collections/QueueCollection", "../views/SearchView", "../views/QueueView", "../util/persist"],
-function( $, Backbone, SearchCollection, QueueCollection, SearchView, QueueView, Persist) {
+define([ "jquery","backbone", "amplify", "../collections/SearchCollection", "../collections/QueueCollection", "../views/SearchView", "../views/QueueView", "../util/persist"],
+function( $, Backbone, amplify, SearchCollection, QueueCollection, SearchView, QueueView, Persist) {
 
     // Extends Backbone.Router
     var MusocracyRouter = Backbone.Router.extend( {
