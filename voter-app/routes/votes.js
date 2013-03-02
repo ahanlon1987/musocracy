@@ -3,16 +3,11 @@ var votingService = require('../services/votingService').votingService;
 
 exports.addVote = function(req, resp) {
 
-    var args = req.url.match(req.route.regexp);
-
-    // if(args instanceof Array) {
-    //     var locationId = args[1],
-    //         trackId = args[2];
-
         var locationId = req.params.locationId;
         var trackId = req.params.trackId;
-        console.log('Votes.js: locationId=' + locationId + '; trackId=' + trackId);
-        votingService.addVote(locationId, {trackId: trackId}, {
+        var track = req.body;
+
+        votingService.addVote(locationId, track, {
             success:function(result) {
                 console.log('successfully added vote');
                 resp.writeHead(200, {'Content-Type':'application/json'});

@@ -8,7 +8,7 @@ var votingService = {
 
   addVote:function(locationId, obj, options) {
     console.log('Adding vote for locationId=' + locationId);
-    
+
     this.db.collection(PLAYLISTS_COLLECTION, function(err, collection) {
       if (err) {
         console.log('Error fetching collection (name=' + PLAYLISTS_COLLECTION + ')');

@@ -18,7 +18,7 @@ define([ "jquery","backbone","models/SearchModel"], function( $, Backbone, Searc
 
         parse: function(response){
 
-            return response.playlist;
+            return response.tracks;
 
         }
     } );
