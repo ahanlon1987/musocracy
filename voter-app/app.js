@@ -38,13 +38,13 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-app.get('/users', user.list);
 app.get('/search/track', search.byTrack);
 app.get('/search/artist', search.byArtist);
 app.get('/search/album', search.byAlbum);
 app.get('/lookup', lookup.lookup);
-app.get('/location/:id/votes', votes.getVotes);
-app.post('/location/:id/votes/:trackId', votes.addVote);
+app.get('/location/:locationId/votes', votes.getVotes);
+app.get('/location/:locationId/votes/:trackId', votes.addVote);
+app.post('/location/:locationId/votes/:trackId', votes.addVote);
 
 
 var mongoClient = new MongoClient(new MongoServer('127.0.0.1', 27017));

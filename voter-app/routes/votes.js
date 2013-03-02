@@ -18,7 +18,7 @@ exports.addVote = function(req, resp) {
             },
             error:function(err) {
                 resp.writeHead(500);
-                resp.write(err);
+                resp.write('Error adding vote');
                 resp.end();
             }
         })
@@ -26,24 +26,19 @@ exports.addVote = function(req, resp) {
 };
 
 exports.getVotes = function(req, resp) {
-
-    var args = req.url.match(req.route.regexp);
-    if(args instanceof Array) {
-        var locationId = args[1];
-
-        votingService.getVotes(locationId, {
-            success:function(results) {
-                resp.writeHead(200, {'Content-Type':'application/json'});
-                resp.write(JSON.stringify(results));
-                resp.end();
-            },
-            error:function(err) {
-                resp.writeHead(500);
-                resp.write(err);
-                resp.end();
-            }
-        })
-    }
+    var locationId = req.params.locationId;
+    votingService.getVotes(locationId, {
+        success:function(results) {
+            resp.writeHead(200, {'Content-Type':'application/json'});
+            resp.write(JSON.stringify(results));
+            resp.end();
+        },
+        error:function(err) {
+            resp.writeHead(500);
+            resp.write('Error getting votes');
+            resp.end();
+        }
+    })
 };
 
 // exports.addVote = addVote;
