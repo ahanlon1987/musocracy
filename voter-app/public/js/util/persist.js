@@ -16,7 +16,12 @@ define([ "jquery", "backbone", "amplify"], function( $, Backbone, Amplify) {
             var trackId = (track.get('trackId') || track.get('href')) ;
             var trackName = track.get('name');
             //TODO clean up this garbage
-            var artist = (track.get('artists')[0].name || track.get('artist'));
+            var artist = '';
+            if(track.get('artists')){
+                artist = (track.get('artists')[0] ? track.get('artists')[0].name : '' );
+            } else {
+                artist = track.get('artist');
+            }
             console.log('Voting for trackId: ' + trackId +', trackName: ' + trackName + ', artist: ' + artist) ;
             var amp = amplify;
 

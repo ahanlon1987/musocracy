@@ -26,12 +26,6 @@ define([ "jquery", "backbone","amplify", "models/QueueModel" ], function( $, Bac
                 }
             });
 
-            //Order by vote count
-            this.collection.comparator = function (song) {
-                return -song.get("voteCount");
-            };
-            this.collection.sort({silent: true});
-
             // Sets the view's template property
             this.template = _.template( $( "script#queuedItems" ).html(), { "collection": this.collection } );
 
