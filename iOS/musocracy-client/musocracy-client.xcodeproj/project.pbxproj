@@ -1,0 +1,418 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		73ECA2AE16E2F23A00DB98AE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73ECA2AD16E2F23A00DB98AE /* UIKit.framework */; };
+		73ECA2B016E2F23A00DB98AE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73ECA2AF16E2F23A00DB98AE /* Foundation.framework */; };
+		73ECA2B216E2F23A00DB98AE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73ECA2B116E2F23A00DB98AE /* CoreGraphics.framework */; };
+		73ECA2B816E2F23A00DB98AE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 73ECA2B616E2F23A00DB98AE /* InfoPlist.strings */; };
+		73ECA2BA16E2F23A00DB98AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 73ECA2B916E2F23A00DB98AE /* main.m */; };
+		73ECA2BE16E2F23A00DB98AE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 73ECA2BD16E2F23A00DB98AE /* AppDelegate.m */; };
+		73ECA2C016E2F23A00DB98AE /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 73ECA2BF16E2F23A00DB98AE /* Default.png */; };
+		73ECA2C216E2F23A00DB98AE /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 73ECA2C116E2F23A00DB98AE /* Default@2x.png */; };
+		73ECA2C416E2F23A00DB98AE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 73ECA2C316E2F23A00DB98AE /* Default-568h@2x.png */; };
+		73ECA2C716E2F23A00DB98AE /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73ECA2C516E2F23A00DB98AE /* MainStoryboard.storyboard */; };
+		73ECA2CA16E2F23A00DB98AE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73ECA2C916E2F23A00DB98AE /* ViewController.m */; };
+		73ECA2DC16E2F28300DB98AE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73ECA2DB16E2F28300DB98AE /* AVFoundation.framework */; };
+		73ECA2DE16E2F28900DB98AE /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 73ECA2DD16E2F28900DB98AE /* libstdc++.dylib */; };
+		73ECA2E016E2F29100DB98AE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73ECA2DF16E2F29100DB98AE /* CFNetwork.framework */; };
+		73ECA2E216E2F29900DB98AE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73ECA2E116E2F29900DB98AE /* SystemConfiguration.framework */; };
+		73ECA2E416E2F2A000DB98AE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73ECA2E316E2F2A000DB98AE /* AudioToolbox.framework */; };
+		73ECA2E616E2F2A600DB98AE /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73ECA2E516E2F2A600DB98AE /* CoreAudio.framework */; };
+		73ECA2F516E2F2C900DB98AE /* SPLoginResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 73ECA2F416E2F2C900DB98AE /* SPLoginResources.bundle */; };
+		73ECA2F616E2F2DE00DB98AE /* libCocoaLibSpotify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73ECA2F116E2F2BD00DB98AE /* libCocoaLibSpotify.a */; };
+		73ECA2FD16E2F37700DB98AE /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = 73ECA2FC16E2F37700DB98AE /* Track.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		73ECA2F016E2F2BD00DB98AE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73ECA2E716E2F2BD00DB98AE /* CocoaLibSpotify iOS Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 50AF49DC1439CBFE00E4A5EF;
+			remoteInfo = CocoaLibSpotify;
+		};
+		73ECA2F216E2F2BD00DB98AE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73ECA2E716E2F2BD00DB98AE /* CocoaLibSpotify iOS Library.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 50D4F52B156BCDE800E237DD;
+			remoteInfo = CocoaLSTests;
+		};
+		73ECA2F716E2F2E300DB98AE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73ECA2E716E2F2BD00DB98AE /* CocoaLibSpotify iOS Library.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 50AF49DB1439CBFE00E4A5EF;
+			remoteInfo = CocoaLibSpotify;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		73ECA2A916E2F23A00DB98AE /* musocracy-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "musocracy-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		73ECA2AD16E2F23A00DB98AE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		73ECA2AF16E2F23A00DB98AE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		73ECA2B116E2F23A00DB98AE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		73ECA2B516E2F23A00DB98AE /* musocracy-client-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "musocracy-client-Info.plist"; sourceTree = "<group>"; };
+		73ECA2B716E2F23A00DB98AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		73ECA2B916E2F23A00DB98AE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		73ECA2BB16E2F23A00DB98AE /* musocracy-client-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "musocracy-client-Prefix.pch"; sourceTree = "<group>"; };
+		73ECA2BC16E2F23A00DB98AE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		73ECA2BD16E2F23A00DB98AE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		73ECA2BF16E2F23A00DB98AE /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		73ECA2C116E2F23A00DB98AE /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		73ECA2C316E2F23A00DB98AE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		73ECA2C616E2F23A00DB98AE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		73ECA2C816E2F23A00DB98AE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		73ECA2C916E2F23A00DB98AE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		73ECA2DB16E2F28300DB98AE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		73ECA2DD16E2F28900DB98AE /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
+		73ECA2DF16E2F29100DB98AE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		73ECA2E116E2F29900DB98AE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		73ECA2E316E2F2A000DB98AE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		73ECA2E516E2F2A600DB98AE /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		73ECA2E716E2F2BD00DB98AE /* CocoaLibSpotify iOS Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CocoaLibSpotify iOS Library.xcodeproj"; path = "../cocoalibspotify/iOS Library/CocoaLibSpotify iOS Library.xcodeproj"; sourceTree = "<group>"; };
+		73ECA2F416E2F2C900DB98AE /* SPLoginResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SPLoginResources.bundle; sourceTree = "<group>"; };
+		73ECA2FB16E2F37700DB98AE /* Track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Track.h; sourceTree = "<group>"; };
+		73ECA2FC16E2F37700DB98AE /* Track.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Track.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		73ECA2A616E2F23900DB98AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73ECA2F616E2F2DE00DB98AE /* libCocoaLibSpotify.a in Frameworks */,
+				73ECA2E616E2F2A600DB98AE /* CoreAudio.framework in Frameworks */,
+				73ECA2E416E2F2A000DB98AE /* AudioToolbox.framework in Frameworks */,
+				73ECA2E216E2F29900DB98AE /* SystemConfiguration.framework in Frameworks */,
+				73ECA2E016E2F29100DB98AE /* CFNetwork.framework in Frameworks */,
+				73ECA2DE16E2F28900DB98AE /* libstdc++.dylib in Frameworks */,
+				73ECA2DC16E2F28300DB98AE /* AVFoundation.framework in Frameworks */,
+				73ECA2AE16E2F23A00DB98AE /* UIKit.framework in Frameworks */,
+				73ECA2B016E2F23A00DB98AE /* Foundation.framework in Frameworks */,
+				73ECA2B216E2F23A00DB98AE /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		73ECA29E16E2F23900DB98AE = {
+			isa = PBXGroup;
+			children = (
+				73ECA2E716E2F2BD00DB98AE /* CocoaLibSpotify iOS Library.xcodeproj */,
+				73ECA2B316E2F23A00DB98AE /* musocracy-client */,
+				73ECA2AC16E2F23A00DB98AE /* Frameworks */,
+				73ECA2AA16E2F23A00DB98AE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		73ECA2AA16E2F23A00DB98AE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				73ECA2A916E2F23A00DB98AE /* musocracy-client.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		73ECA2AC16E2F23A00DB98AE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				73ECA2E516E2F2A600DB98AE /* CoreAudio.framework */,
+				73ECA2E316E2F2A000DB98AE /* AudioToolbox.framework */,
+				73ECA2E116E2F29900DB98AE /* SystemConfiguration.framework */,
+				73ECA2DF16E2F29100DB98AE /* CFNetwork.framework */,
+				73ECA2DD16E2F28900DB98AE /* libstdc++.dylib */,
+				73ECA2DB16E2F28300DB98AE /* AVFoundation.framework */,
+				73ECA2AD16E2F23A00DB98AE /* UIKit.framework */,
+				73ECA2AF16E2F23A00DB98AE /* Foundation.framework */,
+				73ECA2B116E2F23A00DB98AE /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		73ECA2B316E2F23A00DB98AE /* musocracy-client */ = {
+			isa = PBXGroup;
+			children = (
+				73ECA2FA16E2F36000DB98AE /* controllers */,
+				73ECA2F916E2F35900DB98AE /* models */,
+				73ECA2F416E2F2C900DB98AE /* SPLoginResources.bundle */,
+				73ECA2BC16E2F23A00DB98AE /* AppDelegate.h */,
+				73ECA2BD16E2F23A00DB98AE /* AppDelegate.m */,
+				73ECA2C516E2F23A00DB98AE /* MainStoryboard.storyboard */,
+				73ECA2B416E2F23A00DB98AE /* Supporting Files */,
+			);
+			path = "musocracy-client";
+			sourceTree = "<group>";
+		};
+		73ECA2B416E2F23A00DB98AE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				73ECA2B516E2F23A00DB98AE /* musocracy-client-Info.plist */,
+				73ECA2B616E2F23A00DB98AE /* InfoPlist.strings */,
+				73ECA2B916E2F23A00DB98AE /* main.m */,
+				73ECA2BB16E2F23A00DB98AE /* musocracy-client-Prefix.pch */,
+				73ECA2BF16E2F23A00DB98AE /* Default.png */,
+				73ECA2C116E2F23A00DB98AE /* Default@2x.png */,
+				73ECA2C316E2F23A00DB98AE /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		73ECA2E816E2F2BD00DB98AE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				73ECA2F116E2F2BD00DB98AE /* libCocoaLibSpotify.a */,
+				73ECA2F316E2F2BD00DB98AE /* CocoaLSTests.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		73ECA2F916E2F35900DB98AE /* models */ = {
+			isa = PBXGroup;
+			children = (
+				73ECA2FB16E2F37700DB98AE /* Track.h */,
+				73ECA2FC16E2F37700DB98AE /* Track.m */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
+		73ECA2FA16E2F36000DB98AE /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				73ECA2C816E2F23A00DB98AE /* ViewController.h */,
+				73ECA2C916E2F23A00DB98AE /* ViewController.m */,
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		73ECA2A816E2F23900DB98AE /* musocracy-client */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73ECA2CD16E2F23A00DB98AE /* Build configuration list for PBXNativeTarget "musocracy-client" */;
+			buildPhases = (
+				73ECA2A516E2F23900DB98AE /* Sources */,
+				73ECA2A616E2F23900DB98AE /* Frameworks */,
+				73ECA2A716E2F23900DB98AE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				73ECA2F816E2F2E300DB98AE /* PBXTargetDependency */,
+			);
+			name = "musocracy-client";
+			productName = "musocracy-client";
+			productReference = 73ECA2A916E2F23A00DB98AE /* musocracy-client.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		73ECA2A016E2F23900DB98AE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Phil MacCart";
+			};
+			buildConfigurationList = 73ECA2A316E2F23900DB98AE /* Build configuration list for PBXProject "musocracy-client" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 73ECA29E16E2F23900DB98AE;
+			productRefGroup = 73ECA2AA16E2F23A00DB98AE /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 73ECA2E816E2F2BD00DB98AE /* Products */;
+					ProjectRef = 73ECA2E716E2F2BD00DB98AE /* CocoaLibSpotify iOS Library.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				73ECA2A816E2F23900DB98AE /* musocracy-client */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		73ECA2F116E2F2BD00DB98AE /* libCocoaLibSpotify.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCocoaLibSpotify.a;
+			remoteRef = 73ECA2F016E2F2BD00DB98AE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		73ECA2F316E2F2BD00DB98AE /* CocoaLSTests.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = CocoaLSTests.app;
+			remoteRef = 73ECA2F216E2F2BD00DB98AE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		73ECA2A716E2F23900DB98AE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73ECA2B816E2F23A00DB98AE /* InfoPlist.strings in Resources */,
+				73ECA2C016E2F23A00DB98AE /* Default.png in Resources */,
+				73ECA2C216E2F23A00DB98AE /* Default@2x.png in Resources */,
+				73ECA2C416E2F23A00DB98AE /* Default-568h@2x.png in Resources */,
+				73ECA2C716E2F23A00DB98AE /* MainStoryboard.storyboard in Resources */,
+				73ECA2F516E2F2C900DB98AE /* SPLoginResources.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		73ECA2A516E2F23900DB98AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73ECA2BA16E2F23A00DB98AE /* main.m in Sources */,
+				73ECA2BE16E2F23A00DB98AE /* AppDelegate.m in Sources */,
+				73ECA2CA16E2F23A00DB98AE /* ViewController.m in Sources */,
+				73ECA2FD16E2F37700DB98AE /* Track.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		73ECA2F816E2F2E300DB98AE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CocoaLibSpotify;
+			targetProxy = 73ECA2F716E2F2E300DB98AE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		73ECA2B616E2F23A00DB98AE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				73ECA2B716E2F23A00DB98AE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		73ECA2C516E2F23A00DB98AE /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				73ECA2C616E2F23A00DB98AE /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		73ECA2CB16E2F23A00DB98AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		73ECA2CC16E2F23A00DB98AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		73ECA2CE16E2F23A00DB98AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "musocracy-client/musocracy-client-Prefix.pch";
+				INFOPLIST_FILE = "musocracy-client/musocracy-client-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		73ECA2CF16E2F23A00DB98AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "musocracy-client/musocracy-client-Prefix.pch";
+				INFOPLIST_FILE = "musocracy-client/musocracy-client-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		73ECA2A316E2F23900DB98AE /* Build configuration list for PBXProject "musocracy-client" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73ECA2CB16E2F23A00DB98AE /* Debug */,
+				73ECA2CC16E2F23A00DB98AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		73ECA2CD16E2F23A00DB98AE /* Build configuration list for PBXNativeTarget "musocracy-client" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73ECA2CE16E2F23A00DB98AE /* Debug */,
+				73ECA2CF16E2F23A00DB98AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 73ECA2A016E2F23900DB98AE /* Project object */;
+}

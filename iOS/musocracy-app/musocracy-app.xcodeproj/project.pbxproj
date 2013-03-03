@@ -1,0 +1,299 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7325D8AE16E2E12F009A0637 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7325D8AD16E2E12F009A0637 /* UIKit.framework */; };
+		7325D8B016E2E12F009A0637 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7325D8AF16E2E12F009A0637 /* Foundation.framework */; };
+		7325D8B216E2E12F009A0637 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7325D8B116E2E12F009A0637 /* CoreGraphics.framework */; };
+		7325D8B816E2E12F009A0637 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7325D8B616E2E12F009A0637 /* InfoPlist.strings */; };
+		7325D8BA16E2E12F009A0637 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7325D8B916E2E12F009A0637 /* main.m */; };
+		7325D8BE16E2E12F009A0637 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7325D8BD16E2E12F009A0637 /* AppDelegate.m */; };
+		7325D8C016E2E12F009A0637 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7325D8BF16E2E12F009A0637 /* Default.png */; };
+		7325D8C216E2E12F009A0637 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7325D8C116E2E12F009A0637 /* Default@2x.png */; };
+		7325D8C416E2E12F009A0637 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7325D8C316E2E12F009A0637 /* Default-568h@2x.png */; };
+		7325D8C716E2E12F009A0637 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7325D8C616E2E12F009A0637 /* ViewController.m */; };
+		7325D8CA16E2E12F009A0637 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7325D8C816E2E12F009A0637 /* ViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7325D8A916E2E12F009A0637 /* musocracy-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "musocracy-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7325D8AD16E2E12F009A0637 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7325D8AF16E2E12F009A0637 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7325D8B116E2E12F009A0637 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7325D8B516E2E12F009A0637 /* musocracy-app-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "musocracy-app-Info.plist"; sourceTree = "<group>"; };
+		7325D8B716E2E12F009A0637 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7325D8B916E2E12F009A0637 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7325D8BB16E2E12F009A0637 /* musocracy-app-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "musocracy-app-Prefix.pch"; sourceTree = "<group>"; };
+		7325D8BC16E2E12F009A0637 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7325D8BD16E2E12F009A0637 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7325D8BF16E2E12F009A0637 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		7325D8C116E2E12F009A0637 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		7325D8C316E2E12F009A0637 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		7325D8C516E2E12F009A0637 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		7325D8C616E2E12F009A0637 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		7325D8C916E2E12F009A0637 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7325D8A616E2E12F009A0637 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7325D8AE16E2E12F009A0637 /* UIKit.framework in Frameworks */,
+				7325D8B016E2E12F009A0637 /* Foundation.framework in Frameworks */,
+				7325D8B216E2E12F009A0637 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7325D89E16E2E12F009A0637 = {
+			isa = PBXGroup;
+			children = (
+				7325D8B316E2E12F009A0637 /* musocracy-app */,
+				7325D8AC16E2E12F009A0637 /* Frameworks */,
+				7325D8AA16E2E12F009A0637 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7325D8AA16E2E12F009A0637 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7325D8A916E2E12F009A0637 /* musocracy-app.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7325D8AC16E2E12F009A0637 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7325D8AD16E2E12F009A0637 /* UIKit.framework */,
+				7325D8AF16E2E12F009A0637 /* Foundation.framework */,
+				7325D8B116E2E12F009A0637 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7325D8B316E2E12F009A0637 /* musocracy-app */ = {
+			isa = PBXGroup;
+			children = (
+				7325D8BC16E2E12F009A0637 /* AppDelegate.h */,
+				7325D8BD16E2E12F009A0637 /* AppDelegate.m */,
+				7325D8C516E2E12F009A0637 /* ViewController.h */,
+				7325D8C616E2E12F009A0637 /* ViewController.m */,
+				7325D8C816E2E12F009A0637 /* ViewController.xib */,
+				7325D8B416E2E12F009A0637 /* Supporting Files */,
+			);
+			path = "musocracy-app";
+			sourceTree = "<group>";
+		};
+		7325D8B416E2E12F009A0637 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7325D8B516E2E12F009A0637 /* musocracy-app-Info.plist */,
+				7325D8B616E2E12F009A0637 /* InfoPlist.strings */,
+				7325D8B916E2E12F009A0637 /* main.m */,
+				7325D8BB16E2E12F009A0637 /* musocracy-app-Prefix.pch */,
+				7325D8BF16E2E12F009A0637 /* Default.png */,
+				7325D8C116E2E12F009A0637 /* Default@2x.png */,
+				7325D8C316E2E12F009A0637 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7325D8A816E2E12F009A0637 /* musocracy-app */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7325D8CD16E2E12F009A0637 /* Build configuration list for PBXNativeTarget "musocracy-app" */;
+			buildPhases = (
+				7325D8A516E2E12F009A0637 /* Sources */,
+				7325D8A616E2E12F009A0637 /* Frameworks */,
+				7325D8A716E2E12F009A0637 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "musocracy-app";
+			productName = "musocracy-app";
+			productReference = 7325D8A916E2E12F009A0637 /* musocracy-app.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7325D8A016E2E12F009A0637 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Phil MacCart";
+			};
+			buildConfigurationList = 7325D8A316E2E12F009A0637 /* Build configuration list for PBXProject "musocracy-app" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7325D89E16E2E12F009A0637;
+			productRefGroup = 7325D8AA16E2E12F009A0637 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7325D8A816E2E12F009A0637 /* musocracy-app */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7325D8A716E2E12F009A0637 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7325D8B816E2E12F009A0637 /* InfoPlist.strings in Resources */,
+				7325D8C016E2E12F009A0637 /* Default.png in Resources */,
+				7325D8C216E2E12F009A0637 /* Default@2x.png in Resources */,
+				7325D8C416E2E12F009A0637 /* Default-568h@2x.png in Resources */,
+				7325D8CA16E2E12F009A0637 /* ViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7325D8A516E2E12F009A0637 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7325D8BA16E2E12F009A0637 /* main.m in Sources */,
+				7325D8BE16E2E12F009A0637 /* AppDelegate.m in Sources */,
+				7325D8C716E2E12F009A0637 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7325D8B616E2E12F009A0637 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7325D8B716E2E12F009A0637 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7325D8C816E2E12F009A0637 /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7325D8C916E2E12F009A0637 /* en */,
+			);
+			name = ViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7325D8CB16E2E12F009A0637 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7325D8CC16E2E12F009A0637 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7325D8CE16E2E12F009A0637 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "musocracy-app/musocracy-app-Prefix.pch";
+				INFOPLIST_FILE = "musocracy-app/musocracy-app-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		7325D8CF16E2E12F009A0637 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "musocracy-app/musocracy-app-Prefix.pch";
+				INFOPLIST_FILE = "musocracy-app/musocracy-app-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7325D8A316E2E12F009A0637 /* Build configuration list for PBXProject "musocracy-app" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7325D8CB16E2E12F009A0637 /* Debug */,
+				7325D8CC16E2E12F009A0637 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7325D8CD16E2E12F009A0637 /* Build configuration list for PBXNativeTarget "musocracy-app" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7325D8CE16E2E12F009A0637 /* Debug */,
+				7325D8CF16E2E12F009A0637 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7325D8A016E2E12F009A0637 /* Project object */;
+}
