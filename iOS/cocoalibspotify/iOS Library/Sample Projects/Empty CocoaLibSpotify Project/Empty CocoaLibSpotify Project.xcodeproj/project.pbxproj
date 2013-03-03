@@ -24,6 +24,11 @@
 		50EECB6C15CABAF5006E54FA /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50EECB6B15CABAF5006E54FA /* CoreAudio.framework */; };
 		50EECB6E15CABAFB006E54FA /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50EECB6D15CABAFB006E54FA /* AudioToolbox.framework */; };
 		50EECB7015CABB00006E54FA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50EECB6F15CABB00006E54FA /* AVFoundation.framework */; };
+		73A4398D16E3C14A00F81683 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73A4398B16E3C14A00F81683 /* LoginViewController.m */; };
+		73A4398E16E3C14A00F81683 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73A4398C16E3C14A00F81683 /* LoginViewController.xib */; };
+		73A4399316E3C16E00F81683 /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = 73A4399216E3C16E00F81683 /* Track.m */; };
+		A3B282FC818D79F78C49342E /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B28C75B700CCACD1CE8727 /* UserService.m */; };
+		A3B289E6506935025A61EA37 /* PlaylistService.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B280B06212BD10B655851E /* PlaylistService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +78,15 @@
 		50EECB6B15CABAF5006E54FA /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		50EECB6D15CABAFB006E54FA /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		50EECB6F15CABB00006E54FA /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		73A4398A16E3C14A00F81683 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		73A4398B16E3C14A00F81683 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		73A4398C16E3C14A00F81683 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		73A4399116E3C16E00F81683 /* Track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Track.h; sourceTree = "<group>"; };
+		73A4399216E3C16E00F81683 /* Track.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Track.m; sourceTree = "<group>"; };
+		A3B2801E781C9F20F193EB8B /* PlaylistService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistService.h; sourceTree = "<group>"; };
+		A3B280B06212BD10B655851E /* PlaylistService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistService.m; sourceTree = "<group>"; };
+		A3B2886545CDA43B1D58A235 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
+		A3B28C75B700CCACD1CE8727 /* UserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,13 +147,15 @@
 		50EECB2E15CABA47006E54FA /* Empty CocoaLibSpotify Project */ = {
 			isa = PBXGroup;
 			children = (
+				73A4399016E3C15E00F81683 /* models */,
+				73A4398F16E3C15200F81683 /* views */,
+				73A4398816E3C12B00F81683 /* controllers */,
 				50EECB3715CABA47006E54FA /* AppDelegate.h */,
 				50EECB3815CABA47006E54FA /* AppDelegate.m */,
 				50EECB3A15CABA47006E54FA /* ViewController.h */,
 				50EECB3B15CABA47006E54FA /* ViewController.m */,
-				50EECB3D15CABA47006E54FA /* ViewController_iPhone.xib */,
-				50EECB4015CABA47006E54FA /* ViewController_iPad.xib */,
 				50EECB2F15CABA47006E54FA /* Supporting Files */,
+				A3B2884D9FA44BC36C37552A /* services */,
 			);
 			path = "Empty CocoaLibSpotify Project";
 			sourceTree = "<group>";
@@ -163,6 +179,45 @@
 				50EECB5F15CABA9A006E54FA /* CocoaLSTests.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		73A4398816E3C12B00F81683 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				73A4398A16E3C14A00F81683 /* LoginViewController.h */,
+				73A4398B16E3C14A00F81683 /* LoginViewController.m */,
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
+		73A4398F16E3C15200F81683 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				73A4398C16E3C14A00F81683 /* LoginViewController.xib */,
+				50EECB3D15CABA47006E54FA /* ViewController_iPhone.xib */,
+				50EECB4015CABA47006E54FA /* ViewController_iPad.xib */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
+		73A4399016E3C15E00F81683 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				73A4399116E3C16E00F81683 /* Track.h */,
+				73A4399216E3C16E00F81683 /* Track.m */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
+		A3B2884D9FA44BC36C37552A /* services */ = {
+			isa = PBXGroup;
+			children = (
+				A3B28C75B700CCACD1CE8727 /* UserService.m */,
+				A3B2886545CDA43B1D58A235 /* UserService.h */,
+				A3B280B06212BD10B655851E /* PlaylistService.m */,
+				A3B2801E781C9F20F193EB8B /* PlaylistService.h */,
+			);
+			path = services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,6 +299,7 @@
 				50EECB3F15CABA47006E54FA /* ViewController_iPhone.xib in Resources */,
 				50EECB4215CABA47006E54FA /* ViewController_iPad.xib in Resources */,
 				50EECB6415CABACA006E54FA /* SPLoginResources.bundle in Resources */,
+				73A4398E16E3C14A00F81683 /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +313,10 @@
 				50EECB3515CABA47006E54FA /* main.m in Sources */,
 				50EECB3915CABA47006E54FA /* AppDelegate.m in Sources */,
 				50EECB3C15CABA47006E54FA /* ViewController.m in Sources */,
+				73A4398D16E3C14A00F81683 /* LoginViewController.m in Sources */,
+				73A4399316E3C16E00F81683 /* Track.m in Sources */,
+				A3B282FC818D79F78C49342E /* UserService.m in Sources */,
+				A3B289E6506935025A61EA37 /* PlaylistService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

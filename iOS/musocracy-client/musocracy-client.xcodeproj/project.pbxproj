@@ -411,6 +411,7 @@
 				73ECA2CF16E2F23A00DB98AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="CIDR_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$/../../../common/CocoaLibSpotify.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/CocoaLibSpotify.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/CocoaLibSpotifyPlatformImports.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/CocoaLibSpotifyPlatformImports.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPAlbum.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPAlbum.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPAlbum.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPAlbum.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPAlbumBrowse.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPAlbumBrowse.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPAlbumBrowse.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPAlbumBrowse.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPArtist.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPArtist.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPArtist.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPArtist.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPArtistBrowse.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPArtistBrowse.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPArtistBrowse.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPArtistBrowse.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPAsyncLoading.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPAsyncLoading.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPAsyncLoading.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPAsyncLoading.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPCircularBuffer.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPCircularBuffer.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPCircularBuffer.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPCircularBuffer.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPCommon.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPCommon.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPCoreAudioController.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPCoreAudioController.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPCoreAudioController.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPCoreAudioController.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPErrorExtensions.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPErrorExtensions.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPErrorExtensions.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPErrorExtensions.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPImage.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPImage.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPImage.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPImage.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPPlaybackManager.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPPlaybackManager.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPPlaybackManager.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPPlaybackManager.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPPlaylist.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPPlaylist.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPPlaylist.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPPlaylist.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPPlaylistContainer.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPPlaylistContainer.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPPlaylistContainer.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPPlaylistContainer.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPPlaylistContainerInternal.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPPlaylistContainerInternal.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPPlaylistFolder.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPPlaylistFolder.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPPlaylistFolder.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPPlaylistFolder.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPPlaylistFolderInternal.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPPlaylistFolderInternal.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPPlaylistInternal.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPPlaylistInternal.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPPlaylistItem.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPPlaylistItem.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPPlaylistItem.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPPlaylistItem.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPPlaylistItemInternal.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPPlaylistItemInternal.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPPostTracksToInboxOperation.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPPostTracksToInboxOperation.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPPostTracksToInboxOperation.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPPostTracksToInboxOperation.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPSearch.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPSearch.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPSearch.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPSearch.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPSession.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPSession.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPSession.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPSession.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPToplist.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPToplist.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPToplist.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPToplist.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPTrack.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPTrack.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPTrack.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPTrack.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPTrackInternal.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPTrackInternal.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPURLExtensions.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPURLExtensions.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPURLExtensions.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPURLExtensions.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPUnknownPlaylist.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPUnknownPlaylist.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPUser.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPUser.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/SPUser.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/SPUser.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/Tests/NSData+Base64.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/Tests/NSData+Base64.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/Tests/NSData+Base64.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/Tests/NSData+Base64.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/Tests/SPAudioDeliveryTests.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/Tests/SPAudioDeliveryTests.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/Tests/SPAudioDeliveryTests.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/Tests/SPAudioDeliveryTests.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/Tests/SPConcurrencyTests.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/Tests/SPConcurrencyTests.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/Tests/SPConcurrencyTests.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/Tests/SPConcurrencyTests.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/Tests/SPMetadataTests.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/Tests/SPMetadataTests.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/Tests/SPMetadataTests.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/Tests/SPMetadataTests.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/Tests/SPPlaylistTests.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/Tests/SPPlaylistTests.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/Tests/SPPlaylistTests.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/Tests/SPPlaylistTests.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/Tests/SPPostTracksToInboxTests.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/Tests/SPPostTracksToInboxTests.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/Tests/SPPostTracksToInboxTests.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/Tests/SPPostTracksToInboxTests.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/Tests/SPSearchTests.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/Tests/SPSearchTests.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/Tests/SPSearchTests.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/Tests/SPSearchTests.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/Tests/SPSessionTeardownTests.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/Tests/SPSessionTeardownTests.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/Tests/SPSessionTeardownTests.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/Tests/SPSessionTeardownTests.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/Tests/SPSessionTests.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/Tests/SPSessionTests.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/Tests/SPSessionTests.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/Tests/SPSessionTests.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/Tests/SPTests.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/Tests/SPTests.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/Tests/SPTests.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/Tests/SPTests.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../common/Tests/TestConstants.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../common/Tests/TestConstants.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../..">
+      <sourceFolder url="file://$MODULE_DIR$/../.." isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
+

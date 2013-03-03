@@ -34,4 +34,10 @@
 
 @interface ViewController : UIViewController
 
+@property (nonatomic, strong) IBOutlet UITextField *trackURIField;
+@property (nonatomic, strong) IBOutlet UILabel *trackTitle;
+@property (nonatomic, strong) IBOutlet UILabel *trackArtist;
+@property (nonatomic, strong) IBOutlet UIImageView *coverView;
+@property (nonatomic, strong) IBOutlet UISlider *positionSlider;
+
 @end
