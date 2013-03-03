@@ -1,4 +1,5 @@
 
+var _ = require('underscore');
 var PLAYLISTS_COLLECTION = 'playlists';
 
 var votingService = {
@@ -75,7 +76,10 @@ var votingService = {
     });
   },
 
-  getVotes:function(locationId, options) {
+  getVotes:function(obj, options) {
+    var locationId = obj.locationId;
+    var limit = obj.limit || 0;
+    var excludePlayed = obj.excludePlayed || false;
     this.db.collection(PLAYLISTS_COLLECTION, function(err, collection) {
       if (err) {
         console.log('Error fetching collection (name=' + PLAYLISTS_COLLECTION  + ')');
@@ -96,10 +100,79 @@ var votingService = {
           }
         }
         else {
+          if (!location) {
+            location = {
+              locationId:locationId,
+              playlist: []
+            };
+          }
+          location.playlist = _.sortBy(location.playlist, function(track) {
+              return track.votes * -1;  // inverse sort order
+            });
+
+          if (excludePlayed) { 
+            location.playlist = _.filter(location.playlist, function(track) {
+              return !track.played;
+            })
+          }
+
+          if (limit && limit > 0) {
+            location.playlist = location.playlist.slice(0, limit);
+          } 
           if (options && options.success) {
             options.success(location);
           }
         }
+      });
+    })
+  },
+
+  markAsPlayed:function(obj, options) {
+    this.db.collection(PLAYLISTS_COLLECTION, function(err, collection) {
+      if (err) {
+        console.log('Error fetching collection (name=' + PLAYLISTS_COLLECTION  + ')');
+        (options && options.error && options.error(err));
+        return;
+      }
+
+      collection.findOne({locationId:obj.locationId}, function(err, location) {
+        if (err) {
+          console.log('Error finding collection.', err);
+          options && options.error && options.error(err);
+          return;
+        }
+
+        if (!location) {
+          location = {
+            locationId: locationId,
+          };
+        }
+        if (!location.playlist) {
+          location.playlist = [];
+        }
+
+        var track = _.find(location.playlist, function(track) {
+          return track.trackId == obj.trackId;
+        });
+
+        if (!track) {
+          track = {
+            trackId:obj.trackId,
+            played:true
+          };
+        }
+
+        track.played = true;
+
+        collection.update({locationId: location.locationId}, location, {upsert:true}, function(err, obj) {
+          if (err) {
+            console.log('Error saving vote.', err);
+            (options && options.error && options.error(err));
+          }
+          else {
+            (options && options.success && options.success(location));
+          }
+        })
       });
     })
   }

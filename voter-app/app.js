@@ -45,6 +45,9 @@ app.get('/lookup', lookup.lookup);
 app.get('/location/:locationId/votes', votes.getVotes);
 app.get('/location/:locationId/votes/:trackId', votes.addVote);
 app.post('/location/:locationId/votes/:trackId', votes.addVote);
+app.post('/location/:locationId/track/:trackId', votes.markAsPlayed);
+app.get('/location/:locationId/track/:trackId', votes.markAsPlayed);
+
 
 
 var mongoClient = new MongoClient(new MongoServer('127.0.0.1', 27017));
