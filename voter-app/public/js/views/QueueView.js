@@ -43,7 +43,7 @@ define([ "jquery", "backbone","amplify", "models/QueueModel" ], function( $, Bac
                         router.persist.vote(song[0]);
                     }
                 } else {
-                    console.log('unable to determine which song to vote form');
+                    console.log('unable to determine which song to vote for');
                 }
             });
 

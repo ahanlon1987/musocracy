@@ -75,7 +75,6 @@ function( $, Backbone, amplify, SearchCollection, QueueCollection, SearchView, Q
                 } );
             } else {
                 this.searchView.render();
-//                currentView.collection.reset();
             }
         }
     } );

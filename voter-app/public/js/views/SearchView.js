@@ -37,11 +37,12 @@ define([ "jquery", "backbone","models/SearchModel" ], function( $, Backbone, Sea
                 var songHref = this.attributes['data-name'];
                 if(songHref && songHref.value){
                     var song = searchView.collection.where({href:songHref.value});
-                    if(song instanceof Array) {
+                    if(song instanceof Array && song != null) {
                         router.persist.vote(song[0]);
+
                     }
                 } else {
-                    console.log('unable to determine which song to vote for.');
+                    console.log('unable to determine which song to vote for');
                 }
 
             });

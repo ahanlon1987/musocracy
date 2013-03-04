@@ -33,7 +33,7 @@ define([ "jquery", "backbone", "amplify"], function( $, Backbone, Amplify) {
                   console.log('200 returned from vote service, storing vote in local storage');
                   var previousVotes = (amp.store('previousVotes') || []);
                   previousVotes.push(trackId);
-                  amp.store('previousVotes', previousVotes);
+                  amp.store('previousVotes', previousVotes, { expires: 10800000}); //3 hours
                   router.queue();
               },
               failure:function(){
