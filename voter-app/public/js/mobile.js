@@ -47,8 +47,10 @@ require([ "jquery", "backbone", "routers/mobileRouter" ], function( $, Backbone,
 
     //Handles search action,
     $("#search-form").submit(function() {
-        var query = $('input[name="song-search"]').val();
-        window.location.href = '#search?' + query;
+        var element =  $('input[name="song-search"]');
+        element.blur();
+        window.location.href = '#search?' + element.val();
+
         return false;
     });
 
