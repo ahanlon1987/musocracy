@@ -32,9 +32,11 @@ define([ "jquery", "backbone", "amplify"], function( $, Backbone, Amplify) {
               success: function() {
                   console.log('200 returned from vote service, storing vote in local storage');
                   var previousVotes = (amp.store('previousVotes') || []);
-                  previousVotes.push(trackId);
-                  //TODO this expires the entire previousVotes array, we really want each individual vote to expire after 3 hours
-                  amp.store('previousVotes', previousVotes, { expires: 10800000}); //3 hours
+                  previousVotes.push({
+                      'trackId':trackId,
+                      'voteTime':new Date()
+                    });
+                  amp.store('previousVotes', previousVotes);
                   router.queue();
               },
               failure:function(){
