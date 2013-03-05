@@ -46,7 +46,7 @@ var votingService = {
           location.playlist.push({
             trackId: obj.trackId,
             name: obj.name,
-            artist:obj.artist,
+            artists:obj.artists,
             album:obj.album,
             votes: 1
           });

@@ -59,7 +59,7 @@
                 <a href="javascript:;" class="ui-link-inherit padding-left <%=song.disableVote%>">
                     <!--<img src="../../_assets/img/album-bb.jpg" class="ui-li-thumb">-->
                     <h2 class="ui-li-heading"><%=song.votes%> - <%=song.name%> </h2>
-                    <p class="ui-li-desc"><%= song.artist%></p></a>
+                    <p class="ui-li-desc"><%= song.artists%> - <%= song.album%></p></a>
             </div>
         </div>
         <span href="javascript:;" data-name="<%=song.trackId%>" class="vote-action <%=song.disableVote%> ui-li-link-alt ui-btn ui-btn-icon-notext ui-btn-up-c" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="false" data-iconpos="notext" data-theme="c" aria-haspopup="true" aria-owns="#purchase"><span class="ui-btn-inner"><span class="ui-btn-text"></span><span data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="gear" data-iconpos="notext" data-theme="d" title="" class="ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-btn-icon-notext">
@@ -78,7 +78,6 @@
 </script>
 
 
-
 <script id="searchResults" type="text/template">
 
     <% _.each( collection.toJSON(), function( song, id ) { %>
@@ -88,10 +87,10 @@
                 <a href="javascript:;" class="<%=song.disableVote%> ui-link-inherit padding-left">
                     <!--<img src="../../_assets/img/album-bb.jpg" class="ui-li-thumb">-->
                     <h2 class="ui-li-heading"><%=song.name%> </h2>
-                    <p class="ui-li-desc"><%= song.artists[0].name%></p></a>
+                    <p class="ui-li-desc"><%= song.artists%> - <%= song.album%></p></a>
             </div>
         </div>
-        <span href="javascript:;" data-name="<%=song.href%>" class="add-action <%=song.disableVote%> ui-li-link-alt ui-btn ui-btn-icon-notext ui-btn-up-c" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="false" data-iconpos="notext" data-theme="c" aria-haspopup="true" aria-owns="#purchase"><span class="ui-btn-inner"><span class="ui-btn-text"></span><span data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="gear" data-iconpos="notext" data-theme="d" title="" class="ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-btn-icon-notext">
+        <span href="javascript:;" data-name="<%=song.trackId%>" class="add-action <%=song.disableVote%> ui-li-link-alt ui-btn ui-btn-icon-notext ui-btn-up-c" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="false" data-iconpos="notext" data-theme="c" aria-haspopup="true" aria-owns="#purchase"><span class="ui-btn-inner"><span class="ui-btn-text"></span><span data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="gear" data-iconpos="notext" data-theme="d" title="" class="ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-btn-icon-notext">
          <span class="ui-btn-inner">
              <span class="ui-btn-text"></span>
              <span class="ui-icon ui-icon-plus ui-icon-shadow">&nbsp;

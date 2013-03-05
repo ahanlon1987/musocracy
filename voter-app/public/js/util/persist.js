@@ -13,22 +13,18 @@ define([ "jquery", "backbone", "amplify"], function( $, Backbone, Amplify) {
 //        vote:function(track, locationId){
         vote:function(track){
 
-            //TODO album
-            var trackId = (track.get('trackId') || track.get('href')) ;
+            var trackId = track.get('trackId') ;
             var trackName = track.get('name');
-            var artist = '';
-            if(track.get('artists')){
-                artist = (track.get('artists')[0] ? track.get('artists')[0].name : '' );
-            } else {
-                artist = track.get('artist');
-            }
-            console.log('Voting for trackId: ' + trackId +', trackName: ' + trackName + ', artist: ' + artist) ;
+            var artists = track.get('artists');
+            var album = track.get('album');
+
+            console.log('Voting for trackId: ' + trackId +', trackName: ' + trackName + ', artists: ' + artists + ', album: ' + album) ;
             var amp = amplify;
 
             $.ajax({
               type: "POST",
               url: '/location/1/votes/' + trackId,
-              data: {trackId:trackId, name:trackName, artist:artist},
+              data: {trackId:trackId, name:trackName, artists:artists, album:album},
               success: function() {
                   console.log('200 returned from vote service, storing vote in local storage');
                   var previousVotes = (amp.store('previousVotes') || []);

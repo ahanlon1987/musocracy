@@ -2,6 +2,8 @@
 var url = require('url');
 var http = require('http');
 var Q = require('q');
+var _ = require('underscore');
+
 
 var BASE_URL = 'http://ws.spotify.com/';
 
@@ -31,10 +33,36 @@ var doSearch = function(type, req, resp) {
 
     response.on('end', function() {
       var respObj = JSON.parse(respData);
-      // console.log(respData);
+//      console.log(respData);
+
+      var info  = respObj.info;
+
+     //Clean up the search result to only bring back what we need: id, name, artist(s), album.
+      var formattedTracks = [];
+      if (respObj.tracks){
+          _.each(respObj.tracks, function(track){
+              var trackId = track.href;
+              var name = track.name;
+              var artists = '';
+              var delim = ' ';
+              _.each(track.artists, function(artist){
+                  artists += delim + artist.name;
+                  delim = ', ';
+              });
+              var album = track.album ? track.album.name : '';
+
+              formattedTracks.push({
+                  "trackId":trackId,
+                  "name":name,
+                  "artists":artists,
+                  "album":album
+              })
+
+          });
+      }
 
       resp.writeHead(200, {'Content-Type':'application/json'});
-      resp.write(JSON.stringify(respObj));
+      resp.write(JSON.stringify({"info":info, "tracks":formattedTracks}));
       resp.end();
     });
   })

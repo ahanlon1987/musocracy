@@ -21,7 +21,6 @@ define([ "jquery", "backbone","models/SearchModel" ], function( $, Backbone, Sea
         // Renders all of the Category models on the UI
         render: function() {
 
-
             //TODO this logic is doubled in QueueView, also this logic blows. Think of more clever way to do this.
             _.each(this.collection.models, function(song){
                 var index = $.inArray(song.get('href'), _.pluck(this.amplify.store('previousVotes'), 'trackId'));
@@ -55,22 +54,17 @@ define([ "jquery", "backbone","models/SearchModel" ], function( $, Backbone, Sea
                         //TODO some sort of animation to inform user action was received.
                         current.find('span.ui-icon') ?  current.find('span.ui-icon').addClass('active-click'): void 0;
                     }
-
-                    var song = searchView.collection.where({href:songHref.value});
+                    var song = searchView.collection.where({trackId:songHref.value});
                     if(song instanceof Array && song != null) {
                         router.persist.vote(song[0]);
-
                     }
                 } else {
                     console.log('unable to determine which song to vote for');
                 }
-
             });
-
             // Maintains chainability
             return this;
         }
-
     } );
 
     // Returns the View class
