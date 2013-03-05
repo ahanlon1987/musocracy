@@ -35,7 +35,8 @@ define([ "jquery", "backbone","amplify", "models/QueueModel" ], function( $, Bac
             var queueView = this;
 
             //Handles Voting action
-            $('ul#results li').click(function(e) {
+//            $('span.vote-action').touchstart(function(e) {
+            $('span.vote-action').click(function(e) {
                 var songHref = this.attributes['data-name'];
                 if(songHref && songHref.value){
                     var song = queueView.collection.where({trackId:songHref.value});

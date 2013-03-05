@@ -7,6 +7,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />-->
+    <link rel="stylesheet" href="css/musocracy.css" />
     <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
     <script src="js/lib/require.js" data-main="js/mobile"></script>
 </head>
@@ -51,17 +52,25 @@
 <script id="queuedItems" type="text/template">
 
     <% _.each( collection.toJSON(), function( song, id ) { %>
-    <li data-corners="false" data-name="<%=song.trackId%>" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="plus" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c">
-        <div class="ui-btn-inner ui-li">
+
+    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="false" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li ui-li-has-alt ui-li-has-thumb ui-first-child ui-btn-up-c">
+        <div class="ui-btn-inner ui-li ui-li-has-alt">
             <div class="ui-btn-text">
-                <a href="javascript:;"  class="ui-link-inherit <%=song.disableVote%>" data-transition="slide" >
-                    <span ><%=song.votes%></span>
-                    <span><%= song.name%></span>
-                    <span><%= song.artist%></span>
-                </a>
+                <a href="javascript:;" class="ui-link-inherit padding-left <%=song.disableVote%>">
+                    <!--<img src="../../_assets/img/album-bb.jpg" class="ui-li-thumb">-->
+                    <h2 class="ui-li-heading"><%=song.votes%> - <%=song.name%> </h2>
+                    <p class="ui-li-desc"><%= song.artist%></p></a>
             </div>
-            <span class="ui-icon ui-icon-arrow-u ui-icon-shadow">&nbsp;</span>
         </div>
+        <span href="javascript:;" data-name="<%=song.trackId%>" class="vote-action <%=song.disableVote%> ui-li-link-alt ui-btn ui-btn-icon-notext ui-btn-up-c" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="false" data-iconpos="notext" data-theme="c" aria-haspopup="true" aria-owns="#purchase"><span class="ui-btn-inner"><span class="ui-btn-text"></span><span data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="gear" data-iconpos="notext" data-theme="d" title="" class="ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-btn-icon-notext">
+        <span class="ui-btn-inner">
+            <span class="ui-btn-text"></span>
+            <span class="ui-icon ui-icon-arrow-u ui-icon-shadow">&nbsp;
+            </span>
+        </span>
+        </span>
+        </span>
+        </span>
     </li>
 
     <% }); %>
@@ -70,19 +79,27 @@
 
 
 
-
 <script id="searchResults" type="text/template">
 
     <% _.each( collection.toJSON(), function( song, id ) { %>
-    <li data-corners="false" data-name="<%=song.href%>" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c">
-        <div class="ui-btn-inner ui-li">
+    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="false" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li ui-li-has-alt ui-li-has-thumb ui-first-child ui-btn-up-c">
+        <div class="ui-btn-inner ui-li ui-li-has-alt">
             <div class="ui-btn-text">
-                <a href="javascript:;" class="ui-link-inherit <%=song.disableVote%>" data-transition="slide" >
-                    <%= song.name%> - <%=song.artists[0].name%>
-                </a>
+                <a href="javascript:;" class="<%=song.disableVote%> ui-link-inherit padding-left">
+                    <!--<img src="../../_assets/img/album-bb.jpg" class="ui-li-thumb">-->
+                    <h2 class="ui-li-heading"><%=song.name%> </h2>
+                    <p class="ui-li-desc"><%= song.artists[0].name%></p></a>
             </div>
-            <span class="ui-icon ui-icon-plus ui-icon-shadow">&nbsp;</span>
         </div>
+        <span href="javascript:;" data-name="<%=song.href%>" class="add-action <%=song.disableVote%> ui-li-link-alt ui-btn ui-btn-icon-notext ui-btn-up-c" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="false" data-iconpos="notext" data-theme="c" aria-haspopup="true" aria-owns="#purchase"><span class="ui-btn-inner"><span class="ui-btn-text"></span><span data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="gear" data-iconpos="notext" data-theme="d" title="" class="ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-btn-icon-notext">
+         <span class="ui-btn-inner">
+             <span class="ui-btn-text"></span>
+             <span class="ui-icon ui-icon-plus ui-icon-shadow">&nbsp;
+             </span>
+         </span>
+         </span>
+         </span>
+        </span>
     </li>
     <% }); %>
 

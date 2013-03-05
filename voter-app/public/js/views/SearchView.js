@@ -33,7 +33,8 @@ define([ "jquery", "backbone","models/SearchModel" ], function( $, Backbone, Sea
 
             var searchView = this;
             //Handles Voting action
-            $('ul#results li').click(function(e) {
+//            $('span.add-action').touchstart(function(e) {
+            $('span.add-action').click(function(e) {
                 var songHref = this.attributes['data-name'];
                 if(songHref && songHref.value){
                     var song = searchView.collection.where({href:songHref.value});

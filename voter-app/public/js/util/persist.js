@@ -13,9 +13,9 @@ define([ "jquery", "backbone", "amplify"], function( $, Backbone, Amplify) {
 //        vote:function(track, locationId){
         vote:function(track){
 
+            //TODO album
             var trackId = (track.get('trackId') || track.get('href')) ;
             var trackName = track.get('name');
-            //TODO clean up this garbage
             var artist = '';
             if(track.get('artists')){
                 artist = (track.get('artists')[0] ? track.get('artists')[0].name : '' );
@@ -33,6 +33,7 @@ define([ "jquery", "backbone", "amplify"], function( $, Backbone, Amplify) {
                   console.log('200 returned from vote service, storing vote in local storage');
                   var previousVotes = (amp.store('previousVotes') || []);
                   previousVotes.push(trackId);
+                  //TODO this expires the entire previousVotes array, we really want each individual vote to expire after 3 hours
                   amp.store('previousVotes', previousVotes, { expires: 10800000}); //3 hours
                   router.queue();
               },
