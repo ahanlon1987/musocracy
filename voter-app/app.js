@@ -13,7 +13,9 @@ var express = require('express')
   , MongoClient = require('mongodb').MongoClient
   , MongoServer = require('mongodb').Server 
   , votingService = require('./services/votingService').votingService
-  , votes = require('./routes/votes');
+  , votes = require('./routes/votes'
+  , location = require('./routes/location')
+  , locationService = require('./services/locationService').locationService);
 
 
 
@@ -42,6 +44,7 @@ app.get('/search/track', search.byTrack);
 app.get('/search/artist', search.byArtist);
 app.get('/search/album', search.byAlbum);
 app.get('/lookup', lookup.lookup);
+app.get('/location/:locationId', location.getLocation);
 app.get('/location/:locationId/votes', votes.getVotes);
 app.get('/location/:locationId/votes/:trackId', votes.addVote);
 app.post('/location/:locationId/votes/:trackId', votes.addVote);
@@ -56,6 +59,8 @@ mongoClient.open(function(err, mongoClient) {
 
   var db = mongoClient.db('musocracy');
   votingService.setDb(db);
+  locationService.setDb(db);
+
   http.createServer(app).listen(app.get('port'), function(){
     console.log("Express server listening on port " + app.get('port'));
   });

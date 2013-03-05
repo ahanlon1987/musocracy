@@ -2,20 +2,24 @@
 // =============
 
 // Includes file dependencies
-define([ "jquery","backbone", "amplify", "../collections/SearchCollection", "../collections/QueueCollection", "../views/SearchView", "../views/QueueView", "../util/persist"],
-function( $, Backbone, amplify, SearchCollection, QueueCollection, SearchView, QueueView, Persist) {
+define([ "jquery","backbone", "amplify", "../collections/SearchCollection", "../collections/QueueCollection", "../views/SearchView", "../views/QueueView", "../views/LocationView", "../util/persist"],
+function( $, Backbone, Amplify, SearchCollection, QueueCollection, SearchView, QueueView, LocationView, Persist) {
 
     // Extends Backbone.Router
     var MusocracyRouter = Backbone.Router.extend( {
 
+
         // The Router constructor
         initialize: function() {
 
+            //Instantiates a new Location View
+            this.locationView = new LocationView({el: "#home"});
+
             // Instantiates a new Search  View
-            this.searchView = new SearchView( { el: "#content-wrapper", collection: new SearchCollection ( [] , { type: "search" } ) } );
+            this.searchView = new SearchView( { el: "#content-wrapper", collection: new SearchCollection () } );
 
             // Instantiates a new Queue View
-            this.queueView= new QueueView( { el: "#content-wrapper", collection: new QueueCollection( [] , { type: "queue" } ) } );
+            this.queueView= new QueueView( { el: "#content-wrapper", collection: new QueueCollection() } );
 
             // Tells Backbone to start watching for hashchange events
             Backbone.history.start();
@@ -23,6 +27,8 @@ function( $, Backbone, amplify, SearchCollection, QueueCollection, SearchView, Q
             this.persist = Persist;
 
         },
+
+        amplify:Amplify,
 
         // Backbone.js Routes
         routes: {
@@ -34,29 +40,41 @@ function( $, Backbone, amplify, SearchCollection, QueueCollection, SearchView, Q
 
             "search" : "search",
 
-            "search?:query" : "search"
+            "search?:query" : "search",
+
+            "location" : "enterLocation"
 
         },
 
         // Home method
         home: function() {
-            // Programatically changes to the search page
-            $.mobile.changePage( "#search" , { reverse: false, changeHash: true } );
+            if(!amplify.store('locationId')){
+                this.enterLocation();
+            } else {
+                this.queue();
+            }
+        },
+
+        enterLocation: function(){
+
+            //Double check what's stored locally is actually correct
+            if(amplify.store('locationId')){
+                Persist.lookupLocation(amplify.store('locationId'));
+            } else {
+                this.locationView.render();
+            }
 
         },
 
         queue: function() {
 
-            //Everytime the user hits queue we'll refresh
+            if(!amplify.store('locationId')){
+                this.enterLocation();
+            }
 
             var currentView = this.queueView;
-
-            currentView.collection.url = '/location/1/votes';
-
-            // Show's the jQuery Mobile loading icon
             $.mobile.loading( "show" );
-
-            // Fetches the Collection of Queue Models for the current Queue View
+            currentView.collection.url = '/location/' + amplify.store('locationId') +'/votes';
             currentView.collection.fetch().done( function() {
                 $.mobile.loading( "hide" );
             } );
@@ -64,12 +82,15 @@ function( $, Backbone, amplify, SearchCollection, QueueCollection, SearchView, Q
         },
 
         search: function(query) {
-            var currentView = this.searchView;
 
+            if(!amplify.store('locationId')){
+                this.enterLocation();
+            }
+
+            var currentView = this.searchView;
             if(query){
                 $.mobile.loading( "show" );
                 currentView.collection.url = '/search/track?q=' + query;
-                // Fetches the Collection of Search Result Models for the current Search View
                 currentView.collection.fetch().done( function() {
                     $.mobile.loading( "hide" );
                 } );
@@ -79,7 +100,7 @@ function( $, Backbone, amplify, SearchCollection, QueueCollection, SearchView, Q
         }
     } );
 
-    // Returns the Router class
+// Returns the Router class
     return MusocracyRouter;
 
 } );

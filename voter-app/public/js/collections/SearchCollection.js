@@ -8,7 +8,7 @@ define([ "jquery","backbone","models/SearchModel"], function( $, Backbone, Searc
     var Collection = Backbone.Collection.extend( {
 
         // The Collection constructor
-        initialize: function( models, options ) {
+        initialize: function() {
 
         },
 

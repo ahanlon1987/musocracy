@@ -8,8 +8,7 @@ define([ "jquery","backbone","models/QueueModel"], function( $, Backbone, QueueM
     var Collection = Backbone.Collection.extend( {
 
         // The Collection constructor
-        initialize: function( models, options ) {
-
+        initialize: function() {
         },
 
         // Sets the Collection model property to be a Category Model

@@ -21,9 +21,10 @@ define([ "jquery", "backbone","models/SearchModel" ], function( $, Backbone, Sea
         // Renders all of the Category models on the UI
         render: function() {
 
+
             //TODO this logic is doubled in QueueView, also this logic blows. Think of more clever way to do this.
             _.each(this.collection.models, function(song){
-                var index = $.inArray(song.get('href'), _.pluck(this.amplify.store('previousVotes'), 'trackId'));
+                var index = $.inArray(song.get('trackId'), _.pluck(this.amplify.store('previousVotes'), 'trackId'));
                 if (index >= 0){
                     var oldVote = this.amplify.store('previousVotes')[index];
                     if(oldVote){
