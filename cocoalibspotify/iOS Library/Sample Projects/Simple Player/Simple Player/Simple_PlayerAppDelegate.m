@@ -32,19 +32,27 @@
 
 #import "Simple_PlayerAppDelegate.h"
 #import "Track.h"
+#import "AFNetworkActivityIndicatorManager.h"
+#import "NowPlayingViewController.h"
+#import <math.h>
+#import <AVFoundation/AVFoundation.h>
+
+#import <AudioToolbox/AudioToolbox.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 #include "appkey.c"
 
 @interface Simple_PlayerAppDelegate()
-@property (nonatomic, strong) NSMutableData * responseData;
+@property BOOL firstLoad;
 @end
 
 @implementation Simple_PlayerAppDelegate
 
-@synthesize responseData = _responseData;
-
+@synthesize firstLoad;
 
 @synthesize window = _window;
+@synthesize navigationController = _navigationController;
+//@synthesize nowPlayingViewController = _nowPlayingViewController;
 @synthesize mainViewController = _mainViewController;
 @synthesize trackURIField = _trackURIField;
 @synthesize trackTitle = _trackTitle;
@@ -59,12 +67,22 @@
 
 @synthesize playlistName = _playlistName;
 @synthesize tracks = _tracks;
+@synthesize playlistCollection = _playlistCollection;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	// Override point for customization after application launch.
 	[self.window makeKeyAndVisible];
-
+    
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+//    NowPlayingViewController *nowPlayingViewController = [[NowPlayingViewController alloc] initWithNibName:@"NowPlayingViewController.xib" bundle:nil];
+    
+    self.mainViewController = [[NowPlayingViewController alloc] initWithNibName:@"NowPlayingViewController" bundle:nil];
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:self.mainViewController];
+    self.window.rootViewController = self.navigationController;
+    
+    [self.window makeKeyAndVisible];
+    
 	NSError *error = nil;
 	[SPSession initializeSharedSessionWithApplicationKey:[NSData dataWithBytes:&g_appkey length:g_appkey_size]
 											   userAgent:@"com.spotify.SimplePlayer-iOS"
@@ -88,9 +106,31 @@
 	
 	[self performSelector:@selector(showLogin) withObject:nil afterDelay:0.0];
     
-    self.playlistName = @"test";
-    [self setupTimer];
-
+    // TODO: create a player class, encapsulate all audio-related code
+    // Registers this class as the delegate of the audio session.
+    [[AVAudioSession sharedInstance] setDelegate: self];
+    
+    NSError *setCategoryError = nil;
+    [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: &setCategoryError];
+    if (setCategoryError) {
+        NSLog(@"Error setting category! %@", [setCategoryError localizedDescription]);
+    }
+    
+    UInt32 doSetProperty = 0;
+    AudioSessionSetProperty (
+                             kAudioSessionProperty_OverrideCategoryMixWithOthers,
+                             sizeof (doSetProperty),
+                             &doSetProperty
+                             );
+    
+    NSError *activationError = nil;
+    [[AVAudioSession sharedInstance] setActive: YES error: &activationError];
+    if (activationError) {
+        NSLog(@"Could not activate audio session. %@", [activationError localizedDescription]);
+    }
+    
+    self.playlistName = @"1";
+    self.firstLoad = YES;
     return YES;
 }
 
@@ -107,16 +147,23 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath isEqualToString:@"currentTrack.name"]) {
         self.trackTitle.text = self.currentTrack.name;
+        [self updateCurrentTrackName:self.currentTrack.name];
 	} else if ([keyPath isEqualToString:@"currentTrack.artists"]) {
 		self.trackArtist.text = [[self.currentTrack.artists valueForKey:@"name"] componentsJoinedByString:@","];
+        [self updateCurrentTrackArtist:self.trackArtist.text];
 	} else if ([keyPath isEqualToString:@"currentTrack.album.cover.image"]) {
-		self.coverView.image = self.currentTrack.album.cover.image;
+//		self.coverView.image = self.currentTrack.album.cover.image;
+        [self updateCurrentTrackAlbumCoverArt:self.currentTrack.album.cover.image];
 	} else if ([keyPath isEqualToString:@"currentTrack.duration"]) {
 		self.positionSlider.maximumValue = self.currentTrack.duration;
+        [self updateCurrentTrackDuration:self.currentTrack.duration];
 	} else if ([keyPath isEqualToString:@"playbackManager.trackPosition"]) {
 		// Only update the slider if the user isn't currently dragging it.
 		if (!self.positionSlider.highlighted)
 			self.positionSlider.value = self.playbackManager.trackPosition;
+        
+        [self updateCurrentTrackPosition:self.playbackManager.trackPosition];
+        
     } else if ([keyPath isEqualToString:@"session.starredPlaylist"]) {
         [self showPlaylists];
     } else {
@@ -124,57 +171,34 @@
     }
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    NSLog(@"didReceiveResponse");
-    [self.responseData setLength:0];
+-(void)updateCurrentTrackName:(NSString *)trackName {
+    self.mainViewController.nowPlayingTrackName.text = trackName;
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [self.responseData appendData:data];
+-(void)updateCurrentTrackArtist:(NSString *) trackArtist {
+    self.mainViewController.nowPlayingArtistName.text = trackArtist;
 }
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"didFailWithError");
-    NSLog([NSString stringWithFormat:@"Connection failed: %@", [error description]]);
+-(void)updateCurrentTrackAlbumCoverArt:(UIImage *) albumCoverArt {
+    self.mainViewController.nowPlayingAlbumArt.image = albumCoverArt;
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSLog(@"connectionDidFinishLoading");
-    NSLog(@"Succeeded! Received %d bytes of data",[self.responseData length]);
-    
-    // convert to JSON
-    NSError *myError = nil;
-    NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
-    
-    NSArray *playlist = [res objectForKey:@"playlist"];
-    self.tracks = [[NSMutableArray alloc] init];
-    
-    for (NSDictionary * track in playlist) {
-        
-        NSString *trackId = (NSString *) [track objectForKey:@"trackId"];
-        NSString *name = (NSString *) [track objectForKey:@"name"];
-        NSString *artist = (NSString *) [track objectForKey:@"artist"];
-        
-        Track * trackObj = [[Track alloc] init];
-        trackObj.trackId = trackId;
-        trackObj.trackName = name;
-        trackObj.artist = artist;
-        
-        [self.tracks addObject:trackObj];
-        
-        NSLog(@"Track Name: %@,  ID: %@", name, trackId);
+-(void)updateCurrentTrackPosition:(double) trackPosition {
+    self.mainViewController.currentTrackPosition.text = [self getDoubleAsTime:trackPosition];
+    if (!self.mainViewController.currentTrackPositionSlider.highlighted) {
+        self.mainViewController.currentTrackPositionSlider.value = trackPosition;
     }
-    
-    NSLog(@"Added %u tracks to the playlist.", [self.tracks count]);
-    for (Track * trackObj in self.tracks) {
-        NSLog(@"Track Name: %@,  ID: %@", trackObj.trackName, trackObj.trackId);
-    }
-    
-    NSDictionary * firstTrack = [playlist objectAtIndex:0];
-    NSString *trackId = (NSString *) [firstTrack objectForKey:@"trackId"];
-    NSString *name = (NSString *) [firstTrack objectForKey:@"name"];
-    self.trackTitle.text = name;
-    self.trackURIField.text = trackId;
+}
+
+-(void)updateCurrentTrackDuration:(double) trackDuration {
+    self.mainViewController.trackDuration.text = [self getDoubleAsTime:trackDuration];
+    self.mainViewController.currentTrackPositionSlider.maximumValue = trackDuration;
+}
+
+-(NSString *) getDoubleAsTime:(double)timeInSeconds {
+    int mins = floor(timeInSeconds / 60);
+    int seconds = floor(fmodf(timeInSeconds, 60));
+    return [NSString stringWithFormat:@"%u:%02u", mins, seconds];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -215,7 +239,7 @@
 	 See also applicationDidEnterBackground:.
 	 */
 	
-	[[SPSession sharedSession] logout:^{}];
+//	[[SPSession sharedSession] logout:^{}];
 }
 
 - (void) showPlaylists {
@@ -233,45 +257,26 @@
 
 #pragma mark -
 
-- (IBAction)playTrack:(id)sender {
-	
-	// Invoked by clicking the "Play" button in the UI.
-	
-	if (self.trackURIField.text.length > 0) {
-		
-		NSURL *trackURL = [NSURL URLWithString:self.trackURIField.text];
-		[[SPSession sharedSession] trackForURL:trackURL callback:^(SPTrack *track) {
-			
-			if (track != nil) {
-				
-				[SPAsyncLoading waitUntilLoaded:track timeout:kSPAsyncLoadingDefaultTimeout then:^(NSArray *tracks, NSArray *notLoadedTracks) {
-					[self.playbackManager playTrack:track callback:^(NSError *error) {
-						
-						if (error) {
-							UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot Play Track"
-																			message:[error localizedDescription]
-																		   delegate:nil
-																  cancelButtonTitle:@"OK"
-																  otherButtonTitles:nil];
-							[alert show];
-						} else {
-							self.currentTrack = track;
-						}
-						
-					}];
-				}];
-			}
-		}];
-		
-		return;
-	}
-	
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot Play Track"
-													message:@"Please enter a track URL"
-												   delegate:nil
-										  cancelButtonTitle:@"OK"
-										  otherButtonTitles:nil];
-	[alert show];
+- (void) playlistReady {
+    NSLog(@"Playlist is ready message received");
+    if (self.firstLoad) {
+        Track * track = [self.playlistCollection dequeueNextTrack];
+        [self playTrackWithId:track.trackId];
+        self.firstLoad = NO;
+    }
+}
+
+- (void) playPause {
+    if (self.playbackManager.isPlaying) {
+        self.playbackManager.isPlaying = NO;
+    }
+    else {
+        self.playbackManager.isPlaying = YES;
+    }
+}
+
+-(void) updateTrackPosition:(double) position {
+    [self.playbackManager seekToTrackPosition:position];
 }
 
 - (IBAction)setTrackPosition:(id)sender {
@@ -297,25 +302,14 @@
 }
 
 - (IBAction)nextPressed:(id)sender {
-    [self.tracks removeObjectAtIndex:0];
-    Track *track = [self.tracks objectAtIndex:0];
+    Track *track = [self.playlistCollection dequeueNextTrack];
     [self playTrackWithId:track.trackId];
     
 //    [self playTrackWithId:[self.tracks objectAtIndex:0]];
 }
 
-- (void) fetchPlaylist {
-    NSString * url = [NSString stringWithFormat:@"http://localhost:3000/location/%@/votes", self.playlistName];
-    NSLog(@"viewdidload");
-    self.responseData = [NSMutableData data];
-    NSURLRequest *request = [NSURLRequest requestWithURL:
-                             [NSURL URLWithString:url]];
-    [[NSURLConnection alloc] initWithRequest:request delegate:self];
-	
-}
-
 - (void)setupTimer {
-    [NSTimer scheduledTimerWithTimeInterval:1
+    [NSTimer scheduledTimerWithTimeInterval:10
                                      target:self
                                  selector:@selector(fetchPlaylist)
                                    userInfo:nil
@@ -346,18 +340,33 @@
             }];
         }
     }];
+}
 
+- (void) nextTrack {
+    Track *track = [self.playlistCollection dequeueNextTrack];
+    [self playTrackWithId:track.trackId];
+}
+
+- (void) playOrPause {
+    if (self.playbackManager.isPlaying) {
+        self.playbackManager.isPlaying = NO;
+    }
+    else {
+        self.playbackManager.isPlaying = YES;
+    }    
 }
 
 #pragma mark -
 #pragma mark SPSessionDelegate Methods
 
--(UIViewController *)viewControllerToPresentLoginViewForSession:(SPSession *)aSession {
+-(UIViewController *) viewControllerToPresentLoginViewForSession:(SPSession *)aSession; {
 	return self.mainViewController;
 }
 
 -(void)sessionDidLoginSuccessfully:(SPSession *)aSession; {
 	// Invoked by SPSession after a successful login.
+    self.playlistCollection = [[PlaylistCollection alloc] initWithLocationId:self.playlistName];
+    [self.playlistCollection loadTracks];
     [self.session.starredPlaylist startLoading];
 }
 
