@@ -26,3 +26,4 @@ musocracy
     * ex: `GET /lookup?uri=spotify:track:6NmXV4o6bmp704aPGyTVVG`
 * `POST /location/{id}/votes/{trackId}` : vote for a track at a specific location
 * `GET /location/{id}/votes` : returns all votes for a given location
+* `GET /location/{id}` : returns locationId if it exists
