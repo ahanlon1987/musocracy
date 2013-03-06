@@ -14,12 +14,72 @@
 <body>
 
 
-<div id="home" data-role="page" data-title="Musocracy">
+<div id="location" data-url="location" data-role="page" data-title="Musocracy">
+        <div data-role="header">
+            <h1>Musocracy</h1>
+        </div><!-- /header -->
+        <div data-role="content" class="ui-content" role="main">
+            <div data-role="fieldcontain" id="location-lookup" class="ui-field-contain ui-body ui-br"><fieldset data-role="controlgroup" class="ui-corner-all ui-controlgroup ui-controlgroup-vertical"><div class="ui-controlgroup-controls">
+                <label for="locationId" class="ui-input-text">
+                </label>
+                <input name="" id="locationId" placeholder="Enter your location" value="" type="text" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset">
+            </div></fieldset></div>
+            <a data-role="button" id="location-submit" data-theme="b" href="javascript:;" data-icon="check" data-iconpos="right" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-right ui-btn-active ui-btn-up-b"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">
+                           Submit
+                       </span><span class="ui-icon ui-icon-check ui-icon-shadow">&nbsp;</span></span></a>
+        </div>
+        <div data-theme="a" data-role="footer" data-position="fixed" class="ui-footer ui-bar-a ui-footer-fixed slideup" role="contentinfo">
+           <h1 id="about-link-location" class="ui-title" role="heading" aria-level="1">
+               About
+           </h1>
+       </div>
+</div>
+
+
+<div id="queue" data-url="queue" data-role="page" data-title="Musocracy">
     <div data-role="header">
         <h1>Musocracy</h1>
     </div><!-- /header -->
-    <div id="page-container">
-        <div id="tab-container-search" data-role="navbar" data-iconpos="left">
+    <div data-role="content">
+        <div data-role="navbar" data-iconpos="left">
+            <ul>
+                <li>
+                    <a href="#queue" data-transition="fade" data-theme="c" data-icon="check" class="ui-btn-active" >
+                        Queue
+                    </a>
+                </li>
+                <li>
+                    <a href="#search" data-transition="fade" data-theme="b" data-icon="search" >
+                        Search
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="queue-content-wrapper">
+            <div data-role="content">
+                <ul id="queue-results" data-divider-theme="b" data-role="listview" data-inset="true">
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div data-theme="a" data-role="footer" data-position="fixed" class="ui-footer ui-bar-a ui-footer-fixed slideup" role="contentinfo">
+        <h1 id="about-link-queue" class="ui-title" role="heading" aria-level="1">
+            About
+        </h1>
+    </div>
+</div>
+
+
+<div id="search" data-url="search" data-role="page" data-title="Musocracy">
+    <div data-role="header">
+        <h1>Musocracy</h1>
+    </div><!-- /header -->
+
+    <div data-role="content">
+        <div data-role="navbar" data-iconpos="left">
             <ul>
                 <li>
                     <a href="#queue" data-transition="fade" data-theme="b" data-icon="check" >
@@ -27,14 +87,14 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#search" data-transition="fade" data-theme="b" data-icon="search" class="ui-btn-active">
+                    <a href="#search" data-transition="fade" data-theme="c" data-icon="search" class="ui-btn-active">
                         Search
                     </a>
                 </li>
             </ul>
         </div>
-        <div id="content-wrapper">
 
+        <div id="search-content-wrapper">
             <div data-role="fieldcontain">
                 <form id="search-form" action="#search?" >
                     <label for="song-search">
@@ -43,35 +103,18 @@
                 </form>
             </div>
             <div data-role="content">
-                <ul id="results" data-divider-theme="b" data-role="listview" data-inset="true">
+                <ul id="search-results" data-divider-theme="b" data-role="listview" data-inset="true">
                 </ul>
             </div>
         </div>
     </div>
-</div>
 
-
-<script id="location" type="text/template">
-    <div tabindex="0" class="ui-page ui-body-c ui-page-footer-fixed ui-page-active" style="padding-bottom: 44px; min-height: 330px;">
-        <div data-role="content" class="ui-content" role="main">
-            <div data-role="fieldcontain" id="locationId" class="ui-field-contain ui-body ui-br"><fieldset data-role="controlgroup" class="ui-corner-all ui-controlgroup ui-controlgroup-vertical"><div class="ui-controlgroup-controls">
-                <label for="locationId" class="ui-input-text">
-                </label>
-                <input name="" id="locationId" placeholder="Enter your location" value="" type="text" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset">
-            </div></fieldset></div>
-            <a data-role="button" id="location-submit" data-theme="b" href="javascript:;" data-icon="check" data-iconpos="right" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-right ui-btn-active ui-btn-up-b"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">
-                        Submit
-                    </span><span class="ui-icon ui-icon-check ui-icon-shadow">&nbsp;</span></span></a>
-        </div>
-        <div data-theme="a" data-role="footer" data-position="fixed" class="ui-footer ui-bar-a ui-footer-fixed slideup" role="contentinfo">
-            <h1 id="about link" class="ui-title" role="heading" aria-level="1">
-                About
-            </h1>
-        </div>
+    <div data-theme="a" data-role="footer" data-position="fixed" class="ui-footer ui-bar-a ui-footer-fixed slideup" role="contentinfo">
+        <h1 id="about-link-search" class="ui-title" role="heading" aria-level="1">
+            About
+        </h1>
     </div>
-
-</script>
-
+</div>
 
 <script id="queuedItems" type="text/template">
 

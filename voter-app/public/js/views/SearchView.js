@@ -39,7 +39,7 @@ define([ "jquery", "backbone","models/SearchModel" ], function( $, Backbone, Sea
             this.template = _.template( $( "script#searchResults" ).html(), { "collection": this.collection } );
 
             // Renders the view's template inside of the current listview element
-            this.$el.find("ul#results").html(this.template);
+            this.$el.find("ul#search-results").html(this.template);
 
             var searchView = this;
             //Handles Voting action
@@ -57,7 +57,9 @@ define([ "jquery", "backbone","models/SearchModel" ], function( $, Backbone, Sea
                     }
                     var song = searchView.collection.where({trackId:songHref.value});
                     if(song instanceof Array && song != null) {
-                        router.persist.vote(song[0]);
+                        router.persist.vote(song[0], function(){
+                            searchView.collection.fetch();
+                        });
                     }
                 } else {
                     console.log('unable to determine which song to vote for');

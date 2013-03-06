@@ -40,7 +40,7 @@ define([ "jquery", "backbone","amplify", "models/QueueModel" ], function( $, Bac
             this.template = _.template( $( "script#queuedItems" ).html(), { "collection": this.collection } );
 
             // Renders the view's template inside of the current listview element
-            this.$el.find("ul#results").html(this.template);
+            this.$el.find("ul#queue-results").html(this.template);
 
             var queueView = this;
 
@@ -59,7 +59,9 @@ define([ "jquery", "backbone","amplify", "models/QueueModel" ], function( $, Bac
 
                     var song = queueView.collection.where({trackId:songHref.value});
                     if(song instanceof Array){
-                        router.persist.vote(song[0]);
+                        router.persist.vote(song[0], function(){
+                            queueView.collection.fetch();
+                        });
                     }
                 } else {
                     console.log('unable to determine which song to vote for');

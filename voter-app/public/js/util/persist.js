@@ -9,7 +9,7 @@ var Persist = {
 
     amplify:Amplify,
 
-    vote:function(track){
+    vote:function(track, successCallback){
 
         var trackId = track.get('trackId') ;
         var trackName = track.get('name');
@@ -31,7 +31,8 @@ var Persist = {
                     'voteTime':new Date()
                 });
                 amp.store('previousVotes', previousVotes);
-                router.queue();
+                successCallback();
+
             },
             failure:function(){
                 console.log('voting failed.');
