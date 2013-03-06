@@ -50,17 +50,18 @@ define([ "jquery", "backbone","amplify", "models/QueueModel" ], function( $, Bac
             $('span.vote-action').click(function(e) {
                 var songHref = this.attributes['data-name'];
                 if(songHref && songHref.value){
-
-                    var current = $(e.currentTarget);
-                    if( current ) {
-                        //TODO some sort of animation to inform user action was received.
-                        current.find('span.ui-icon') ?  current.find('span.ui-icon').addClass('active-click'): void 0;
-                    }
+                    $.mobile.loading( "show" );
+//                    var current = $(e.currentTarget);
+//                    if( current ) {
+//                        current.find('span.ui-icon') ?  current.find('span.ui-icon').addClass('active-click'): void 0;
+//                    }
 
                     var song = queueView.collection.where({trackId:songHref.value});
                     if(song instanceof Array){
                         router.persist.vote(song[0], function(){
-                            queueView.collection.fetch();
+                            queueView.collection.fetch().done( function(){
+                                $.mobile.loading( "hide" );
+                            });
                         });
                     }
                 } else {

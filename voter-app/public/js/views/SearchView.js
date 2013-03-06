@@ -50,15 +50,18 @@ define([ "jquery", "backbone","models/SearchModel" ], function( $, Backbone, Sea
                 var songHref = this.attributes['data-name'];
                 if(songHref && songHref.value){
 
-                    var current = $(e.currentTarget);
-                    if( current ) {
-                        //TODO some sort of animation to inform user action was received.
-                        current.find('span.ui-icon') ?  current.find('span.ui-icon').addClass('active-click'): void 0;
-                    }
+                    $.mobile.loading( "show" );
+
+//                    var current = $(e.currentTarget);
+//                    if( current ) {
+//                        current.find('span.ui-icon') ?  current.find('span.ui-icon').addClass('active-click'): void 0;
+//                    }
                     var song = searchView.collection.where({trackId:songHref.value});
                     if(song instanceof Array && song != null) {
                         router.persist.vote(song[0], function(){
-                            searchView.collection.fetch();
+                            searchView.collection.fetch().done(function() {
+                                $.mobile.loading( "hide" );
+                            });
                         });
                     }
                 } else {
