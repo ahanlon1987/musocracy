@@ -16,10 +16,10 @@ function( $, Backbone, Amplify, SearchCollection, QueueCollection, SearchView, Q
             this.locationView = new LocationView({el: "#home"});
 
             // Instantiates a new Search  View
-            this.searchView = new SearchView( { el: "#content-wrapper", collection: new SearchCollection () } );
+            this.searchView = new SearchView( { el: "#search-content-wrapper", collection: new SearchCollection () } );
 
             // Instantiates a new Queue View
-            this.queueView= new QueueView( { el: "#content-wrapper", collection: new QueueCollection() } );
+            this.queueView= new QueueView( { el: "#queue-content-wrapper", collection: new QueueCollection() } );
 
             // Tells Backbone to start watching for hashchange events
             Backbone.history.start();
@@ -61,23 +61,24 @@ function( $, Backbone, Amplify, SearchCollection, QueueCollection, SearchView, Q
             if(amplify.store('locationId')){
                 Persist.lookupLocation(amplify.store('locationId'));
             } else {
+                $.mobile.changePage("#location");
                 this.locationView.render();
             }
-
         },
 
         queue: function() {
 
             if(!amplify.store('locationId')){
                 this.enterLocation();
+            } else {
+                var currentView = this.queueView;
+                $.mobile.loading( "show" );
+                $.mobile.changePage("#queue");
+                currentView.collection.url = '/location/' + amplify.store('locationId') +'/votes';
+                currentView.collection.fetch().done( function() {
+                    $.mobile.loading( "hide" );
+                } );
             }
-
-            var currentView = this.queueView;
-            $.mobile.loading( "show" );
-            currentView.collection.url = '/location/' + amplify.store('locationId') +'/votes';
-            currentView.collection.fetch().done( function() {
-                $.mobile.loading( "hide" );
-            } );
 
         },
 
@@ -85,18 +86,22 @@ function( $, Backbone, Amplify, SearchCollection, QueueCollection, SearchView, Q
 
             if(!amplify.store('locationId')){
                 this.enterLocation();
+            } else {
+                var currentView = this.searchView;
+                if(query){
+                    $.mobile.loading( "show" );
+                    $.mobile.changePage("#search");
+
+                    currentView.collection.url = '/search/track?q=' + query;
+                    currentView.collection.fetch().done( function() {
+                        $.mobile.loading( "hide" );
+                    } );
+                } else {
+                    $.mobile.changePage("#search");
+                }
             }
 
-            var currentView = this.searchView;
-            if(query){
-                $.mobile.loading( "show" );
-                currentView.collection.url = '/search/track?q=' + query;
-                currentView.collection.fetch().done( function() {
-                    $.mobile.loading( "hide" );
-                } );
-            } else {
-                this.searchView.render();
-            }
+
         }
     } );
 
