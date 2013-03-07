@@ -120,12 +120,12 @@
 
     <% _.each( collection.toJSON(), function( song, id ) { %>
 
-    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="false" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li ui-li-has-alt ui-li-has-thumb ui-first-child ui-btn-up-c">
+    <li data-corners="false" data-name="<%=song.trackId%>" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="false" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li ui-li-has-alt ui-li-has-thumb ui-first-child ui-btn-up-c">
         <div class="ui-btn-inner ui-li ui-li-has-alt">
             <div class="ui-btn-text">
                 <a href="javascript:;" class="ui-link-inherit padding-left <%=song.disableVote%>">
                     <!--<img src="../../_assets/img/album-bb.jpg" class="ui-li-thumb">-->
-                    <h2 class="ui-li-heading"><%=song.votes%> - <%=song.name%> </h2>
+                    <h2 class="ui-li-heading"><span class="song-vote"><%=song.votes%></span> - <%=song.name%> </h2>
                     <p class="ui-li-desc"><%= song.artists%> - <%= song.album%></p></a>
             </div>
         </div>
@@ -148,7 +148,7 @@
 <script id="searchResults" type="text/template">
 
     <% _.each( collection.toJSON(), function( song, id ) { %>
-    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="false" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li ui-li-has-alt ui-li-has-thumb ui-first-child ui-btn-up-c">
+    <li data-corners="false" data-name="<%=song.trackId%>" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="false" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li ui-li-has-alt ui-li-has-thumb ui-first-child ui-btn-up-c">
         <div class="ui-btn-inner ui-li ui-li-has-alt">
             <div class="ui-btn-text">
                 <a href="javascript:;" class="<%=song.disableVote%> ui-link-inherit padding-left">

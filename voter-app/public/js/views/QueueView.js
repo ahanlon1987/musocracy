@@ -50,19 +50,15 @@ define([ "jquery", "backbone","amplify", "models/QueueModel" ], function( $, Bac
             $('span.vote-action').click(function(e) {
                 var songHref = this.attributes['data-name'];
                 if(songHref && songHref.value){
-                    $.mobile.loading( "show" );
-//                    var current = $(e.currentTarget);
-//                    if( current ) {
-//                        current.find('span.ui-icon') ?  current.find('span.ui-icon').addClass('active-click'): void 0;
-//                    }
-
                     var song = queueView.collection.where({trackId:songHref.value});
                     if(song instanceof Array){
-                        router.persist.vote(song[0], function(){
-                            queueView.collection.fetch().done( function(){
-                                $.mobile.loading( "hide" );
-                            });
-                        });
+                        //persist the vote
+                        router.persist.vote(song[0]);
+                        //Manually add it in the collection, and sort it.
+                        var curVotes = queueView.collection._byCid[song[0].cid].get('votes');
+                        queueView.collection._byCid[song[0].cid].set('votes', (curVotes +1));
+                        queueView.collection.sort();
+
                     }
                 } else {
                     console.log('unable to determine which song to vote for');

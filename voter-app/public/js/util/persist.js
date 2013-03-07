@@ -9,7 +9,7 @@ var Persist = {
 
     amplify:Amplify,
 
-    vote:function(track, successCallback){
+    vote:function(track){
 
         var trackId = track.get('trackId') ;
         var trackName = track.get('name');
@@ -30,8 +30,9 @@ var Persist = {
                     'trackId':trackId,
                     'voteTime':new Date()
                 });
+
                 amp.store('previousVotes', previousVotes);
-                successCallback();
+                $('li[data-name="'+ trackId + '"]').addClass('ui-disabled glow');
 
             },
             failure:function(){

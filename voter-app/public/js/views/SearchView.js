@@ -49,20 +49,9 @@ define([ "jquery", "backbone","models/SearchModel" ], function( $, Backbone, Sea
             $('span.add-action').click(function(e) {
                 var songHref = this.attributes['data-name'];
                 if(songHref && songHref.value){
-
-                    $.mobile.loading( "show" );
-
-//                    var current = $(e.currentTarget);
-//                    if( current ) {
-//                        current.find('span.ui-icon') ?  current.find('span.ui-icon').addClass('active-click'): void 0;
-//                    }
                     var song = searchView.collection.where({trackId:songHref.value});
                     if(song instanceof Array && song != null) {
-                        router.persist.vote(song[0], function(){
-                            searchView.collection.fetch().done(function() {
-                                $.mobile.loading( "hide" );
-                            });
-                        });
+                        router.persist.vote(song[0]);
                     }
                 } else {
                     console.log('unable to determine which song to vote for');

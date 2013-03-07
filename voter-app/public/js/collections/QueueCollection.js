@@ -14,6 +14,10 @@ define([ "jquery","backbone","models/QueueModel"], function( $, Backbone, QueueM
         // Sets the Collection model property to be a Category Model
         model: QueueModel,
 
+        comparator:function(model){
+            return -model.get('votes');
+        },
+
         parse: function(response) {
             if(response){
                 return response.playlist;
