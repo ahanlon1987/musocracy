@@ -82,6 +82,7 @@
 	self.session = [SPSession sharedSession];
     [self.session setDelegate:self];
     self.spotifyPlayer = [[SpotifyPlayer alloc] initWithSession:self.session];
+    [self.session setPlaybackDelegate:self.spotifyPlayer];
     
     self.mainViewController = [[NowPlayingViewController alloc] initWithNibName:@"NowPlayingViewController" bundle:nil spotifyPlayer:self.spotifyPlayer];
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:self.mainViewController];

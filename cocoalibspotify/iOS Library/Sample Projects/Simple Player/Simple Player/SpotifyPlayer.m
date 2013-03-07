@@ -147,6 +147,13 @@
 }
 
 #pragma mark -
+#pragma mark SPSessionPlaybackDelegate
+
+-(void) sessionDidEndPlayback:(id<SPSessionPlaybackProvider>)aSession {
+    [self nextTrack];
+}
+
+#pragma mark -
 #pragma mark SPPlaylistDelegate Methods
 
 -(void) itemsInPlaylistDidUpdateMetadata:(SPPlaylist *)aPlaylist {

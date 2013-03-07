@@ -36,7 +36,7 @@
 #import "NowPlayingViewController.h"
 #import "SpotifyPlayer.h"
 
-@interface Simple_PlayerAppDelegate : NSObject <UIApplicationDelegate, SPSessionDelegate, SPSessionPlaybackDelegate> {
+@interface Simple_PlayerAppDelegate : NSObject <UIApplicationDelegate, SPSessionDelegate> {
     NowPlayingViewController *_mainViewController;
 
     SPSession *_session;

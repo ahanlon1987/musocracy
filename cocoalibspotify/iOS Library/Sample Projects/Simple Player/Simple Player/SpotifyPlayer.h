@@ -10,7 +10,7 @@
 #import "CocoaLibSpotify.h"
 #import "PlaylistCollection.h"
 
-@interface SpotifyPlayer : NSObject <SPPlaylistDelegate> {
+@interface SpotifyPlayer : NSObject <SPPlaylistDelegate, SPSessionPlaybackDelegate> {
     SPSession *_session;
     SPPlaybackManager *_playbackManager;
 	SPTrack *_currentTrack;

@@ -61,7 +61,9 @@
         self.currentTrackPositionSlider.maximumValue = self.spotifyPlayer.currentTrack.duration;
 	} else if ([keyPath isEqualToString:@"spotifyPlayer.playbackManager.trackPosition"]) {
         self.currentTrackPosition.text = [self getDoubleAsTime:self.spotifyPlayer.playbackManager.trackPosition];
-        self.currentTrackPositionSlider.value = self.spotifyPlayer.playbackManager.trackPosition;
+        if (!self.currentTrackPositionSlider.highlighted) {
+            self.currentTrackPositionSlider.value = self.spotifyPlayer.playbackManager.trackPosition;
+        }
         
     } else if ([keyPath isEqualToString:@"spotifyPlayer.session.starredPlaylist"]) {
         //        [self showPlaylists];
@@ -85,7 +87,10 @@
 //    [appDelegate nextTrack];
     [self.spotifyPlayer nextTrack];
 }
-- (IBAction)onTrackPositionChanged:(id)sender {
+
+
+- (IBAction)onTrackPositionValueChanged:(id)sender {
+    [self.spotifyPlayer.playbackManager seekToTrackPosition:self.currentTrackPositionSlider.value];
 }
 
 -(NSString *) getDoubleAsTime:(double)timeInSeconds {
@@ -99,10 +104,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-- (IBAction)onTrackPositionValueChanged:(id)sender {
-    Simple_PlayerAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    [appDelegate updateTrackPosition:self.currentTrackPositionSlider.value];
 }
 
 - (void)viewDidUnload {
