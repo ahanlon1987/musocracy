@@ -45,7 +45,6 @@ define([ "jquery", "backbone","models/SearchModel" ], function( $, Backbone, Sea
             //Handles Voting action
             //touchstarts suck in the browser.
 //            $('span.add-action').touchstart(function(e) {
-            //TODO this logic is doubled in QueueView
             $('span.add-action').click(function(e) {
                 var songHref = this.attributes['data-name'];
                 if(songHref && songHref.value){
@@ -57,6 +56,8 @@ define([ "jquery", "backbone","models/SearchModel" ], function( $, Backbone, Sea
                     console.log('unable to determine which song to vote for');
                 }
             });
+
+
             // Maintains chainability
             return this;
         }

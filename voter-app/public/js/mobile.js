@@ -9,7 +9,7 @@ require.config( {
         "jquerymobile": "lib/jquery.mobile-1.3.0",
         "underscore": "lib/lodash",
         "backbone": "lib/backbone",
-        "amplify" : "lib/amplify.min"
+        "amplify" : "lib/amplify.min",
     },
 
     // Sets the configuration for your third party scripts that are not AMD compatible
