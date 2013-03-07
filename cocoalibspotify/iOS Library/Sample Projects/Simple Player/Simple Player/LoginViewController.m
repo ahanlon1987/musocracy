@@ -28,6 +28,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
+- (IBAction)onLoginPressed:(id)sender {
+    NSString * usernameVal = self.username.text;
+    NSString * passwordVal = self.password.text;
+    
+    NSLog(@"About to login username=%@ password=%@", usernameVal, passwordVal);
+    [self.session attemptLoginWithUserName:usernameVal password:passwordVal];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -35,4 +42,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidUnload {
+    [self setUsername:nil];
+    [self setPassword:nil];
+    [super viewDidUnload];
+}
 @end

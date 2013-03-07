@@ -32,6 +32,12 @@
 }
 
 -(void) loadTracks {
+    [self loadTracksWithSuccess:^(NSString* msg) {
+        NSLog(@"Successfully loaded: %@", msg);
+    }];
+}
+
+-(void) loadTracksWithSuccess:(void (^)(NSString* msg))onSuccess {
     NSString * url = [NSString stringWithFormat:@"http://localhost:3000/location/%@/votes?limit=10&excludePlayed=true", self.locationId];
     
     NSLog(@"URL: %@", url);
@@ -42,6 +48,10 @@
                                          JSONRequestOperationWithRequest:request
                                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                              [self processData:JSON];
+                                             NSLog(@"Finished processing data.");
+                                             if(onSuccess) {
+                                                 onSuccess(@"Message should go here");
+                                             }
                                          } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                                              NSLog(@"Failed to load playlist; %@", error.localizedDescription);
                                          }];
@@ -50,10 +60,10 @@
 }
 
 -(void) processData:(id)data {
-    NSArray *playlist = [data valueForKeyPath:@"playlist"];
+    NSArray *playlistArray = [data valueForKeyPath:@"playlist"];
     NSMutableArray *tracks = [[NSMutableArray alloc] init];
     
-    for (NSDictionary * track in playlist) {
+    for (NSDictionary * track in playlistArray) {
         
         NSString *trackId = (NSString *) [track valueForKeyPath:@"trackId"];
         NSString *name = (NSString *) [track valueForKeyPath:@"name"];

@@ -19,13 +19,14 @@
 		50AF49B71439CB6D00E4A5EF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50AF49B51439CB6D00E4A5EF /* InfoPlist.strings */; };
 		50AF49B91439CB6D00E4A5EF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AF49B81439CB6D00E4A5EF /* main.m */; };
 		50AF49C41439CB6D00E4A5EF /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50AF49C21439CB6D00E4A5EF /* MainWindow_iPhone.xib */; };
-		50AF49CB1439CB6D00E4A5EF /* MainWindow_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50AF49C91439CB6D00E4A5EF /* MainWindow_iPad.xib */; };
 		50DBB5E11520BF6100BF516F /* SPLoginResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 50DBB5E01520BF6100BF516F /* SPLoginResources.bundle */; };
 		50DBB5E41520C2B800BF516F /* RotatableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DBB5E31520C2B800BF516F /* RotatableViewController.m */; };
 		50FAA141143A0B1400FF06D7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FAA140143A0B1400FF06D7 /* AVFoundation.framework */; };
 		7302EF8116E43F8E005590A8 /* NowPlayingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7302EF7F16E43F8E005590A8 /* NowPlayingViewController.xib */; };
 		7302EF8916E4430C005590A8 /* NowPlayingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7302EF8816E4430C005590A8 /* NowPlayingViewController.m */; };
 		7302EF9016E66E7A005590A8 /* SpotifyPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7302EF8F16E66E7A005590A8 /* SpotifyPlayer.m */; };
+		7302EF9616E68586005590A8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7302EF9416E68586005590A8 /* LoginViewController.m */; };
+		7302EF9716E68586005590A8 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7302EF9516E68586005590A8 /* LoginViewController.xib */; };
 		7395E43C16E2A58C0035A05E /* Simple_PlayerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7395E43B16E2A58C0035A05E /* Simple_PlayerAppDelegate.m */; };
 		7395E44016E2BA150035A05E /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = 7395E43F16E2BA150035A05E /* Track.m */; };
 		73A4399816E3CDE900F81683 /* DataResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 73A4399716E3CDE900F81683 /* DataResponse.m */; };
@@ -38,7 +39,6 @@
 		73A439B716E3FC2400F81683 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 73A439AC16E3FC2400F81683 /* AFURLConnectionOperation.m */; };
 		73A439B816E3FC2400F81683 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 73A439AE16E3FC2400F81683 /* AFXMLRequestOperation.m */; };
 		73A439B916E3FC2400F81683 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 73A439B016E3FC2400F81683 /* UIImageView+AFNetworking.m */; };
-		73D951F016E2791C00AAA4A7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D951EF16E2791C00AAA4A7 /* MainStoryboard.storyboard */; };
 		73D951F316E2798100AAA4A7 /* PlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D951F216E2798100AAA4A7 /* PlaylistViewController.m */; };
 		73ECA30116E30CD300DB98AE /* PlaylistCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 73ECA30016E30CD300DB98AE /* PlaylistCollection.m */; };
 /* End PBXBuildFile section */
@@ -83,7 +83,6 @@
 		50AF49B81439CB6D00E4A5EF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		50AF49BA1439CB6D00E4A5EF /* Simple Player-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Simple Player-Prefix.pch"; sourceTree = "<group>"; };
 		50AF49C31439CB6D00E4A5EF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPhone/en.lproj/MainWindow_iPhone.xib; sourceTree = "<group>"; };
-		50AF49CA1439CB6D00E4A5EF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPad/en.lproj/MainWindow_iPad.xib; sourceTree = "<group>"; };
 		50DBB5E01520BF6100BF516F /* SPLoginResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = SPLoginResources.bundle; path = ../../../SPLoginResources.bundle; sourceTree = "<group>"; };
 		50DBB5E21520C2B800BF516F /* RotatableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotatableViewController.h; sourceTree = "<group>"; };
 		50DBB5E31520C2B800BF516F /* RotatableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotatableViewController.m; sourceTree = "<group>"; };
@@ -93,6 +92,9 @@
 		7302EF8816E4430C005590A8 /* NowPlayingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingViewController.m; sourceTree = "<group>"; };
 		7302EF8E16E66E7A005590A8 /* SpotifyPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyPlayer.h; sourceTree = "<group>"; };
 		7302EF8F16E66E7A005590A8 /* SpotifyPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyPlayer.m; sourceTree = "<group>"; };
+		7302EF9316E68586005590A8 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		7302EF9416E68586005590A8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		7302EF9516E68586005590A8 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		7395E43A16E2A58C0035A05E /* Simple_PlayerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Simple_PlayerAppDelegate.h; sourceTree = "<group>"; };
 		7395E43B16E2A58C0035A05E /* Simple_PlayerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Simple_PlayerAppDelegate.m; sourceTree = "<group>"; };
 		7395E43E16E2BA150035A05E /* Track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Track.h; sourceTree = "<group>"; };
@@ -118,7 +120,6 @@
 		73A439AE16E3FC2400F81683 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		73A439AF16E3FC2400F81683 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		73A439B016E3FC2400F81683 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
-		73D951EF16E2791C00AAA4A7 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		73D951F116E2798100AAA4A7 /* PlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistViewController.h; sourceTree = "<group>"; };
 		73D951F216E2798100AAA4A7 /* PlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistViewController.m; sourceTree = "<group>"; };
 		73ECA2FF16E30CD300DB98AE /* PlaylistCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistCollection.h; sourceTree = "<group>"; };
@@ -201,12 +202,10 @@
 				7395E43A16E2A58C0035A05E /* Simple_PlayerAppDelegate.h */,
 				7395E43B16E2A58C0035A05E /* Simple_PlayerAppDelegate.m */,
 				50DBB5E31520C2B800BF516F /* RotatableViewController.m */,
-				73D951EF16E2791C00AAA4A7 /* MainStoryboard.storyboard */,
 				50AF49C21439CB6D00E4A5EF /* MainWindow_iPhone.xib */,
 				50DBB5E21520C2B800BF516F /* RotatableViewController.h */,
 				7302EF8E16E66E7A005590A8 /* SpotifyPlayer.h */,
 				7302EF8F16E66E7A005590A8 /* SpotifyPlayer.m */,
-				50AF49C91439CB6D00E4A5EF /* MainWindow_iPad.xib */,
 				50DBB5E01520BF6100BF516F /* SPLoginResources.bundle */,
 				50AF49B31439CB6D00E4A5EF /* Supporting Files */,
 			);
@@ -238,6 +237,9 @@
 				73D951F216E2798100AAA4A7 /* PlaylistViewController.m */,
 				7302EF8716E4430C005590A8 /* NowPlayingViewController.h */,
 				7302EF8816E4430C005590A8 /* NowPlayingViewController.m */,
+				7302EF9316E68586005590A8 /* LoginViewController.h */,
+				7302EF9416E68586005590A8 /* LoginViewController.m */,
+				7302EF9516E68586005590A8 /* LoginViewController.xib */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -365,10 +367,9 @@
 			files = (
 				50AF49B71439CB6D00E4A5EF /* InfoPlist.strings in Resources */,
 				50AF49C41439CB6D00E4A5EF /* MainWindow_iPhone.xib in Resources */,
-				50AF49CB1439CB6D00E4A5EF /* MainWindow_iPad.xib in Resources */,
 				50DBB5E11520BF6100BF516F /* SPLoginResources.bundle in Resources */,
-				73D951F016E2791C00AAA4A7 /* MainStoryboard.storyboard in Resources */,
 				7302EF8116E43F8E005590A8 /* NowPlayingViewController.xib in Resources */,
+				7302EF9716E68586005590A8 /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +398,7 @@
 				73A439B916E3FC2400F81683 /* UIImageView+AFNetworking.m in Sources */,
 				7302EF8916E4430C005590A8 /* NowPlayingViewController.m in Sources */,
 				7302EF9016E66E7A005590A8 /* SpotifyPlayer.m in Sources */,
+				7302EF9616E68586005590A8 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,14 +427,6 @@
 				50AF49C31439CB6D00E4A5EF /* en */,
 			);
 			name = MainWindow_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		50AF49C91439CB6D00E4A5EF /* MainWindow_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				50AF49CA1439CB6D00E4A5EF /* en */,
-			);
-			name = MainWindow_iPad.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

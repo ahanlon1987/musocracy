@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SpotifyPlayer.h"
 
 @interface NowPlayingViewController : UIViewController
+
+@property (weak, nonatomic) SpotifyPlayer *spotifyPlayer;
 
 @property (weak, nonatomic) IBOutlet UILabel *currentTrackPosition;
 @property (weak, nonatomic) IBOutlet UILabel *trackDuration;
@@ -17,5 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nowPlayingTrackName;
 @property (weak, nonatomic) IBOutlet UILabel *nowPlayingArtistName;
 @property (weak, nonatomic) IBOutlet UIImageView *nowPlayingAlbumArt;
+
+-(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil spotifyPlayer:(SpotifyPlayer *)theSpotifyPlayer;
 
 @end

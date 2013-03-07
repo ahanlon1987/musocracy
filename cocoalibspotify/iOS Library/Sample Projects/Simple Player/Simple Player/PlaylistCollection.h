@@ -19,6 +19,7 @@
 
 -(id) initWithLocationId: (NSString *)theLocationId;
 -(void) loadTracks;
+-(void) loadTracksWithSuccess:(void (^)(NSString* msg))onSuccess;
 -(Track *) dequeueNextTrack;
 
 @end

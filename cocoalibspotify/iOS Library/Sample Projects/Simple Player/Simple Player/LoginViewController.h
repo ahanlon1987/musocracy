@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CocoaLibSpotify.h"
 
 @interface LoginViewController : UIViewController
+
+@property (weak, nonatomic) SPSession *session;
+
+@property (weak, nonatomic) IBOutlet UITextField *username;
+@property (weak, nonatomic) IBOutlet UITextField *password;
 
 @end

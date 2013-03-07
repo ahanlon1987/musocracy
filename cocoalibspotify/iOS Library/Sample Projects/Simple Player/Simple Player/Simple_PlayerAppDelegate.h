@@ -34,15 +34,11 @@
 #import "CocoaLibSpotify.h"
 #import "PlaylistCollection.h"
 #import "NowPlayingViewController.h"
+#import "SpotifyPlayer.h"
 
-@interface Simple_PlayerAppDelegate : NSObject <UIApplicationDelegate, SPSessionDelegate, SPSessionPlaybackDelegate, SPPlaylistDelegate> {
-    //	UIViewController *_mainViewController;
+@interface Simple_PlayerAppDelegate : NSObject <UIApplicationDelegate, SPSessionDelegate, SPSessionPlaybackDelegate> {
     NowPlayingViewController *_mainViewController;
-	UITextField *_trackURIField;
-	UILabel *_trackTitle;
-	UILabel *_trackArtist;
-	UIImageView *_coverView;
-	UISlider *_positionSlider;
+
     SPSession *_session;
 	SPPlaybackManager *_playbackManager;
 	SPTrack *_currentTrack;
@@ -52,19 +48,13 @@
     NSString *_playlistName;
     NSMutableArray *_tracks;
     PlaylistCollection *_playlistCollection;
+    SpotifyPlayer *_spotifyPlayer;
 }
 
 
 @property (nonatomic, strong) IBOutlet UIWindow *window;
 @property (nonatomic, strong) UINavigationController *navigationController;
-//@property (nonatomic, strong) NowPlayingViewController *nowPlayingViewController;
 @property (nonatomic, strong) IBOutlet NowPlayingViewController *mainViewController;
-
-@property (nonatomic, strong) IBOutlet UITextField *trackURIField;
-@property (nonatomic, strong) IBOutlet UILabel *trackTitle;
-@property (nonatomic, strong) IBOutlet UILabel *trackArtist;
-@property (nonatomic, strong) IBOutlet UIImageView *coverView;
-@property (nonatomic, strong) IBOutlet UISlider *positionSlider;
 
 @property (nonatomic, strong) SPSession *session;
 @property (nonatomic, strong) SPTrack *currentTrack;
@@ -73,8 +63,8 @@
 @property (nonatomic, strong) SPPlaylistContainer *playlistContainer;
 
 @property (nonatomic, strong) NSString * playlistName;
-@property (nonatomic, strong) NSMutableArray * tracks;
 @property (nonatomic, strong) PlaylistCollection * playlistCollection;
+@property (nonatomic, strong) SpotifyPlayer *spotifyPlayer;
 
 - (IBAction)playTrack:(id)sender;
 - (IBAction)setTrackPosition:(id)sender;

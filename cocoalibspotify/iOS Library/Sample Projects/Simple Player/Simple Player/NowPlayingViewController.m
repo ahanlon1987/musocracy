@@ -16,6 +16,8 @@
 
 @implementation NowPlayingViewController
 
+@synthesize spotifyPlayer;
+
 @synthesize currentTrackPosition;
 @synthesize trackDuration;
 @synthesize currentTrackPositionSlider;
@@ -24,11 +26,19 @@
 @synthesize nowPlayingArtistName;
 @synthesize nowPlayingAlbumArt;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil spotifyPlayer:(SpotifyPlayer *)theSpotifyPlayer
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.spotifyPlayer = theSpotifyPlayer;
+        
+        [self addObserver:self forKeyPath:@"spotifyPlayer.currentTrack.name" options:0 context:nil];
+        [self addObserver:self forKeyPath:@"spotifyPlayer.currentTrack.artists" options:0 context:nil];
+        [self addObserver:self forKeyPath:@"spotifyPlayer.currentTrack.duration" options:0 context:nil];
+        [self addObserver:self forKeyPath:@"spotifyPlayer.currentTrack.album.cover.image" options:0 context:nil];
+        [self addObserver:self forKeyPath:@"spotifyPlayer.playbackManager.trackPosition" options:0 context:nil];
+        [self addObserver:self forKeyPath:@"spotifyPlayer.session.starredPlaylist" options:0 context:nil];
     }
     return self;
 }
@@ -39,21 +49,51 @@
 	// Do any additional setup after loading the view.
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"spotifyPlayer.currentTrack.name"]) {
+        self.nowPlayingTrackName.text = self.spotifyPlayer.currentTrack.name;
+	} else if ([keyPath isEqualToString:@"spotifyPlayer.currentTrack.artists"]) {
+        self.nowPlayingArtistName.text = [[self.spotifyPlayer.currentTrack.artists valueForKey:@"name"] componentsJoinedByString:@","];
+	} else if ([keyPath isEqualToString:@"spotifyPlayer.currentTrack.album.cover.image"]) {
+        self.nowPlayingAlbumArt.image = self.spotifyPlayer.currentTrack.album.cover.image;
+	} else if ([keyPath isEqualToString:@"spotifyPlayer.currentTrack.duration"]) {
+        self.trackDuration.text = [self getDoubleAsTime:self.spotifyPlayer.currentTrack.duration];
+        self.currentTrackPositionSlider.maximumValue = self.spotifyPlayer.currentTrack.duration;
+	} else if ([keyPath isEqualToString:@"spotifyPlayer.playbackManager.trackPosition"]) {
+        self.currentTrackPosition.text = [self getDoubleAsTime:self.spotifyPlayer.playbackManager.trackPosition];
+        self.currentTrackPositionSlider.value = self.spotifyPlayer.playbackManager.trackPosition;
+        
+    } else if ([keyPath isEqualToString:@"spotifyPlayer.session.starredPlaylist"]) {
+        //        [self showPlaylists];
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
 - (IBAction)onPrevPressed:(id)sender {
     
 }
 
 - (IBAction)onPlayPausePressed:(id)sender {
-    Simple_PlayerAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    [appDelegate playPause];
+//    Simple_PlayerAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+//    [appDelegate playPause];
+    [self.spotifyPlayer togglePlayPause];
 }
 
 - (IBAction)onNextPressed:(id)sender {
-    Simple_PlayerAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    [appDelegate nextTrack];
+//    Simple_PlayerAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+//    [appDelegate nextTrack];
+    [self.spotifyPlayer nextTrack];
 }
 - (IBAction)onTrackPositionChanged:(id)sender {
 }
+
+-(NSString *) getDoubleAsTime:(double)timeInSeconds {
+    int mins = floor(timeInSeconds / 60);
+    int seconds = floor(fmodf(timeInSeconds, 60));
+    return [NSString stringWithFormat:@"%u:%02u", mins, seconds];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -95,6 +135,14 @@
     }
 }
 
-
+- (void)dealloc {
+	
+	[self removeObserver:self forKeyPath:@"spotifyPlayer.currentTrack.name"];
+	[self removeObserver:self forKeyPath:@"spotifyPlayer.currentTrack.artists"];
+	[self removeObserver:self forKeyPath:@"spotifyPlayer.currentTrack.album.cover.image"];
+	[self removeObserver:self forKeyPath:@"spotifyPlayer.playbackManager.trackPosition"];
+    [self removeObserver:self forKeyPath:@"spotifyPlayer.playlistContainer.playlists"];
+	
+}
 
 @end
