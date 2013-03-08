@@ -6,9 +6,12 @@
 //  Copyright (c) 2013 Spotify. All rights reserved.
 //
 
+#import <MediaPlayer/MediaPlayer.h>
+
 #import "NowPlayingViewController.h"
 #import "CocoaLibSpotify.h"
 #import "Simple_PlayerAppDelegate.h"
+
 
 @interface NowPlayingViewController ()
 
@@ -50,16 +53,20 @@
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+        MPNowPlayingInfoCenter *npCenter = [MPNowPlayingInfoCenter defaultCenter];
+        NSMutableDictionary *npDict = [[NSMutableDictionary alloc]initWithDictionary:npCenter.nowPlayingInfo];
     if ([keyPath isEqualToString:@"spotifyPlayer.currentTrack.name"]) {
         self.nowPlayingTrackName.text = self.spotifyPlayer.currentTrack.name;
-	} else if ([keyPath isEqualToString:@"spotifyPlayer.currentTrack.artists"]) {
+                [npDict setObject:MPMediaItemPropertyTitle forKey:self.spotifyPlayer.currentTrack.name];
+    } else if ([keyPath isEqualToString:@"spotifyPlayer.currentTrack.artists"]) {
         self.nowPlayingArtistName.text = [[self.spotifyPlayer.currentTrack.artists valueForKey:@"name"] componentsJoinedByString:@","];
-	} else if ([keyPath isEqualToString:@"spotifyPlayer.currentTrack.album.cover.image"]) {
+                [npDict setObject:MPMediaItemPropertyArtist forKey:[[self.spotifyPlayer.currentTrack.artists valueForKey:@"name"] componentsJoinedByString:@","]];
+    } else if ([keyPath isEqualToString:@"spotifyPlayer.currentTrack.album.cover.image"]) {
         self.nowPlayingAlbumArt.image = self.spotifyPlayer.currentTrack.album.cover.image;
-	} else if ([keyPath isEqualToString:@"spotifyPlayer.currentTrack.duration"]) {
+    } else if ([keyPath isEqualToString:@"spotifyPlayer.currentTrack.duration"]) {
         self.trackDuration.text = [self getDoubleAsTime:self.spotifyPlayer.currentTrack.duration];
         self.currentTrackPositionSlider.maximumValue = self.spotifyPlayer.currentTrack.duration;
-	} else if ([keyPath isEqualToString:@"spotifyPlayer.playbackManager.trackPosition"]) {
+    } else if ([keyPath isEqualToString:@"spotifyPlayer.playbackManager.trackPosition"]) {
         self.currentTrackPosition.text = [self getDoubleAsTime:self.spotifyPlayer.playbackManager.trackPosition];
         if (!self.currentTrackPositionSlider.highlighted) {
             self.currentTrackPositionSlider.value = self.spotifyPlayer.playbackManager.trackPosition;
@@ -70,7 +77,9 @@
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
+//        npCenter.nowPlayingInfo = npDict;
 }
+
 
 - (IBAction)onPrevPressed:(id)sender {
     
@@ -134,6 +143,21 @@
 //            [self togglePlayPause];
         }
     }
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    [self becomeFirstResponder];
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
+    [self resignFirstResponder];
 }
 
 - (void)dealloc {

@@ -52,18 +52,30 @@ app.post('/location/:locationId/track/:trackId', votes.markAsPlayed);
 app.get('/location/:locationId/track/:trackId', votes.markAsPlayed);
 
 
+var dbhost = 'dbh44.mongolab.com', 
+  dbport = 27447,
+  dbuser = 'musocracy',
+  dbpassword = 'slalom123';
 
-var mongoClient = new MongoClient(new MongoServer('127.0.0.1', 27017));
+var mongoUrl = 'mongo://' + dbuser + ':' + dbpassword + '@' + dbhost;
+var mongoClient = new MongoClient(new MongoServer(dbhost, dbport));
 mongoClient.open(function(err, mongoClient) {
   if (err) throw err;
 
   var db = mongoClient.db('musocracy');
-  votingService.setDb(db);
-  locationService.setDb(db);
+  db.authenticate(dbuser, dbpassword, function(err2, data) {
+    if (err2) {
+      console.log('Error authenticating.', err2);
+      throw err2;
+    }
+    votingService.setDb(db);
+    locationService.setDb(db);
 
-  http.createServer(app).listen(app.get('port'), function(){
-    console.log("Express server listening on port " + app.get('port'));
-  });
+    http.createServer(app).listen(app.get('port'), function(){
+      console.log("Express server listening on port " + app.get('port'));
+    });
+  })
+  
 });
 
 // var MONGO_URL = 'mongo://127.0.0.1:27017/musocracy';

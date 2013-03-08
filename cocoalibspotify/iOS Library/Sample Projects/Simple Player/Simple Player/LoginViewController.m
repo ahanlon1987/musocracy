@@ -26,6 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.username.text = @"pmaccart";
+    self.password.text = @"harlowton";
     // Do any additional setup after loading the view from its nib.
 }
 - (IBAction)onLoginPressed:(id)sender {

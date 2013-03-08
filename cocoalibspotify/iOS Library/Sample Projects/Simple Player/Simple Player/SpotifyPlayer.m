@@ -8,6 +8,7 @@
 
 #import "SpotifyPlayer.h"
 #import <AVFoundation/AVFoundation.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 @implementation SpotifyPlayer
 
@@ -40,11 +41,11 @@
                                  &doSetProperty
                                  );
         
-        NSError *activationError = nil;
-        [[AVAudioSession sharedInstance] setActive: YES error: &activationError];
-        if (activationError) {
-            NSLog(@"Could not activate audio session. %@", [activationError localizedDescription]);
-        }
+//        NSError *activationError = nil;
+//        [[AVAudioSession sharedInstance] setActive: YES error: &activationError];
+//        if (activationError) {
+//            NSLog(@"Could not activate audio session. %@", [activationError localizedDescription]);
+//        }
         
         self.playbackManager = [[SPPlaybackManager alloc] initWithPlaybackSession:self.session];
         [self.playbackManager setDelegate:self];
@@ -116,6 +117,20 @@
                                                               otherButtonTitles:nil];
                         [alert show];
                     } else {
+                        NSError *activationError = nil;
+                        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+                        [[AVAudioSession sharedInstance] setActive: YES error: &activationError];
+                        if (activationError) {
+                            NSLog(@"Could not activate audio session. %@", [activationError localizedDescription]);
+                        }
+                        MPNowPlayingInfoCenter *center = [MPNowPlayingInfoCenter defaultCenter];
+                        NSDictionary *songInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                  [[self.currentTrack.artists valueForKey:@"name"] componentsJoinedByString:@","], MPMediaItemPropertyArtist,
+                                                  track.name, MPMediaItemPropertyTitle,
+                                                  track.album.name, MPMediaItemPropertyAlbumTitle,
+                                                  nil];
+                        [center setNowPlayingInfo:songInfo];
+
                         self.currentTrack = track;
                     }
                     

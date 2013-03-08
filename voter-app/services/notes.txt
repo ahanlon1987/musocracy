@@ -1,0 +1,7 @@
+Hosting:  appfrog
+Mongo: Mongolab
+username: musocracyadmin
+password: slalom123
+
+db user: musocracy
+password: slalom123
