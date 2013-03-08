@@ -54,7 +54,7 @@ var Persist = {
                 console.log('200 returned from location service, check if locationId is null');
                 if(data) {
                     console.log('found location: ' + data.locationId);
-                    amplify.store('locationId', data.locationId);
+                    amplify.store('locationId', data.locationId, {expires:21600000}); //expire locationId after six hours.
                     router.queue();
                 } else {
                     console.log('No such location: ' + location);

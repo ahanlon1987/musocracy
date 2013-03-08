@@ -44,19 +44,11 @@ define([ "jquery", "backbone","amplify", "models/QueueModel" ], function( $, Bac
 
             var queueView = this;
 
-            $(window).scroll(function(){
-               if($(window).scrollTop() == 0 ){
-                   $.mobile.loading( "show" );
-                   queueView.collection.fetch().done(function(){
-                       $.mobile.loading( "hide" );
-                   });
-               }
-            });
-
             //Handles Voting action
             //touchstarts suck in the browser.
 //            $('span.vote-action').touchstart(function(e) {
             $('span.vote-action').click(function(e) {
+
                 var songHref = this.attributes['data-name'];
                 if(songHref && songHref.value){
                     var song = queueView.collection.where({trackId:songHref.value});
