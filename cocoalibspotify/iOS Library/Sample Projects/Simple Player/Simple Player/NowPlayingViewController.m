@@ -36,12 +36,23 @@
         // Custom initialization
         self.spotifyPlayer = theSpotifyPlayer;
         
+        self.title = @"Musocracy";
+        
         [self addObserver:self forKeyPath:@"spotifyPlayer.currentTrack.name" options:0 context:nil];
         [self addObserver:self forKeyPath:@"spotifyPlayer.currentTrack.artists" options:0 context:nil];
         [self addObserver:self forKeyPath:@"spotifyPlayer.currentTrack.duration" options:0 context:nil];
         [self addObserver:self forKeyPath:@"spotifyPlayer.currentTrack.album.cover.image" options:0 context:nil];
         [self addObserver:self forKeyPath:@"spotifyPlayer.playbackManager.trackPosition" options:0 context:nil];
         [self addObserver:self forKeyPath:@"spotifyPlayer.session.starredPlaylist" options:0 context:nil];
+        [self addObserver:self forKeyPath:@"spotifyPlayer.playlistCollection.nextTrack.trackName" options:0 context:nil];
+//        [self addObserver:self forKeyPath:@"spotifyPlayer.playlistCollection.nextTrack.artist" options:0 context:nil];
+        
+        
+        UITabBarItem *nowPlayingTabBarItem = [[UITabBarItem alloc] init];
+        nowPlayingTabBarItem.title = @"Now Playing";
+        UIImage *tabBarImage = [UIImage imageNamed:@"music.png"];
+        nowPlayingTabBarItem.image = tabBarImage;
+        self.tabBarItem = nowPlayingTabBarItem;
     }
     return self;
 }
@@ -74,7 +85,10 @@
         
     } else if ([keyPath isEqualToString:@"spotifyPlayer.session.starredPlaylist"]) {
         //        [self showPlaylists];
-    } else {
+    } else if ([keyPath isEqualToString:@"spotifyPlayer.playlistCollection.nextTrack.trackName"]) {
+        self.upcomingTrack1.text = self.spotifyPlayer.playlistCollection.nextTrack.trackName;
+    
+    }else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 //        npCenter.nowPlayingInfo = npDict;
@@ -94,7 +108,7 @@
 - (IBAction)onNextPressed:(id)sender {
 //    Simple_PlayerAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 //    [appDelegate nextTrack];
-    [self.spotifyPlayer nextTrack];
+    [self.spotifyPlayer playNextTrack];
 }
 
 
@@ -139,8 +153,10 @@
             NSLog(@"Remote Pause Event Received");
 //            [self pauseAudio];
         } else if (event.subtype == UIEventSubtypeRemoteControlTogglePlayPause) {
-            NSLog(@"Remove toggle play/pause event received.");
-//            [self togglePlayPause];
+            NSLog(@"Remote toggle play/pause event received.");
+            [self onPlayPausePressed:event];
+        } else if (event.subtype == UIEventSubtypeRemoteControlNextTrack) {
+            [self onNextPressed:event];
         }
     }
 }

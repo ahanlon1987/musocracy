@@ -128,6 +128,7 @@ var votingService = {
   },
 
   markAsPlayed:function(obj, options) {
+    var self = this;
     this.db.collection(PLAYLISTS_COLLECTION, function(err, collection) {
       if (err) {
         console.log('Error fetching collection (name=' + PLAYLISTS_COLLECTION  + ')');
@@ -170,7 +171,12 @@ var votingService = {
             (options && options.error && options.error(err));
           }
           else {
-            (options && options.success && options.success(location));
+            self.getVotes({
+              locationId:location.locationId, 
+              limit:5,
+              excludePlayed:true
+            }, options);
+            // (options && options.success && options.success(location));
           }
         })
       });

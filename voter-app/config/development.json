@@ -1,0 +1,12 @@
+{ 
+  "env":"local",
+  "port":3000,
+  "baseUri":"http://localhost:3000/",
+  "mongo": {
+    "db":"musocracy",
+    "host":"localhost",
+    "port": "27017",
+    "user":"",
+    "password":""
+  }
+}

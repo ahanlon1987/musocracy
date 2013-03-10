@@ -35,6 +35,7 @@
 #import "AFNetworkActivityIndicatorManager.h"
 #import "NowPlayingViewController.h"
 #import "LoginViewController.h"
+#import "PlaylistViewController.h"
 #import <math.h>
 
 #include "appkey.c"
@@ -49,6 +50,8 @@
 
 @synthesize window = _window;
 @synthesize navigationController = _navigationController;
+@synthesize tabBarController = _tabBarController;
+@synthesize loginViewController = _loginViewController;
 @synthesize mainViewController = _mainViewController;
 @synthesize playbackManager = _playbackManager;
 @synthesize currentTrack = _currentTrack;
@@ -81,12 +84,13 @@
 //	self.playbackManager = [[SPPlaybackManager alloc] initWithPlaybackSession:[SPSession sharedSession]];
 	self.session = [SPSession sharedSession];
     [self.session setDelegate:self];
-    self.spotifyPlayer = [[SpotifyPlayer alloc] initWithSession:self.session];
-    [self.session setPlaybackDelegate:self.spotifyPlayer];
     
-    self.mainViewController = [[NowPlayingViewController alloc] initWithNibName:@"NowPlayingViewController" bundle:nil spotifyPlayer:self.spotifyPlayer];
-    self.navigationController = [[UINavigationController alloc] initWithRootViewController:self.mainViewController];
-    self.window.rootViewController = self.navigationController;
+//    self.window.rootViewController = self.navigationController;
+    
+    self.loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+    self.loginViewController.session = self.session;
+    
+    self.window.rootViewController = self.loginViewController;
     
     [self.window makeKeyAndVisible];
 
@@ -113,9 +117,8 @@
         [self showLogin];
     }
     else {
-        NSArray * allKeys = [storedCredentials allKeys];
         [self showLogin];
-
+//        NSArray * allKeys = [storedCredentials allKeys];
 //        if (!allKeys || allKeys.count < 1) {
 //            NSLog(@"No keys found for credentials");
 //            [self showLogin];
@@ -134,11 +137,14 @@
 
 //	SPLoginViewController *controller = [SPLoginViewController loginControllerForSession:[SPSession sharedSession]];
 //	controller.allowsCancel = YES;
-	LoginViewController *controller = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-    controller.session = self.session;
-    [self.navigationController pushViewController:controller animated:YES];
-//	[self.mainViewController presentModalViewController:controller animated:NO]; 
+//	LoginViewController *controller = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
 
+//    controller.session = self.session;
+//    [self.navigationController pushViewController:controller animated:YES];
+//	[self.mainViewController presentModalViewController:controller animated:NO];
+    
+    
+    [self.loginViewController showLoginForm];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
@@ -231,19 +237,6 @@
 }
 
 #pragma mark -
-
-- (void) playlistReady {
-    NSLog(@"Playlist is ready message received");
-    if (self.firstLoad) {
-//        Track * track = [self.playlistCollection dequeueNextTrack];
-//        [self playTrackWithId:track.trackId];
-//        [self.spotifyPlayer playlistReady];
-        self.firstLoad = NO;
-    }
-}
-
-
-#pragma mark -
 #pragma mark SPSessionDelegate Methods
 
 -(UIViewController *) viewControllerToPresentLoginViewForSession:(SPSession *)aSession; {
@@ -266,8 +259,26 @@
     NSLog(@"Logged in successfully!");
     
 //    [self.mainViewController.modalViewController removeFromParentViewController];
-    [self.navigationController popViewControllerAnimated:YES];
-//    self.spotifyPlayer = [[SpotifyPlayer alloc] initWithSession:self.session];
+//    [self.navigationController popViewControllerAnimated:YES];
+//    if (!self.mainViewController) {
+        self.spotifyPlayer = [[SpotifyPlayer alloc] initWithSession:self.session];
+        [self.session setPlaybackDelegate:self.spotifyPlayer];
+        
+        self.mainViewController = [[NowPlayingViewController alloc] initWithNibName:@"NowPlayingViewController" bundle:nil spotifyPlayer:self.spotifyPlayer];
+        self.navigationController = [[UINavigationController alloc] initWithRootViewController:self.mainViewController];
+    self.tabBarController = [[UITabBarController alloc] init];
+    
+    PlaylistViewController *playlistViewController = [[PlaylistViewController alloc] initWithNibName:@"PlaylistViewController" bundle:nil];
+    playlistViewController.playlistCollection = self.spotifyPlayer.playlistCollection;
+    
+    NSArray * controllers = [NSArray arrayWithObjects:self.mainViewController, playlistViewController, nil];
+    
+    self.tabBarController = [[UITabBarController alloc] init];
+    self.tabBarController.viewControllers = controllers;
+    //    }
+    
+//    self.window.rootViewController = self.navigationController;
+    self.window.rootViewController = self.tabBarController;
 }
 
 -(void)session:(SPSession *)aSession didFailToLoginWithError:(NSError *)error; {

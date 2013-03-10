@@ -10,10 +10,11 @@
 #import "CocoaLibSpotify.h"
 #import "PlaylistCollection.h"
 
-@interface SpotifyPlayer : NSObject <SPPlaylistDelegate, SPSessionPlaybackDelegate> {
+@interface SpotifyPlayer : NSObject <SPPlaylistDelegate, SPSessionPlaybackDelegate, SPPlaybackManagerDelegate> {
     SPSession *_session;
     SPPlaybackManager *_playbackManager;
 	SPTrack *_currentTrack;
+    SPTrack *_nextTrack;
     SPPlaylistContainer *_playlistContainer;
     SPPlaylist *_playlist;
     
@@ -24,6 +25,7 @@
 
 @property (nonatomic, strong) SPSession *session;
 @property (nonatomic, strong) SPTrack *currentTrack;
+@property (nonatomic, strong) SPTrack *nextTrack;
 @property (nonatomic, strong) SPPlaybackManager *playbackManager;
 @property (nonatomic, strong) SPPlaylist *playlist;
 @property (nonatomic, strong) SPPlaylistContainer *playlistContainer;
@@ -33,7 +35,7 @@
 
 -(id) initWithSession: (SPSession *)theSession;
 -(void) togglePlayPause;
--(void) nextTrack;
+-(void) playNextTrack;
 //-(void) prevTrack;
 
 @end

@@ -2,26 +2,46 @@
 //  PlaylistViewController.m
 //  Simple Player
 //
-//  Created by Phil MacCart on 3/2/13.
+//  Created by Phil MacCart on 3/10/13.
 //  Copyright (c) 2013 Spotify. All rights reserved.
 //
 
 #import "PlaylistViewController.h"
+#import "Track.h"
 
 @interface PlaylistViewController ()
-@property (nonatomic, strong) NSMutableData * responseData;
+
 @end
 
 @implementation PlaylistViewController
 
-@synthesize responseData = _responseData;
-
+@synthesize playlistCollection;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        
+        UITabBarItem *playlistTabBarItem = [[UITabBarItem alloc] init];
+        playlistTabBarItem.title = @"Playlist";
+        self.tabBarItem = playlistTabBarItem;
+        
+        [self addObserver:self forKeyPath:@"playlistCollection.playlist" options:0 context:nil];
+    }
+    return self;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self ) {
+        // Custom initialization
+        
+        UITabBarItem *playlistTabBarItem = [[UITabBarItem alloc] init];
+        playlistTabBarItem.title = @"Playlist";
+        UIImage *tabBarImage = [UIImage imageNamed:@"text-list.png"];
+        playlistTabBarItem.image = tabBarImage;
+        self.tabBarItem = playlistTabBarItem;
     }
     return self;
 }
@@ -35,13 +55,13 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     
-    NSString * url = @"http://localhost:3000/location/1/votes";
-    NSLog(@"viewdidload");
-    self.responseData = [NSMutableData data];
-    NSURLRequest *request = [NSURLRequest requestWithURL:
-                             [NSURL URLWithString:url]];
-    [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    if ([keyPath isEqualToString:@"playlistCollection.playlist"]) {
+        [self refreshControl];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,86 +74,30 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return self.playlistCollection.playlist.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Track";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    cell.textLabel.text = [self getMyDataForRow:indexPath.row inSection:indexPath.section];
-    
-    return cell;
-}
-
-- (NSString *)getMyDataForRow:(int)row inSection:(int)section
-{
-    return [NSString stringWithFormat:@"This is row %d", row];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    NSLog(@"didReceiveResponse");
-    [self.responseData setLength:0];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [self.responseData appendData:data];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"didFailWithError");
-    NSLog([NSString stringWithFormat:@"Connection failed: %@", [error description]]);
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSLog(@"connectionDidFinishLoading");
-    NSLog(@"Succeeded! Received %d bytes of data",[self.responseData length]);
-    
-    // convert to JSON
-    NSError *myError = nil;
-    NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
-    
-    NSArray *playlist = [res objectForKey:@"playlist"];
-    for (NSDictionary * track in playlist) {
-        
-        NSString *trackId = (NSString *) [track objectForKey:@"trackId"];
-        NSString *name = (NSString *) [track objectForKey:@"name"];
-        
-        NSLog(@"Track Name: %@,  ID: %@", name, trackId);
-        
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    // show all values
-//    for(id key in res) {
-//        
-//        id value = [res objectForKey:key];
-//        
-//        NSString *keyAsString = (NSString *)key;
-//        NSString *valueAsString = (NSString *)value;
-//        
-//        NSLog(@"key: %@", keyAsString);
-//        NSLog(@"value: %@", valueAsString);
-//    }
-//    
-//    // extract specific value...
-//    NSArray *results = [res objectForKey:@"results"];
-//    
-//    for (NSDictionary *result in results) {
-//        NSString *icon = [result objectForKey:@"icon"];
-//        NSLog(@"icon: %@", icon);
-//    }
+    // Configure the cell...
+    Track *track = [playlistCollection.playlist objectAtIndex:indexPath.row];
+    cell.textLabel.text = track.trackName;
+    cell.detailTextLabel.text = track.artist;
     
+    return cell;
 }
 
 /*

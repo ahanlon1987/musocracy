@@ -35,10 +35,6 @@ app.configure(function(){
   app.use(express.static(path.join(__dirname, 'public')));
 });
 
-app.configure('development', function(){
-  app.use(express.errorHandler());
-});
-
 app.get('/', routes.index);
 app.get('/search/track', search.byTrack);
 app.get('/search/artist', search.byArtist);
@@ -52,38 +48,54 @@ app.post('/location/:locationId/track/:trackId', votes.markAsPlayed);
 app.get('/location/:locationId/track/:trackId', votes.markAsPlayed);
 
 
-var dbhost = 'dbh44.mongolab.com', 
-  dbport = 27447,
-  dbuser = 'musocracy',
-  dbpassword = 'slalom123';
+var config = {};
+app.configure('development', function() {
+  app.use(express.errorHandler());
+  config = require('./config/development.json');
+  app.set('port', config.port);
+});
 
-var mongoUrl = 'mongo://' + dbuser + ':' + dbpassword + '@' + dbhost;
+app.configure('production', function() {
+  config = require('./config/production.json');
+  app.set('port', config.port);
+});
+
+var dbhost = config.mongo.host,
+  dbport = config.mongo.port,
+  dbuser = config.mongo.user,
+  dbpassword = config.mongo.password;
+
 var mongoClient = new MongoClient(new MongoServer(dbhost, dbport));
 mongoClient.open(function(err, mongoClient) {
-  if (err) throw err;
+  if (err) {
+    console.log('Failed opening connection to ' + dbhost + ':' + dbport);
+    throw err
+  };
 
   var db = mongoClient.db('musocracy');
-  db.authenticate(dbuser, dbpassword, function(err2, data) {
-    if (err2) {
-      console.log('Error authenticating.', err2);
-      throw err2;
-    }
-    votingService.setDb(db);
-    locationService.setDb(db);
+  if (dbuser && dbpassword) {
+    db.authenticate(dbuser, dbpassword, function(err2, data) {
+      if (err2) {
+        console.log('Error authenticating with user=', dbuser);
+        throw err2;
+      }
+      votingService.setDb(db);
+      locationService.setDb(db);
 
-    http.createServer(app).listen(app.get('port'), function(){
-      console.log("Express server listening on port " + app.get('port'));
+      http.createServer(app).listen(app.get('port'), function(){
+        console.log("Express server listening on port " + app.get('port'));
+      });
     });
-  })
+  }
+
+  else {
+    votingService.setDb(db);
+      locationService.setDb(db);
+
+      http.createServer(app).listen(app.get('port'), function(){
+        console.log("Express server listening on port " + app.get('port'));
+      });
+  }
   
 });
 
-// var MONGO_URL = 'mongo://127.0.0.1:27017/musocracy';
-// MongoClient.connect(MONGO_URL, function(err, db) {
-//   if (err) throw err;
-
-//   votingService.setDb(db);
-//   http.createServer(app).listen(app.get('port'), function(){
-//     console.log("Express server listening on port " + app.get('port'));
-//   });
-// });

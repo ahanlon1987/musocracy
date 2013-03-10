@@ -27,6 +27,10 @@
 		7302EF9016E66E7A005590A8 /* SpotifyPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7302EF8F16E66E7A005590A8 /* SpotifyPlayer.m */; };
 		7302EF9616E68586005590A8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7302EF9416E68586005590A8 /* LoginViewController.m */; };
 		7302EF9716E68586005590A8 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7302EF9516E68586005590A8 /* LoginViewController.xib */; };
+		7320AC3016ED0A130060C021 /* PlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7320AC2E16ED0A130060C021 /* PlaylistViewController.m */; };
+		7320AC3116ED0A130060C021 /* PlaylistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7320AC2F16ED0A130060C021 /* PlaylistViewController.xib */; };
+		7320AC3416ED47C70060C021 /* music.png in Resources */ = {isa = PBXBuildFile; fileRef = 7320AC3316ED47C70060C021 /* music.png */; };
+		7320AC3616ED47E60060C021 /* text-list.png in Resources */ = {isa = PBXBuildFile; fileRef = 7320AC3516ED47E60060C021 /* text-list.png */; };
 		73497F1116E9943400BD9B42 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73497F1016E9943400BD9B42 /* MediaPlayer.framework */; };
 		7395E43C16E2A58C0035A05E /* Simple_PlayerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7395E43B16E2A58C0035A05E /* Simple_PlayerAppDelegate.m */; };
 		7395E44016E2BA150035A05E /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = 7395E43F16E2BA150035A05E /* Track.m */; };
@@ -40,7 +44,6 @@
 		73A439B716E3FC2400F81683 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 73A439AC16E3FC2400F81683 /* AFURLConnectionOperation.m */; };
 		73A439B816E3FC2400F81683 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 73A439AE16E3FC2400F81683 /* AFXMLRequestOperation.m */; };
 		73A439B916E3FC2400F81683 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 73A439B016E3FC2400F81683 /* UIImageView+AFNetworking.m */; };
-		73D951F316E2798100AAA4A7 /* PlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D951F216E2798100AAA4A7 /* PlaylistViewController.m */; };
 		73ECA30116E30CD300DB98AE /* PlaylistCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 73ECA30016E30CD300DB98AE /* PlaylistCollection.m */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +99,11 @@
 		7302EF9316E68586005590A8 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		7302EF9416E68586005590A8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		7302EF9516E68586005590A8 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		7320AC2D16ED0A130060C021 /* PlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistViewController.h; sourceTree = "<group>"; };
+		7320AC2E16ED0A130060C021 /* PlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistViewController.m; sourceTree = "<group>"; };
+		7320AC2F16ED0A130060C021 /* PlaylistViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaylistViewController.xib; sourceTree = "<group>"; };
+		7320AC3316ED47C70060C021 /* music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = music.png; sourceTree = "<group>"; };
+		7320AC3516ED47E60060C021 /* text-list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text-list.png"; sourceTree = "<group>"; };
 		73497F1016E9943400BD9B42 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		7395E43A16E2A58C0035A05E /* Simple_PlayerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Simple_PlayerAppDelegate.h; sourceTree = "<group>"; };
 		7395E43B16E2A58C0035A05E /* Simple_PlayerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Simple_PlayerAppDelegate.m; sourceTree = "<group>"; };
@@ -122,8 +130,6 @@
 		73A439AE16E3FC2400F81683 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		73A439AF16E3FC2400F81683 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		73A439B016E3FC2400F81683 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
-		73D951F116E2798100AAA4A7 /* PlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistViewController.h; sourceTree = "<group>"; };
-		73D951F216E2798100AAA4A7 /* PlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistViewController.m; sourceTree = "<group>"; };
 		73ECA2FF16E30CD300DB98AE /* PlaylistCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistCollection.h; sourceTree = "<group>"; };
 		73ECA30016E30CD300DB98AE /* PlaylistCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistCollection.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -219,6 +225,7 @@
 		50AF49B31439CB6D00E4A5EF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7320AC3216ED47880060C021 /* images */,
 				50AF49B41439CB6D00E4A5EF /* Simple Player-Info.plist */,
 				50AF49B51439CB6D00E4A5EF /* InfoPlist.strings */,
 				50AF49B81439CB6D00E4A5EF /* main.m */,
@@ -237,15 +244,25 @@
 		7302EF7916E43F3C005590A8 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				73D951F116E2798100AAA4A7 /* PlaylistViewController.h */,
-				73D951F216E2798100AAA4A7 /* PlaylistViewController.m */,
 				7302EF8716E4430C005590A8 /* NowPlayingViewController.h */,
 				7302EF8816E4430C005590A8 /* NowPlayingViewController.m */,
 				7302EF9316E68586005590A8 /* LoginViewController.h */,
 				7302EF9416E68586005590A8 /* LoginViewController.m */,
 				7302EF9516E68586005590A8 /* LoginViewController.xib */,
+				7320AC2D16ED0A130060C021 /* PlaylistViewController.h */,
+				7320AC2E16ED0A130060C021 /* PlaylistViewController.m */,
+				7320AC2F16ED0A130060C021 /* PlaylistViewController.xib */,
 			);
 			name = controllers;
+			sourceTree = "<group>";
+		};
+		7320AC3216ED47880060C021 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				7320AC3516ED47E60060C021 /* text-list.png */,
+				7320AC3316ED47C70060C021 /* music.png */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 		7395E43D16E2B9FA0035A05E /* models */ = {
@@ -374,6 +391,9 @@
 				50DBB5E11520BF6100BF516F /* SPLoginResources.bundle in Resources */,
 				7302EF8116E43F8E005590A8 /* NowPlayingViewController.xib in Resources */,
 				7302EF9716E68586005590A8 /* LoginViewController.xib in Resources */,
+				7320AC3116ED0A130060C021 /* PlaylistViewController.xib in Resources */,
+				7320AC3416ED47C70060C021 /* music.png in Resources */,
+				7320AC3616ED47E60060C021 /* text-list.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,7 +406,6 @@
 			files = (
 				50AF49B91439CB6D00E4A5EF /* main.m in Sources */,
 				50DBB5E41520C2B800BF516F /* RotatableViewController.m in Sources */,
-				73D951F316E2798100AAA4A7 /* PlaylistViewController.m in Sources */,
 				7395E43C16E2A58C0035A05E /* Simple_PlayerAppDelegate.m in Sources */,
 				7395E44016E2BA150035A05E /* Track.m in Sources */,
 				73ECA30116E30CD300DB98AE /* PlaylistCollection.m in Sources */,
@@ -403,6 +422,7 @@
 				7302EF8916E4430C005590A8 /* NowPlayingViewController.m in Sources */,
 				7302EF9016E66E7A005590A8 /* SpotifyPlayer.m in Sources */,
 				7302EF9616E68586005590A8 /* LoginViewController.m in Sources */,
+				7320AC3016ED0A130060C021 /* PlaylistViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +477,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = $CONFIGURATION_BUILD_DIR/include;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -476,6 +497,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = $CONFIGURATION_BUILD_DIR/include;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -492,16 +514,17 @@
 				GCC_PREFIX_HEADER = "Simple Player/Simple Player-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Simple Player/Simple Player-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos6.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts/include\"";
+				"VALID_ARCHS[sdk=iphoneos*]" = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -515,14 +538,14 @@
 				GCC_PREFIX_HEADER = "Simple Player/Simple Player-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Simple Player/Simple Player-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos6.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts/include\"";
 				WRAPPER_EXTENSION = app;

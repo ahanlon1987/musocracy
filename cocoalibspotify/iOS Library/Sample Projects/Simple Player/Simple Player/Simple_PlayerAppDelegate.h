@@ -34,10 +34,14 @@
 #import "CocoaLibSpotify.h"
 #import "PlaylistCollection.h"
 #import "NowPlayingViewController.h"
+#import "LoginViewController.h"
 #import "SpotifyPlayer.h"
 
 @interface Simple_PlayerAppDelegate : NSObject <UIApplicationDelegate, SPSessionDelegate> {
+    LoginViewController *_loginViewController;
     NowPlayingViewController *_mainViewController;
+    UITabBarController *_tabBarController;
+    UINavigationController *_navigationController;
 
     SPSession *_session;
 	SPPlaybackManager *_playbackManager;
@@ -54,6 +58,8 @@
 
 @property (nonatomic, strong) IBOutlet UIWindow *window;
 @property (nonatomic, strong) UINavigationController *navigationController;
+@property (nonatomic, strong) UITabBarController *tabBarController;
+@property (nonatomic, strong) LoginViewController *loginViewController;
 @property (nonatomic, strong) IBOutlet NowPlayingViewController *mainViewController;
 
 @property (nonatomic, strong) SPSession *session;

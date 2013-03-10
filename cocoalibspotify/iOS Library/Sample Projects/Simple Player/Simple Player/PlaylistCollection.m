@@ -38,7 +38,7 @@
 }
 
 -(void) loadTracksWithSuccess:(void (^)(NSString* msg))onSuccess {
-    NSString * url = [NSString stringWithFormat:@"http://192.168.134.134:3000/location/%@/votes?limit=10&excludePlayed=true", self.locationId];
+    NSString * url = [NSString stringWithFormat:@"http://192.168.0.101:3000/location/%@/votes?limit=10&excludePlayed=true", self.locationId];
     
     NSLog(@"URL: %@", url);
     NSURLRequest *request = [NSURLRequest requestWithURL:
@@ -79,14 +79,20 @@
         NSLog(@"Track Name: %@,  ID: %@", name, trackId);
     }
     
-    Track *firstTrack = [tracks objectAtIndex:0];
-    if ([self hasBeenPlayed:firstTrack]) {
-        [tracks removeObjectAtIndex:0];
-    }
-    self.playlist = tracks;
     
-    Simple_PlayerAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    [appDelegate playlistReady];
+//    Track *firstTrack = [tracks objectAtIndex:0];
+//    if ([self hasBeenPlayed:firstTrack]) {
+//        [tracks removeObjectAtIndex:0];
+//    }
+    
+    self.playlist = tracks;
+    if (tracks.count > 0) {
+        self.nextTrack = [tracks objectAtIndex:0];
+    }
+    else {
+        self.nextTrack = nil;
+    }
+//    self.nextTrack = firstTrack;
 }
 
 -(BOOL) hasBeenPlayed:(Track *) track {
@@ -97,18 +103,21 @@
 }
 
 -(Track *) dequeueNextTrack {
-    Track *track = [self.playlist objectAtIndex:0];
-    self.currentTrack = track;
-    [self markTrackAsPlayed:track];
-    
-    // kick off an asynchronous load of upcoming tracks
-    [self loadTracks];
+    Track *track = nil;
+    if (self.playlist.count > 0) {
+        track = [self.playlist objectAtIndex:0];
+        self.currentTrack = track;
+        [self markTrackAsPlayed:track];
+    }
+    else {
+        [self loadTracks];
+    }
     
     return track;
 }
 
 -(void) markTrackAsPlayed:(Track *) track {
-    NSString * url = [NSString stringWithFormat:@"http://192.168.134.134:3000/location/%@/track/%@", self.locationId, track.trackId];
+    NSString * url = [NSString stringWithFormat:@"http://192.168.0.101:3000/location/%@/track/%@", self.locationId, track.trackId];
     
     NSLog(@"URL: %@", url);
 //    self.responseData = [NSMutableData data];
@@ -119,6 +128,7 @@
                                        JSONRequestOperationWithRequest:request
                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                            NSLog(@"Mark as played returned for track %@", track.trackId);
+                                           [self processData:JSON];
                                        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                                            NSLog(@"Error marking track %@ as played.", track.trackId);
                                        }];

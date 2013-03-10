@@ -19,6 +19,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.title = @"Login";
     }
     return self;
 }
@@ -28,6 +29,8 @@
     [super viewDidLoad];
     self.username.text = @"pmaccart";
     self.password.text = @"harlowton";
+    
+    [self hideLoginForm];
     // Do any additional setup after loading the view from its nib.
 }
 - (IBAction)onLoginPressed:(id)sender {
@@ -36,6 +39,20 @@
     
     NSLog(@"About to login username=%@ password=%@", usernameVal, passwordVal);
     [self.session attemptLoginWithUserName:usernameVal password:passwordVal];
+}
+
+-(void)showLoginForm {
+    self.username.hidden = NO;
+    self.password.hidden = NO;
+    self.loginButton.hidden = NO;
+    self.loadingMessage.hidden = YES;
+}
+
+-(void)hideLoginForm {
+    self.username.hidden = YES;
+    self.password.hidden = YES;
+    self.loginButton.hidden = YES;
+    self.loadingMessage.hidden = NO;
 }
 
 - (void)didReceiveMemoryWarning

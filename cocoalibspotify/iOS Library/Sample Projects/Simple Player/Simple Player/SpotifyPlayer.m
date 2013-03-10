@@ -14,6 +14,7 @@
 
 @synthesize playbackManager = _playbackManager;
 @synthesize currentTrack = _currentTrack;
+@synthesize nextTrack = _nextTrack;
 @synthesize playlist = _playlist;
 @synthesize playlistContainer = _playlistContainer;
 @synthesize session = _session;
@@ -52,12 +53,16 @@
         //        self.session = [SPSession sharedSession];
         //        [self.session setDelegate:self];
         
+//        [self.playbackManager.playbackSession setPlaybackDelegate:self];
+        
 //        [self addObserver:self forKeyPath:@"currentTrack.name" options:0 context:nil];
 //        [self addObserver:self forKeyPath:@"currentTrack.artists" options:0 context:nil];
 //        [self addObserver:self forKeyPath:@"currentTrack.duration" options:0 context:nil];
 //        [self addObserver:self forKeyPath:@"currentTrack.album.cover.image" options:0 context:nil];
 //        [self addObserver:self forKeyPath:@"playbackManager.trackPosition" options:0 context:nil];
 //        [self addObserver:self forKeyPath:@"session.starredPlaylist" options:0 context:nil];
+        [self addObserver:self forKeyPath:@"playlistCollection.nextTrack.trackName" options:0 context:nil];
+        [self addObserver:self forKeyPath:@"playlistCollection.nextTrack.artistName" options:0 context:nil];
         
         //        [self performSelector:@selector(checkAuth) withObject:nil afterDelay:0.0];
         
@@ -125,7 +130,7 @@
                         }
                         MPNowPlayingInfoCenter *center = [MPNowPlayingInfoCenter defaultCenter];
                         NSDictionary *songInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                  [[self.currentTrack.artists valueForKey:@"name"] componentsJoinedByString:@","], MPMediaItemPropertyArtist,
+                                                  [[self.currentTrack.artists valueForKey:@"name"] componentsJoinedByString:@", "], MPMediaItemPropertyArtist,
                                                   track.name, MPMediaItemPropertyTitle,
                                                   track.album.name, MPMediaItemPropertyAlbumTitle,
                                                   nil];
@@ -140,7 +145,7 @@
     }];
 }
 
-- (void) nextTrack {
+- (void) playNextTrack {
     Track *track = [self.playlistCollection dequeueNextTrack];
     [self playTrackWithId:track.trackId];
 }
@@ -165,7 +170,7 @@
 #pragma mark SPSessionPlaybackDelegate
 
 -(void) sessionDidEndPlayback:(id<SPSessionPlaybackProvider>)aSession {
-    [self nextTrack];
+    [self playNextTrack];
 }
 
 #pragma mark -

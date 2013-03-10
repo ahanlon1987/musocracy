@@ -1,0 +1,12 @@
+{ 
+  "env":"production",
+  "port":80,
+  "baseUri":"http://www.musocracyapp.com/",
+  "mongo" : {
+    "db":"musocracy",
+    "host":"dbh44.mongolab.com",
+    "port": "27447",
+    "user":"musocracy",
+    "password":"slalom123"
+  }
+}
