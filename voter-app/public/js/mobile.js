@@ -7,9 +7,13 @@ require.config( {
         // Core Libraries
         "jquery": "lib/jquery-1.9.1",
         "jquerymobile": "lib/jquery.mobile-1.3.0",
-        "underscore": "lib/lodash",
-        "backbone": "lib/backbone",
-        "amplify" : "lib/amplify.min",
+        "underscore"  : "lib/lodash",
+        "backbone"    : "lib/backbone",
+        "amplify"     : "lib/amplify.min",
+        "scroller"    : "lib/scroller/Scroller",
+        "animate"     : "lib/scroller/Animate",
+        "render"      : "lib/scroller/render",
+        "raf"         : "lib/scroller/Raf"
     },
 
     // Sets the configuration for your third party scripts that are not AMD compatible
@@ -25,7 +29,7 @@ require.config( {
 } );
 
 // Includes File Dependencies
-require([ "jquery", "backbone", "routers/mobileRouter" ], function( $, Backbone, Mobile ) {
+require([ "jquery", "backbone", "routers/mobileRouter", "scroller", "animate", "render", "raf"], function( $, Backbone, Mobile, scroller, animate, render, raf) {
 
     $( document ).on( "mobileinit",
         // Set up the "mobileinit" handler before requiring jQuery Mobile's module
@@ -53,5 +57,93 @@ require([ "jquery", "backbone", "routers/mobileRouter" ], function( $, Backbone,
 
         return false;
     });
+
+
+
+    var container = document.getElementById("container");
+    var content = document.getElementById("content");
+    var refreshElem = document.getElementById("refresh-container");
+
+    // Initialize Scroller
+    var scroller = new Scroller(this.render, {
+        scrollingX: false
+    });
+
+    // Activate pull-to-refresh
+    scroller.activatePullToRefresh(50, function() {
+        refreshElem.className += " active";
+        refreshElem.innerHTML = "Release to Refresh";
+    }, function() {
+        refreshElem.className = refreshElem.className.replace(" active", "");
+        refreshElem.innerHTML = "Pull to Refresh"
+        ;
+    }, function() {
+        refreshElem.className += " running";
+        $.mobile.loading( "show" );
+        router.queueView.collection.fetch().done( function() {
+            scroller.finishPullToRefresh();
+            $.mobile.loading( "hide" );
+        });
+    });
+
+    var rect = container.getBoundingClientRect();
+    scroller.setPosition(rect.left+container.clientLeft, rect.top+container.clientTop);
+
+    //TODO make this jquery-ish
+    if ('ontouchstart' in window) {
+        refreshElem.addEventListener("touchstart", function(e) {
+            // Don't react if initial down happens on a form element
+            if (e.target.tagName.match(/input|textarea|select/i)) {
+                return;
+            }
+            scroller.doTouchStart(e.touches, e.timeStamp);
+            e.preventDefault();
+        }, false);
+        document.addEventListener("touchmove", function(e) {
+            scroller.doTouchMove(e.touches, e.timeStamp);
+        }, false);
+        document.addEventListener("touchend", function(e) {
+            scroller.doTouchEnd(e.timeStamp);
+        }, false);
+
+    } else {
+
+        var mousedown = false;
+        refreshElem.addEventListener("mousedown", function(e) {
+            // Don't react if initial down happens on a form element
+            if (e.target.tagName.match(/input|textarea|select/i)) {
+                return;
+            }
+            scroller.doTouchStart([{
+                pageX: e.pageX,
+                pageY: e.pageY
+            }], e.timeStamp);
+
+            mousedown = true;
+        }, false);
+
+        document.addEventListener("mousemove", function(e) {
+            if (!mousedown) {
+                return;
+            }
+            scroller.doTouchMove([{
+                pageX: e.pageX,
+                pageY: e.pageY
+            }], e.timeStamp);
+
+            mousedown = true;
+        }, false);
+
+        document.addEventListener("mouseup", function(e) {
+            if (!mousedown) {
+                return;
+            }
+
+            scroller.doTouchEnd(e.timeStamp);
+            mousedown = false;
+        }, false);
+
+    }
+
 
 } );

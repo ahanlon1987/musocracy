@@ -7,6 +7,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />-->
+    <link rel="stylesheet" href="css/lib/scroll.css" />
+    <link rel="stylesheet" href="css/lib/ui.css" />
     <link rel="stylesheet" href="css/musocracy.css" />
     <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
     <script src="js/lib/require.js" data-main="js/mobile"></script>
@@ -15,24 +17,24 @@
 
 
 <div id="location" data-url="location" data-role="page" data-title="Musocracy">
-        <div data-role="header">
-            <h1>Musocracy</h1>
-        </div><!-- /header -->
-        <div data-role="content" class="ui-content" role="main">
-            <div data-role="fieldcontain" id="location-lookup" class="ui-field-contain ui-body ui-br"><fieldset data-role="controlgroup" class="ui-corner-all ui-controlgroup ui-controlgroup-vertical"><div class="ui-controlgroup-controls">
-                <label for="locationId" class="ui-input-text">
-                </label>
-                <input name="" id="locationId" placeholder="Enter your location" value="" type="text" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset">
-            </div></fieldset></div>
-            <a data-role="button" id="location-submit" data-theme="b" href="javascript:;" data-icon="check" data-iconpos="right" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-right ui-btn-active ui-btn-up-b"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">
+    <div data-role="header">
+        <h1>Musocracy</h1>
+    </div><!-- /header -->
+    <div data-role="content" class="ui-content" role="main">
+        <div data-role="fieldcontain" id="location-lookup" class="ui-field-contain ui-body ui-br"><fieldset data-role="controlgroup" class="ui-corner-all ui-controlgroup ui-controlgroup-vertical"><div class="ui-controlgroup-controls">
+            <label for="locationId" class="ui-input-text">
+            </label>
+            <input name="" id="locationId" placeholder="Enter your location" value="" type="text" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset">
+        </div></fieldset></div>
+        <a data-role="button" id="location-submit" data-theme="b" href="javascript:;" data-icon="check" data-iconpos="right" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-right ui-btn-active ui-btn-up-b"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">
                            Submit
                        </span><span class="ui-icon ui-icon-check ui-icon-shadow">&nbsp;</span></span></a>
-        </div>
-        <div data-theme="a" data-role="footer" data-position="fixed" class="ui-footer ui-bar-a ui-footer-fixed slideup" role="contentinfo">
-           <h1 id="about-link-location" class="ui-title" role="heading" aria-level="1">
-               About
-           </h1>
-       </div>
+    </div>
+    <div data-theme="a" data-role="footer" data-position="fixed" class="ui-footer ui-bar-a ui-footer-fixed slideup" role="contentinfo">
+        <h1 id="about-link-location" class="ui-title" role="heading" aria-level="1">
+            About
+        </h1>
+    </div>
 </div>
 
 
@@ -57,11 +59,18 @@
         </div>
 
         <div id="queue-content-wrapper">
-            <div data-role="content" >
-                <ul id="queue-results" data-divider-theme="b" data-role="listview" data-inset="true">
-                </ul>
+            <div id="container">
+                <div id="content" data-role="content" >
+                    <!--TODO add a refresh icon-->
+                    <div id="refresh-container" class="refresh" >Pull to Refresh
+                        <!--<span class="ui-icon ui-icon-refresh ui-icon-shadow">&nbsp;&nbsp;&nbsp;&nbsp;</span>-->
+                    </div>
+                    <ul id="queue-results" data-divider-theme="b" data-role="listview" data-inset="true">
+                    </ul>
+                </div>
             </div>
         </div>
+
 
     </div>
 
