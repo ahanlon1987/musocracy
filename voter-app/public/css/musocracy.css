@@ -1,5 +1,6 @@
 li.song-list {
     list-style: none;
+    cursor:pointer
 }
 
 .ellipsis {
@@ -30,4 +31,9 @@ ul#results{
 
 .hidden {
     display:none;
+}
+
+li.song-list.disabled{
+    opacity:.5;
+    cursor:default;
 }
