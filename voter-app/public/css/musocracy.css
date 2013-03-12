@@ -25,8 +25,12 @@ a.vote-icon {
 }
 
 ul#header-list,
-ul#results{
+.form-search {
     margin-left:25px;
+}
+
+ul#results {
+    margin-left:5px;
 }
 
 .hidden {
@@ -36,4 +40,12 @@ ul#results{
 li.song-list.disabled{
     opacity:.5;
     cursor:default;
+}
+
+#song-search-input {
+    width:220px;
+}
+
+#location-input {
+    width:200px;
 }

@@ -23,14 +23,17 @@ define([ "jquery", "backbone", "amplify"], function( $, Backbone, Amplify) {
                 var oldVote = amplify.store('previousVotes')[index];
                 if(oldVote){
                     if((new Date()) - (new Date(oldVote.voteTime)) < THREE_HOURS_IN_MS){
-                        model.set('disableVote', 'ui-disabled');
+                        model.set('disableVote', true);
                     }
                 }
             }
 
             this.template = _.template( $( "script#songs" ).html(), { "model": model.toJSON()} );
 
-            this.$el.attr('data-name', model.get('trackId')).addClass('song-list media').addClass(model.get('disableVote') ? 'disabled': '').html(this.template);
+            this.$el.attr('data-name', model.get('trackId'))
+                    .addClass('song-list media')
+                    .addClass(model.get('disableVote') ? 'disabled': '')
+                    .html(this.template);
 
             this.model = model;
 
