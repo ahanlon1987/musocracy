@@ -11,6 +11,11 @@ define([ "jquery","backbone","models/QueueModel"], function( $, Backbone, QueueM
         initialize: function() {
         },
 
+        isEmpty:function(){
+            return (this.models.length < 1);
+        },
+
+
         // Sets the Collection model property to be a Category Model
         model: QueueModel,
 

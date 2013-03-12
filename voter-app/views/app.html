@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html class="no-js ui-mobile-rendering" lang="en">
+<html class="no-js ui-mobile-rendering" lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Backbone.js, Require.js, and jQuery Mobile</title>
     <meta name="description" content="">
@@ -10,176 +10,58 @@
     <link rel="stylesheet" href="css/lib/scroll.css" />
     <link rel="stylesheet" href="css/lib/ui.css" />
     <link rel="stylesheet" href="css/musocracy.css" />
-    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+    <link rel="stylesheet" href="css/lib/bootstrap.min.css" />
+    <!--<link rel="stylesheet" href="css/lib/bootstrap-responsive.min.css" />-->
     <script src="js/lib/require.js" data-main="js/mobile"></script>
 </head>
 <body>
 
 
-<div id="location" data-url="location" data-role="page" data-title="Musocracy">
-    <div data-role="header">
-        <h1>Musocracy</h1>
-    </div><!-- /header -->
-    <div data-role="content" class="ui-content" role="main">
-        <div data-role="fieldcontain" id="location-lookup" class="ui-field-contain ui-body ui-br"><fieldset data-role="controlgroup" class="ui-corner-all ui-controlgroup ui-controlgroup-vertical"><div class="ui-controlgroup-controls">
-            <label for="locationId" class="ui-input-text">
-            </label>
-            <input name="" id="locationId" placeholder="Enter your location" value="" type="text" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset">
-        </div></fieldset></div>
-        <a data-role="button" id="location-submit" data-theme="b" href="javascript:;" data-icon="check" data-iconpos="right" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-right ui-btn-active ui-btn-up-b"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">
-                           Submit
-                       </span><span class="ui-icon ui-icon-check ui-icon-shadow">&nbsp;</span></span></a>
-    </div>
-    <div data-theme="a" data-role="footer" data-position="fixed" class="ui-footer ui-bar-a ui-footer-fixed slideup" role="contentinfo">
-        <h1 id="about-link-location" class="ui-title" role="heading" aria-level="1">
-            About
-        </h1>
-    </div>
-</div>
-
-
-<div id="queue" data-url="queue" data-role="page" data-title="Musocracy">
-    <div data-role="header">
-        <h1>Musocracy</h1>
-    </div><!-- /header -->
-    <div data-role="content">
-        <div data-role="navbar" data-iconpos="left">
-            <ul>
-                <li>
-                    <a href="#queue" data-transition="fade" data-theme="c" data-icon="check" class="ui-btn-active" >
-                        Queue
-                    </a>
-                </li>
-                <li>
-                    <a href="#search" data-transition="fade" data-theme="b" data-icon="search" >
-                        Search
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <div id="queue-content-wrapper">
-            <div id="container">
-                <div id="content" data-role="content" >
-                    <!--TODO add a refresh icon-->
-                    <div id="refresh-container" class="refresh" >Pull to Refresh
-                        <!--<span class="ui-icon ui-icon-refresh ui-icon-shadow">&nbsp;&nbsp;&nbsp;&nbsp;</span>-->
-                    </div>
-                    <ul id="queue-results" data-divider-theme="b" data-role="listview" data-inset="true">
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-
-    </div>
-
-    <div data-theme="a" data-role="footer" data-position="fixed" class="ui-footer ui-bar-a ui-footer-fixed slideup" role="contentinfo">
-        <h1 id="about-link-queue" class="ui-title" role="heading" aria-level="1">
-            About
-        </h1>
-    </div>
-</div>
-
-
-<div id="search" data-url="search" data-role="page" data-title="Musocracy">
-    <div data-role="header">
-        <h1>Musocracy</h1>
-    </div><!-- /header -->
-
-    <div data-role="content">
-        <div data-role="navbar" data-iconpos="left">
-            <ul>
-                <li>
-                    <a href="#queue" data-transition="fade" data-theme="b" data-icon="check" >
-                        Queue
-                    </a>
-                </li>
-                <li>
-                    <a href="#search" data-transition="fade" data-theme="c" data-icon="search" class="ui-btn-active">
-                        Search
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <div id="search-content-wrapper">
-            <div data-role="fieldcontain">
-                <form id="search-form" action="#search?" >
-                    <label for="song-search">
-                    </label>
-                    <input name="song-search" placeholder="Artist or Song Name" value="" type="search" />
-                </form>
-            </div>
-            <div data-role="content">
-                <ul id="search-results" data-divider-theme="b" data-role="listview" data-inset="true">
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="nav-collapse collapse">
+                <ul class="nav" id="header-list">
+                    <li><a href="#queue">Musocracy</a></li>
+                    <li><a href="#search"><i class="icon-search icon-white"></i></a></li>
                 </ul>
             </div>
         </div>
     </div>
+</div>
 
-    <div data-theme="a" data-role="footer" data-position="fixed" class="ui-footer ui-bar-a ui-footer-fixed slideup" role="contentinfo">
-        <h1 id="about-link-search" class="ui-title" role="heading" aria-level="1">
-            About
-        </h1>
+<div class="" id="container-wrapper">
+    <form class="form-search" id="song-search">
+        <div class="input-append">
+            <input type="text" id="song-search-input" class="span2 search-query">
+            <button type="submit" class="btn"><i class="icon-search"></i></button>
+        </div>
+    </form>
+    <div id="result-wrapper">
+        <ul id="results" class="media-list">    </ul>
     </div>
 </div>
 
-<script id="queuedItems" type="text/template">
 
-    <% _.each( collection.toJSON(), function( song, id ) { %>
+<script id="songs" type="text/template">
 
-    <li data-corners="false" data-name="<%=song.trackId%>" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="false" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li ui-li-has-alt ui-li-has-thumb ui-first-child ui-btn-up-c">
-        <div class="ui-btn-inner ui-li ui-li-has-alt">
-            <div class="ui-btn-text">
-                <a href="javascript:;" class="ui-link-inherit padding-left <%=song.disableVote%>">
-                    <!--<img src="../../_assets/img/album-bb.jpg" class="ui-li-thumb">-->
-                    <h2 class="ui-li-heading"><span class="song-vote"><%=song.votes%></span> - <%=song.name%> </h2>
-                    <p class="ui-li-desc"><%= song.artists%> - <%= song.album%></p></a>
-            </div>
+        <div id="media-body">
+            <a class="pull-right vote-icon" href="javascript:;" ><i class="icon-plus"></i></a>
+            <h4 class="media-heading song-primary ellipsis">
+                <span class="song-votes"><%=model.votes%></span>
+                <span class="song-name"><%=model.name%></span>
+            </h4>
+            <p class="song-secondary ellipsis">
+                <span class="song-album-artist"><%= model.artists%> - <%= model.album%></span>
+            </p>
         </div>
-        <span href="javascript:;" data-name="<%=song.trackId%>" class="vote-action <%=song.disableVote%> ui-li-link-alt ui-btn ui-btn-icon-notext ui-btn-up-c" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="false" data-iconpos="notext" data-theme="c" aria-haspopup="true" aria-owns="#purchase"><span class="ui-btn-inner"><span class="ui-btn-text"></span><span data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="gear" data-iconpos="notext" data-theme="d" title="" class="ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-btn-icon-notext">
-        <span class="ui-btn-inner">
-            <span class="ui-btn-text"></span>
-            <span class="ui-icon ui-icon-arrow-u ui-icon-shadow">&nbsp;
-            </span>
-        </span>
-        </span>
-        </span>
-        </span>
-    </li>
-
-    <% }); %>
 
 </script>
-
-
-<script id="searchResults" type="text/template">
-
-    <% _.each( collection.toJSON(), function( song, id ) { %>
-    <li data-corners="false" data-name="<%=song.trackId%>" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="false" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li ui-li-has-alt ui-li-has-thumb ui-first-child ui-btn-up-c">
-        <div class="ui-btn-inner ui-li ui-li-has-alt">
-            <div class="ui-btn-text">
-                <a href="javascript:;" class="<%=song.disableVote%> ui-link-inherit padding-left">
-                    <!--<img src="../../_assets/img/album-bb.jpg" class="ui-li-thumb">-->
-                    <h2 class="ui-li-heading"><%=song.name%> </h2>
-                    <p class="ui-li-desc"><%= song.artists%> - <%= song.album%></p></a>
-            </div>
-        </div>
-        <span href="javascript:;" data-name="<%=song.trackId%>" class="add-action <%=song.disableVote%> ui-li-link-alt ui-btn ui-btn-icon-notext ui-btn-up-c" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="false" data-iconpos="notext" data-theme="c" aria-haspopup="true" aria-owns="#purchase"><span class="ui-btn-inner"><span class="ui-btn-text"></span><span data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="gear" data-iconpos="notext" data-theme="d" title="" class="ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-btn-icon-notext">
-         <span class="ui-btn-inner">
-             <span class="ui-btn-text"></span>
-             <span class="ui-icon ui-icon-plus ui-icon-shadow">&nbsp;
-             </span>
-         </span>
-         </span>
-         </span>
-        </span>
-    </li>
-    <% }); %>
-
-</script>
-
 
 </body>
 </html>

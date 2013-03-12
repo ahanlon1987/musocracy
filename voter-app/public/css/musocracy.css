@@ -1,7 +1,26 @@
-.ui-li-has-alt .ui-btn-inner a.ui-link-inherit.padding-left, .ui-li-static.ui-li-has-alt{
-    padding-left:15px;
+li.song-list {
+    list-style: none;
 }
 
-span.active-click {
-    background: #4ca20b;
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#container-wrapper{
+    padding-top:50px;
+    padding-left:25px;
+}
+
+a.vote-icon {
+    padding-right:15px;
+}
+
+ul#header-list{
+    margin-left:50px;
+}
+
+.hidden {
+    display:none;
 }

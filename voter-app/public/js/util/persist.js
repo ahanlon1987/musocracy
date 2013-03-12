@@ -32,7 +32,6 @@ var Persist = {
                 });
 
                 amp.store('previousVotes', previousVotes);
-                $('li[data-name="'+ trackId + '"]').addClass('ui-disabled glow');
 
             },
             failure:function(){

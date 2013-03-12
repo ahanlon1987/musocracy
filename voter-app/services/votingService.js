@@ -62,7 +62,7 @@ var votingService = {
           }
         })
       });
-      // collection.findAndModify({locationId:locationId }, [['trackName',1]], 
+      // collection.findAndModify({locationId:locationId }, [['trackName',1]],
       //   {$inc: {voteCount: 1}}, {upsert:true}, function(err, doc) {
       //     if (err) {
       //       console.log('error adding vote for locationId ' + locationId, err);
@@ -86,7 +86,7 @@ var votingService = {
         (options && options.error && options.error(err));
         return;
       }
-      
+
       if (!collection) {
         (options && options.success && options.success(collection));
         return;
@@ -100,6 +100,7 @@ var votingService = {
           }
         }
         else {
+          //TODO throw an error if the location doesn't exist?
           if (!location) {
             location = {
               locationId:locationId,
@@ -110,7 +111,7 @@ var votingService = {
               return track.votes * -1;  // inverse sort order
             });
 
-          if (excludePlayed) { 
+          if (excludePlayed) {
             location.playlist = _.filter(location.playlist, function(track) {
               return !track.played;
             })
@@ -118,7 +119,7 @@ var votingService = {
 
           if (limit && limit > 0) {
             location.playlist = location.playlist.slice(0, limit);
-          } 
+          }
           if (options && options.success) {
             options.success(location);
           }
@@ -172,7 +173,7 @@ var votingService = {
           }
           else {
             self.getVotes({
-              locationId:location.locationId, 
+              locationId:location.locationId,
               limit:5,
               excludePlayed:true
             }, options);

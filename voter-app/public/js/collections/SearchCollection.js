@@ -12,12 +12,14 @@ define([ "jquery","backbone","models/SearchModel"], function( $, Backbone, Searc
 
         },
 
+        isEmpty:function(){
+            return (this.models.length < 1);
+        },
 
         // Sets the Collection model property to be a Search Model
         model: SearchModel,
 
         parse: function(response){
-
             return response.tracks;
 
         }
