@@ -1,6 +1,7 @@
 li.song-list {
     list-style: none;
-    cursor:pointer
+    cursor:pointer;
+    border-bottom: 1px dotted;
 }
 
 .ellipsis {
@@ -17,7 +18,7 @@ li.song-list {
 a.vote-icon {
     padding-right:15px;
     margin-left:20px;
-    margin-bottom:20px;
+    margin-top:15px;
 }
 
 #location-submit{
@@ -48,4 +49,10 @@ li.song-list.disabled{
 
 #location-input {
     width:200px;
+}
+
+.vote-count{
+    float: left;
+    margin-right: 11px;
+    margin-top: 4px;
 }
