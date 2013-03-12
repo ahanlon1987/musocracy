@@ -8,7 +8,6 @@ exports.getLocation = function(req, resp) {
 
     locationService.findLocation(locationId, {
              success:function(result) {
-                 console.log('successfully found location ' + locationId);
                  resp.writeHead(200, {'Content-Type':'application/json'});
                  resp.write(JSON.stringify(result));
                  resp.end();

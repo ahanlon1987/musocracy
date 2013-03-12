@@ -42,6 +42,16 @@
             <button type="submit" class="btn"><i class="icon-search"></i></button>
         </div>
     </form>
+
+    <form class="form-search hidden" id="location-submit">
+        <label id="location-label"></label>
+        <fieldset>
+            <div class="input-append">
+                <input type="text" placeholder="enter your location" id="location-input" class="span2 search-query">
+                <button type="submit" class="btn">Submit</button>
+            </div>
+        </fieldset>
+    </form>
     <div id="result-wrapper">
         <ul id="results" class="media-list">    </ul>
     </div>
@@ -50,16 +60,16 @@
 
 <script id="songs" type="text/template">
 
-        <div id="media-body">
-            <a class="pull-right vote-icon" href="javascript:;" ><i class="icon-plus"></i></a>
-            <h4 class="media-heading song-primary ellipsis">
-                <span class="song-votes"><%=model.votes%></span>
-                <span class="song-name"><%=model.name%></span>
-            </h4>
-            <p class="song-secondary ellipsis">
-                <span class="song-album-artist"><%= model.artists%> - <%= model.album%></span>
-            </p>
-        </div>
+    <div id="media-body">
+        <a class="pull-right vote-icon" href="javascript:;" ><i class="icon-plus"></i></a>
+        <h4 class="media-heading song-primary ellipsis">
+            <span class="song-votes"><%=model.votes%></span>
+            <span class="song-name"><%=model.name%></span>
+        </h4>
+        <p class="song-secondary ellipsis">
+            <span class="song-album-artist"><%= model.artists%> - <%= model.album%></span>
+        </p>
+    </div>
 
 </script>
 

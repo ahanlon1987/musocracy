@@ -54,10 +54,12 @@ var Persist = {
                 if(data) {
                     console.log('found location: ' + data.locationId);
                     amplify.store('locationId', data.locationId, {expires:21600000}); //expire locationId after six hours.
+                    $("#location-submit").addClass("hidden");
                     router.queue();
+
                 } else {
                     console.log('No such location: ' + location);
-                    $('label[for="locationId"]').html('Unable to find a location of ' + location + ', please try again.');
+                    $('label#location-label').html('Unable to find a location of ' + location + '.');
                 }
 
             },

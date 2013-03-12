@@ -16,14 +16,19 @@ define([ "jquery", "backbone","amplify" ], function( $, Backbone, Amplify) {
 
         render: function() {
 
-            $("#location-submit").click(function(){
-                var location = $("#locationId").val();
+            $("#location-submit").removeClass("hidden");
+            $("#song-search").addClass('hidden');
+
+            $("#location-submit").submit(function(){
+                var location = $("#location-input").val();
                 if (location) {
                     router.persist.lookupLocation(location);
                 } else {
                     console.log('No value found, enter a value and try again.');
-                    $('label[for="locationId"]').html('No value found, enter a value and try again.');
+                    $('label#location-label').html('Enter a value and try again.');
                 }
+
+                return false;
             });
 
             var queueView = this;
