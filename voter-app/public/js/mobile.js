@@ -31,7 +31,7 @@ require.config( {
 } );
 
 // Includes File Dependencies
-require([ "jquery", "backbone", "bootstrap", "routers/mobileRouter", "scroller", "animate", "render", "raf"], function( $, Backbone, bootstrap, MobileRouter, scroller, animate, render, raf) {
+require([ "jquery", "backbone", "bootstrap", "routers/mobileRouter", "scroller", "animate", "render", "raf" ], function( $, Backbone, bootstrap, MobileRouter, scroller, animate, render, raf) {
 
     this.router = new MobileRouter();
 

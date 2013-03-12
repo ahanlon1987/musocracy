@@ -15,6 +15,7 @@ var Persist = {
         var trackName = track.get('name');
         var artists = track.get('artists');
         var album = track.get('album');
+        var collType = track.collection.type;
 
         console.log('Voting for trackId: ' + trackId +', trackName: ' + trackName + ', artists: ' + artists + ', album: ' + album) ;
         var amp = amplify;
@@ -24,15 +25,17 @@ var Persist = {
             url: '/location/' + amplify.store('locationId')  + '/votes/' + trackId,
             data: {trackId:trackId, name:trackName, artists:artists, album:album},
             success: function() {
-                console.log('200 returned from vote service, storing vote in local storage');
                 var previousVotes = (amp.store('previousVotes') || []);
                 previousVotes.push({
                     'trackId':trackId,
                     'voteTime':new Date()
                 });
-
                 amp.store('previousVotes', previousVotes);
 
+                if(collType == 'Queue'){
+                    //Automatically triggers a re-fetch
+                    router.queue();
+                }
             },
             failure:function(){
                 console.log('voting failed.');

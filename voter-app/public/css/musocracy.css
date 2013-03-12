@@ -10,19 +10,22 @@ li.song-list {
 
 #container-wrapper{
     padding-top:50px;
-    padding-left:25px;
+    padding-left:10px;
 }
 
 a.vote-icon {
     padding-right:15px;
+    margin-left:20px;
+    margin-bottom:20px;
 }
 
 #location-submit{
     padding-top:25px;
 }
 
-ul#header-list{
-    margin-left:50px;
+ul#header-list,
+ul#results{
+    margin-left:25px;
 }
 
 .hidden {

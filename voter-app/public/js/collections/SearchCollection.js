@@ -16,6 +16,8 @@ define([ "jquery","backbone","models/SearchModel"], function( $, Backbone, Searc
             return (this.models.length < 1);
         },
 
+        type:"Search",
+
         // Sets the Collection model property to be a Search Model
         model: SearchModel,
 

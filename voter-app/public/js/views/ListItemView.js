@@ -2,7 +2,7 @@
 // =============
 
 // Includes file dependencies
-define([ "jquery", "backbone","amplify" ], function( $, Backbone, Amplify) {
+define([ "jquery", "backbone"], function( $, Backbone) {
 
 
     var ListItemView = Backbone.View.extend({
@@ -29,7 +29,16 @@ define([ "jquery", "backbone","amplify" ], function( $, Backbone, Amplify) {
 
         setActive: function(event){
             console.log('click event fired!');
+            var listItem = $(event.currentTarget);
+            if(listItem[0]){
+                $(listItem).animate({
+                    opacity:.5
+                })
+            }
+
             router.persist.vote(this.model);
+
+
         }
 
     });

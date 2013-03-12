@@ -15,6 +15,7 @@ define([ "jquery","backbone","models/QueueModel"], function( $, Backbone, QueueM
             return (this.models.length < 1);
         },
 
+        type:'Queue',
 
         // Sets the Collection model property to be a Category Model
         model: QueueModel,
