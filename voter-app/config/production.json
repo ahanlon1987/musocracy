@@ -4,9 +4,9 @@
   "baseUri":"http://www.musocracyapp.com/",
   "mongo" : {
     "db":"musocracy",
-    "host":"dbh44.mongolab.com",
+    "hostname":"dbh44.mongolab.com",
     "port": "27447",
-    "user":"musocracy",
+    "username":"musocracy",
     "password":"slalom123"
   }
 }

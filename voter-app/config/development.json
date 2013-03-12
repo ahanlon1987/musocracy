@@ -4,9 +4,9 @@
   "baseUri":"http://localhost:3000/",
   "mongo": {
     "db":"musocracy",
-    "host":"localhost",
+    "hostname":"localhost",
     "port": "27017",
-    "user":"",
+    "username":"",
     "password":""
   }
 }

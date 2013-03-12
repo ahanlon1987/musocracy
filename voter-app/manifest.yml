@@ -1,0 +1,14 @@
+--- 
+applications: 
+  .: 
+    framework: 
+      info: 
+        mem: 64M
+        exec: 
+        description: Node.js Application
+      name: node
+    infra: aws
+    name: musocracy
+    instances: 1
+    mem: 512M
+    url: ${name}.${target-base}

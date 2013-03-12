@@ -7,6 +7,7 @@ require.config( {
         // Core Libraries
         "jquery": "lib/jquery-1.9.1",
         "underscore"  : "lib/lodash",
+        // "underscore"  : "lib/underscore",
         "backbone"    : "lib/backbone",
         "amplify"     : "lib/amplify.min",
         "scroller"    : "lib/scroller/Scroller",

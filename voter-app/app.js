@@ -49,53 +49,61 @@ app.get('/location/:locationId/track/:trackId', votes.markAsPlayed);
 
 
 var config = {};
+var mongourl;
+
+var generate_mongo_url = function(obj){
+    obj.hostname = (obj.hostname || 'localhost');
+    obj.port = (obj.port || 27017);
+    obj.db = (obj.db || 'test');
+    if(obj.username && obj.password){
+        return "mongodb://" + obj.username + ":" + obj.password + "@" + obj.hostname + ":" + obj.port + "/" + obj.db;
+    }
+    else{
+        return "mongodb://" + obj.hostname + ":" + obj.port + "/" + obj.db;
+    }
+}
+
+
 app.configure('development', function() {
+  console.log('Loading development configuration');
+
   app.use(express.errorHandler());
   config = require('./config/development.json');
   app.set('port', config.port);
+  mongourl = generate_mongo_url(config.mongo);
 });
 
 app.configure('production', function() {
+//mongodb://af_musocracy-musocracyapp:l4gr81b7468j1pkvpu17mmtp50@dbh42.mongolab.com:27427/af_musocracy-musocracyapp  
+
+  console.log('Loading production configuration');
+
   config = require('./config/production.json');
-  app.set('port', config.port);
+  app.set('port', process.env.VCAP_APP_PORT || 3000);
+  mongourl = process.env.MONGOLAB_URI;
 });
 
-var dbhost = config.mongo.host,
-  dbport = config.mongo.port,
-  dbuser = config.mongo.user,
-  dbpassword = config.mongo.password;
+if (!mongourl) {
+  console.log("Couldn't find mongolab URI! Exiting now");
+  throw new Error('MONGOLAB_URI environment variable not found.');
+}
 
-var mongoClient = new MongoClient(new MongoServer(dbhost, dbport));
-mongoClient.open(function(err, mongoClient) {
+console.log('Mongolab URI: ' + mongourl);
+
+console.error("About to connect to " + mongourl);
+require('mongodb').connect(mongourl, function(err, conn) {
   if (err) {
-    console.log('Failed opening connection to ' + dbhost + ':' + dbport);
-    throw err
-  };
-
-  var db = mongoClient.db('musocracy');
-  if (dbuser && dbpassword) {
-    db.authenticate(dbuser, dbpassword, function(err2, data) {
-      if (err2) {
-        console.log('Error authenticating with user=', dbuser);
-        throw err2;
-      }
-      votingService.setDb(db);
-      locationService.setDb(db);
-
-      http.createServer(app).listen(app.get('port'), function(){
-        console.log("Express server listening on port " + app.get('port'));
-      });
-    });
+    console.log('Error connecting to Mongo', err);
+    throw err;
   }
 
-  else {
-    votingService.setDb(db);
-      locationService.setDb(db);
+  console.log('Mongo connection obtained.');
+  votingService.setDb(conn);
+  locationService.setDb(conn);
 
-      http.createServer(app).listen(app.get('port'), function(){
-        console.log("Express server listening on port " + app.get('port'));
-      });
-  }
-  
+  http.createServer(app).listen(app.get('port'), function(){
+    console.log("Express server listening on port " + app.get('port'));
+  });
+
 });
 

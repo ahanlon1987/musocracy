@@ -263,11 +263,44 @@
 //    if (!self.mainViewController) {
         self.spotifyPlayer = [[SpotifyPlayer alloc] initWithSession:self.session];
         [self.session setPlaybackDelegate:self.spotifyPlayer];
-        
+//
         self.mainViewController = [[NowPlayingViewController alloc] initWithNibName:@"NowPlayingViewController" bundle:nil spotifyPlayer:self.spotifyPlayer];
-        self.navigationController = [[UINavigationController alloc] initWithRootViewController:self.mainViewController];
-    self.tabBarController = [[UITabBarController alloc] init];
     
+    PlaylistViewController *playlistViewController = [[PlaylistViewController alloc] initWithNibName:@"PlaylistViewController" bundle:nil];
+    playlistViewController.playlistCollection = self.spotifyPlayer.playlistCollection;
+
+//        self.navigationController = [[UINavigationController alloc] initWithRootViewController:self.mainViewController];
+//    
+   //
+//    NSArray * controllers = [NSArray arrayWithObjects:self.mainViewController, playlistViewController, nil];
+//    
+//    self.tabBarController = [[UITabBarController alloc] init];
+//    self.tabBarController.viewControllers = controllers;
+    //    }
+    
+//    self.window.rootViewController = self.navigationController;
+//    self.window.rootViewController = self.tabBarController;
+    
+    [self createNavigationView];
+}
+
+-(void) createNavigationView {
+    
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    [rightButton addTarget:self action:@selector(showPlaylist) forControlEvents:UIControlEventTouchUpInside];
+
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    rightBarButton.title = @"Playlist";
+    
+    self.mainViewController.navigationItem.rightBarButtonItem = rightBarButton;
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:self.mainViewController];
+    
+    self.navigationController = navController;
+    self.window.rootViewController = navController;
+}
+
+-(void) createTabBarView {
     PlaylistViewController *playlistViewController = [[PlaylistViewController alloc] initWithNibName:@"PlaylistViewController" bundle:nil];
     playlistViewController.playlistCollection = self.spotifyPlayer.playlistCollection;
     
@@ -275,10 +308,15 @@
     
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = controllers;
-    //    }
     
-//    self.window.rootViewController = self.navigationController;
     self.window.rootViewController = self.tabBarController;
+}
+
+-(void) showPlaylist {
+    PlaylistViewController *playlistViewController = [[PlaylistViewController alloc] initWithNibName:@"PlaylistViewController" bundle:nil];
+    playlistViewController.playlistCollection = self.spotifyPlayer.playlistCollection;
+    
+    [self.navigationController pushViewController:playlistViewController animated:YES];
 }
 
 -(void)session:(SPSession *)aSession didFailToLoginWithError:(NSError *)error; {
