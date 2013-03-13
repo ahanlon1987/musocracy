@@ -1,0 +1,65 @@
+
+@import 'scroll.less';
+@import 'ui.less';
+
+@import 'bootstrap/bootstrap.less';
+@import 'bootstrap/responsive.less';
+
+li.song-list {
+    list-style: none;
+    cursor:pointer;
+    border-bottom: 1px dotted;
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#container-wrapper{
+    padding-top:50px;
+    padding-left:10px;
+}
+
+a.vote-icon {
+    padding-right:15px;
+    margin-left:20px;
+    margin-top:15px;
+}
+
+#location-submit{
+    padding-top:25px;
+}
+
+ul#header-list,
+.form-search {
+    margin-left:25px;
+}
+
+ul#results {
+    margin-left:5px;
+}
+
+.hidden {
+    display:none;
+}
+
+li.song-list.disabled{
+    opacity:.5;
+    cursor:default;
+}
+
+#song-search-input {
+    width:220px;
+}
+
+#location-input {
+    width:200px;
+}
+
+.vote-count{
+    float: left;
+    margin-right: 11px;
+    margin-top: 4px;
+}

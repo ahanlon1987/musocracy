@@ -35,6 +35,7 @@ app.configure(function(){
       src: __dirname + '/public/less',
       prefix: '/css'
   }));
+
 });
 
 app.get('/', routes.index);
