@@ -6,27 +6,15 @@
     <meta name="description" content="">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />-->
-    <!--<link rel="stylesheet" href="css/lib/scroll.css" />-->
-    <!--<link rel="stylesheet" href="css/lib/ui.css" />-->
     <link rel="stylesheet" href="css/app.css" />
-    <!--<link rel="stylesheet" href="css/lib/bootstrap.min.css" />-->
-
-    <!--<link rel="stylesheet" href="css/lib/bootstrap-responsive.min.css" />-->
     <script src="js/lib/require.js" data-main="js/mobile"></script>
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
+            <a class="nav nav-back" href="#location"><i class="icon-chevron-left icon-white"></i></a>
             <a class="brand" href="/">Musocracy</a>
-            <!-- <ul class="nav pull-right" role="navigation">
-                <li><a href="#search"><i class="icon-search icon-white"></i></a></li>
-            </ul> -->
-
-            <form id="search" class="navbar-form pull-right">
-              <input type="text" placeholder="Search" class="input-medium search-query"/>
-            </form>
         </div>
     </div>
 </div>
@@ -49,7 +37,7 @@
         </fieldset>
     </form>
     <div id="result-wrapper">
-        <ul id="results" class="media-list">    </ul>
+        <ul id="results" class="media-list"></ul>
     </div>
 </div>
 
@@ -57,8 +45,8 @@
 <script id="songs" type="text/template">
 
     <div class="media-body">
-        <a class="pull-right vote-icon" href="javascript:;" ><i class="icon-plus"></i></a>
-        <h3 class="vote-count"><%=model.votes%></h3>
+        <a class="pull-right vote-icon" href="javascript:;" ><i class="icon-arrow-up"></i></a>
+        <h2 class="vote-count"><%=model.votes%></h2>
         <h4 class="media-heading song-primary ellipsis">
             <span class="song-name"><%=model.name%></span>
         </h4>

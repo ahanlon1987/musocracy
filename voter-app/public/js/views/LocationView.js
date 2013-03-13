@@ -18,6 +18,13 @@ define([ "jquery", "backbone","amplify" ], function( $, Backbone, Amplify) {
 
             $("#location-submit").removeClass("hidden");
             $("#song-search").addClass('hidden');
+            $("#results").empty();
+
+            var curLocation = amplify.store('locationId');
+
+            if (curLocation){
+                $('label#location-label').html('Currently at: ' + curLocation);
+            }
 
             $("#location-submit").submit(function(){
                 var location = $("#location-input").val();

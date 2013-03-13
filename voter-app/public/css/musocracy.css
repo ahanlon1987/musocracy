@@ -56,3 +56,8 @@ li.song-list.disabled{
     margin-right: 11px;
     margin-top: 4px;
 }
+
+.nav.nav-back {
+    margin-top: 9px;
+    margin-right: 25px;
+}

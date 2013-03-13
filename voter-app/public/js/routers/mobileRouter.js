@@ -56,13 +56,7 @@ function( $, Backbone, Amplify, SearchCollection, QueueCollection, SearchView, Q
         },
 
         enterLocation: function(){
-
-            //Double check what's stored locally is actually correct
-            if(amplify.store('locationId')){
-                Persist.lookupLocation(amplify.store('locationId'));
-            } else {
-                this.locationView.render();
-            }
+            this.locationView.render();
         },
 
         queue: function() {
