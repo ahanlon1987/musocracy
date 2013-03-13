@@ -1,8 +1,77 @@
-<html>
-  <head>
-    <script type='text/javascript' src='javascripts/test.js'></script>
-  </head>
-  <body>
-    Hello World!!!
-  </body>
+
+<!doctype html>
+<html class="no-js ui-mobile-rendering" lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Musocracy</title>
+    <meta name="description" content="">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />-->
+    <link rel="stylesheet" href="css/lib/scroll.css" />
+    <link rel="stylesheet" href="css/lib/ui.css" />
+    <link rel="stylesheet" href="css/musocracy.css" />
+    <link rel="stylesheet" href="css/lib/bootstrap.min.css" />
+    <!--<link rel="stylesheet" href="css/lib/bootstrap-responsive.min.css" />-->
+    <script src="js/lib/require.js" data-main="js/mobile"></script>
+</head>
+<body>
+
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="nav-collapse collapse">
+                <ul class="nav" id="header-list">
+                    <li><h4><a href="#queue">Musocracy</a></h4></li>
+                    <li><a href="#search"><i class="icon-search icon-white"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="" id="container-wrapper">
+    <form class="form-search hidden" id="song-search">
+        <div class="input-append">
+            <input type="text" id="song-search-input" class="span2 search-query">
+            <button type="submit" class="btn"><i class="icon-search"></i></button>
+        </div>
+    </form>
+
+    <form class="form-search hidden" id="location-submit">
+        <label id="location-label"></label>
+        <fieldset>
+            <div class="input-append">
+                <input type="text" placeholder="enter your location" id="location-input" class="span2 search-query">
+                <button type="submit" class="btn">Submit</button>
+            </div>
+        </fieldset>
+    </form>
+    <div id="result-wrapper">
+        <ul id="results" class="media-list">    </ul>
+    </div>
+</div>
+
+
+<script id="songs" type="text/template">
+
+    <div class="media-body">
+        <a class="pull-right vote-icon" href="javascript:;" ><i class="icon-plus"></i></a>
+        <h3 class="vote-count"><%=model.votes%></h3>
+        <h4 class="media-heading song-primary ellipsis">
+            <span class="song-name"><%=model.name%></span>
+        </h4>
+        <p class="song-secondary ellipsis">
+            <span class="song-album-artist"><%= model.artists%> - <%= model.album%></span>
+        </p>
+    </div>
+
+</script>
+
+</body>
 </html>

@@ -34,37 +34,29 @@ module.exports = function(grunt) {
     requirejs: {
       std: {
         options: {
-          appDir: 'www',
-          baseUrl: 'js/lib',
+          appDir: 'public',
+          baseUrl: 'js',
           paths: {
-              app: '../app',
-              jquery: "jquery-1.9.1",
+              // app: '../mobile'
+              // jquery: "jquery-1.9.1",
 
           },
-          dir: 'www-built',
+          
+          dir: 'public-built',
+          
+          mainConfigFile: 'public/js/mobile.js',
+
           modules: [
             //First set up the common build layer.
             {
               //module names are relative to baseUrl
-              name: '../common',
+              name: 'mobile'
               //List common dependencies here. Only need to list
               //top level dependencies, "include" will find
               //nested dependencies.
-              include: [
-                'jquery', 'underscore', 'backbone'
-              ]
-            },
-            //Now set up a build layer for each page, but exclude
-            //the common one. "exclude" will exclude nested
-            //the nested, built dependencies from "common". Any
-            //"exclude" that includes built modules should be
-            //listed before the build layer that wants to exclude it.
-            //"include" the appropriate "app/main*" module since by default
-            //it will not get added to the build since it is loaded by a nested
-            //require in the page*.js files.
-            {
-              //module names are relative to baseUrl/paths config
-              name: '../app'
+              // include: [
+                // 'jquery', 'underscore', 'backbone'
+              // ]
             }
           ]
         }
