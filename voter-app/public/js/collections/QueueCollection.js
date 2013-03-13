@@ -28,6 +28,12 @@ define([ "jquery","backbone","models/QueueModel"], function( $, Backbone, QueueM
             if(response){
                 return response.playlist;
             }
+        },
+
+        getFitleredResults:function (filter) {
+            return _.filter(this.models, function(model) {
+
+            });
         }
 
     } );
