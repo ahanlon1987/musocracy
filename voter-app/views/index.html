@@ -16,27 +16,24 @@
     <script src="js/lib/require.js" data-main="js/mobile"></script>
 </head>
 <body>
-
-
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
-            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <div class="nav-collapse collapse">
-                <ul class="nav" id="header-list">
-                    <li><h4><a href="#queue">Musocracy</a></h4></li>
-                    <li><a href="#search"><i class="icon-search icon-white"></i></a></li>
-                </ul>
-            </div>
+            <a class="brand" href="/">Musocracy</a>
+            <ul class="nav pull-right" role="navigation">
+                <li><a href="#search"><i class="icon-search icon-white"></i></a></li>
+            </ul>
+            <!--<div class="nav-collapse collapse">-->
+                <!--<ul class="nav" id="header-list">-->
+                    <!--<li><h4><a href="#queue">Musocracy</a></h4></li>-->
+                    <!--<li><a href="#search"><i class="icon-search icon-white"></i></a></li>-->
+                <!--</ul>-->
+            <!--</div>-->
         </div>
     </div>
 </div>
 
-<div class="" id="container-wrapper">
+<div class="container" id="container-wrapper">
     <form class="form-search hidden" id="song-search">
         <div class="input-append">
             <input type="text" id="song-search-input" class="span2 search-query">
