@@ -5,13 +5,11 @@ require.config( {
     paths: {
 
         // Core Libraries
-        "jquery": "lib/jquery-1.9.1",
+        "jquery"      : "lib/jquery-1.9.1",
         "underscore"  : "lib/lodash",
-        // "underscore"  : "lib/underscore",
         "backbone"    : "lib/backbone",
         "amplify"     : "lib/amplify.min",
         "scroller"    : "lib/scroller/Scroller",
-//        "bootstrap"   : "lib/bootstrap.min",
         "bootstrap"   : "lib/bootstrap",
         "animate"     : "lib/scroller/Animate",
         "render"      : "lib/scroller/render",
@@ -31,7 +29,7 @@ require.config( {
 } );
 
 // Includes File Dependencies
-require([ "jquery", "backbone", "bootstrap", "routers/mobileRouter", "scroller", "animate", "render", "raf" ], function( $, Backbone, bootstrap, MobileRouter, scroller, animate, render, raf) {
+require([ "jquery", "backbone", /*"bootstrap",*/ "routers/mobileRouter", "scroller", "animate", "render", "raf" ], function( $, Backbone, /*bootstrap,*/ MobileRouter, scroller, animate, render, raf) {
 
     this.router = new MobileRouter();
 

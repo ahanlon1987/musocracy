@@ -10,8 +10,6 @@ var express = require('express')
   , lookup = require('./routes/lookup')
   , http = require('http')
   , path = require('path')
-  , MongoClient = require('mongodb').MongoClient
-  , MongoServer = require('mongodb').Server 
   , votingService = require('./services/votingService').votingService
   , votes = require('./routes/votes'
   , location = require('./routes/location')
@@ -31,8 +29,12 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
-  app.use(require('less-middleware')({ src: __dirname + '/public' }));
-  app.use(express.static(path.join(__dirname, 'public')));
+  app.use(require('less-middleware')({
+//      src: __dirname + '/public',
+      dest: __dirname + '/public/css',
+      src: __dirname + '/public/less',
+      prefix: '/css'
+  }));
 });
 
 app.get('/', routes.index);
@@ -68,6 +70,7 @@ app.configure('development', function() {
   console.log('Loading development configuration');
 
   app.use(express.errorHandler());
+  app.use(express.static(path.join(__dirname, 'public')));
   config = require('./config/development.json');
   app.set('port', config.port);
   mongourl = generate_mongo_url(config.mongo);
@@ -77,6 +80,8 @@ app.configure('production', function() {
 //mongodb://af_musocracy-musocracyapp:l4gr81b7468j1pkvpu17mmtp50@dbh42.mongolab.com:27427/af_musocracy-musocracyapp  
 
   console.log('Loading production configuration');
+
+  app.use(express.static(path.join(__dirname, 'public-built')));
 
   config = require('./config/production.json');
   app.set('port', process.env.VCAP_APP_PORT || 3000);
