@@ -35,12 +35,28 @@ require([ "jquery", "backbone", /*"bootstrap",*/ "routers/mobileRouter", "scroll
     this.router = new MobileRouter();
 
     //Handles search action,
-    $("#song-search").submit(function() {
+
+    //TODO update this to search against playlist that's displayed, and hit spotify
+    $("#header-song-search").submit(function() {
         var element =  $('#song-search-input');
         element.blur();
         window.location.href = '#search?' + element.val();
 
         return false;
+    });
+
+
+    $("#header-search").click(function(){
+        $("#header-search-form").removeClass('hidden');
+        $("#home-link").css('display', 'none');
+        $("#header-song-search").focus();
+    });
+
+
+    //TODO make this on search clear
+    $("#header-song-search").blur(function(){
+        $("#header-search-form").addClass('hidden');
+        $("#home-link").css('display', 'block');
     });
 
 });

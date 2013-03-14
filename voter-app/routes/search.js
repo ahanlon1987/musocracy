@@ -62,7 +62,7 @@ var doSearch = function(type, req, resp) {
       }
 
       resp.writeHead(200, {'Content-Type':'application/json'});
-      resp.write(JSON.stringify({"info":info, "tracks":formattedTracks}));
+      resp.write(JSON.stringify({"info":info, "playlist":formattedTracks}));
       resp.end();
     });
   })

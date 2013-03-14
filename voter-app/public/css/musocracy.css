@@ -12,13 +12,13 @@ li.song-list {
 
 #container-wrapper{
     padding-top:50px;
-    padding-left:10px;
 }
 
-a.vote-icon {
+div.media-body a.vote-icon {
     padding-right:15px;
     margin-left:20px;
     margin-top:15px;
+    float:right;
 }
 
 #location-submit{
@@ -28,10 +28,6 @@ a.vote-icon {
 ul#header-list,
 .form-search {
     margin-left:25px;
-}
-
-ul#results {
-    margin-left:5px;
 }
 
 .hidden {
@@ -57,7 +53,13 @@ li.song-list.disabled{
     margin-top: 4px;
 }
 
-.nav.nav-back {
+.nav.nav-back,
+.nav.nav-search{
     margin-top: 9px;
     margin-right: 25px;
+    margin-left:10px;
+}
+
+.nav.nav-search{
+    float:right;
 }

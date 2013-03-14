@@ -7,6 +7,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="css/musocracy.css" />
     <script src="js/lib/require.js" data-main="js/mobile"></script>
 </head>
 <body>
@@ -14,19 +15,17 @@
     <div class="navbar-inner">
         <div class="container">
             <a class="nav nav-back" href="#location"><i class="icon-chevron-left icon-white"></i></a>
-            <a class="brand" href="/">Musocracy</a>
+            <a id="home-link" class="brand" href="/">Musocracy</a>
+            <a id="header-search" class="nav nav-search" href="#"><i class="icon-search icon-white"></i></a>
+            <form id="header-search-form" class="hidden navbar navbar-search pull right">
+                <input id="header-song-search" type="text" class="search-query" placeholder="Song, Artist, or Album">
+            </form>
         </div>
+
     </div>
 </div>
 
 <div class="container" id="container-wrapper">
-    <form class="form-search hidden" id="song-search">
-        <div class="input-append">
-            <input type="text" id="song-search-input" class="span2 search-query">
-            <button type="submit" class="btn"><i class="icon-search"></i></button>
-        </div>
-    </form>
-
     <form class="form-search hidden" id="location-submit">
         <label id="location-label"></label>
         <fieldset>
