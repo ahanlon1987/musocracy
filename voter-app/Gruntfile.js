@@ -32,7 +32,7 @@ module.exports = function(grunt) {
         // },
 
     requirejs: {
-      std: {
+      compile: {
         options: {
           appDir: 'public',
           baseUrl: 'js',
@@ -80,12 +80,20 @@ module.exports = function(grunt) {
         },
 
         less: {
-            development: {
+            compile: {
                 options: {
                     paths:['public/less']
                 },
                 files: {
-                    'public/css/musocracy.css': 'public/less/musocracy.less'
+                    'public/css/app.css': 'public/less/app.less'
+                }
+            }
+        },
+
+        cssmin: {
+            compile: {
+                files: {
+                    'public-built/css/app.css': ['public/css/app.css']
                 }
             }
         },
@@ -125,12 +133,14 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-hogan');
+    grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
     // grunt.loadNpmTasks("grunt-connect");
 
 
     grunt.registerTask('dev-release', 'less:development');
 
     grunt.registerTask('default', ['jshint', 'requirejs:std']);
-  grunt.registerTask('build', 'requirejs');
+  grunt.registerTask('build', ['requirejs:compile',  'less:compile', 'cssmin:compile']);
 
 };
