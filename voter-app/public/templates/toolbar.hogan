@@ -1,0 +1,12 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="nav nav-back" href="#location"><i class="icon-chevron-left icon-white"></i></a>
+            <div class="text-center"><a id="home-link" class="brand center" href="/">{{title}}</a></div>
+            <a id="header-search" class="nav nav-search" href="#"><i class="icon-search icon-white"></i></a>
+            <form id="header-search-form" class="hidden navbar navbar-search pull right">
+                <input id="header-song-search" type="text" class="search-query" placeholder="Song, Artist, or Album">
+            </form>
+        </div>
+    </div>
+</div>
