@@ -1,4 +1,4 @@
-
+  
 var _ = require('underscore');
 var PLAYLISTS_COLLECTION = 'playlists';
 
@@ -12,15 +12,15 @@ var votingService = {
 
     this.db.collection(PLAYLISTS_COLLECTION, function(err, collection) {
       if (err) {
-        console.log('Error fetching collection (name=' + PLAYLISTS_COLLECTION + ')');
+        console.error('Error fetching collection (name=' + PLAYLISTS_COLLECTION + ')');
         (options && options.error && options.error(err));
         return;
       }
 
-      console.log('found collection; searching for location.');
+      console.error('found collection; searching for location.');
       collection.findOne({locationId:locationId}, function(err, location) {
         if (err) {
-          console.log('Error finding collection.', err);
+          console.lerrorog('Error finding collection.', err);
           options && options.error && options.error(err);
           return;
         }
@@ -30,12 +30,12 @@ var votingService = {
             locationId: locationId,
           };
         }
-        if (!location.playlist) {
-          location.playlist = [];
+        if (!location.votes) {
+          location.votes = [];
         }
         var exists = false;
-        console.log('Search tracks for track.id=' + obj.trackId);
-        location.playlist.forEach(function(track) {
+        console.error('Search tracks for track.id=' + obj.trackId);
+        location.votes.forEach(function(track) {
           if (track.trackId == obj.trackId) {
             track.votes++;
             exists = true;
@@ -43,7 +43,7 @@ var votingService = {
         });
 
         if (!exists) {
-          location.playlist.push({
+          location.votes.push({
             trackId: obj.trackId,
             name: obj.name,
             artists:obj.artists,
@@ -54,7 +54,7 @@ var votingService = {
 
         collection.update({locationId: location.locationId}, location, {upsert:true}, function(err, obj) {
           if (err) {
-            console.log('Error saving vote.', err);
+            console.error('Error saving vote.', err);
             (options && options.error && options.error(err));
           }
           else {
@@ -82,7 +82,7 @@ var votingService = {
     var excludePlayed = obj.excludePlayed || false;
     this.db.collection(PLAYLISTS_COLLECTION, function(err, collection) {
       if (err) {
-        console.log('Error fetching collection (name=' + PLAYLISTS_COLLECTION  + ')');
+        console.error('Error fetching collection (name=' + PLAYLISTS_COLLECTION  + ')');
         (options && options.error && options.error(err));
         return;
       }
@@ -104,21 +104,22 @@ var votingService = {
           if (!location) {
             location = {
               locationId:locationId,
+              votes: [],
               playlist: []
             };
           }
-          location.playlist = _.sortBy(location.playlist, function(track) {
+          location.votes = _.sortBy(location.votes, function(track) {
               return track.votes * -1;  // inverse sort order
             });
 
           if (excludePlayed) {
-            location.playlist = _.filter(location.playlist, function(track) {
+            location.votes = _.filter(location.votes, function(track) {
               return !track.played;
             })
           }
 
           if (limit && limit > 0) {
-            location.playlist = location.playlist.slice(0, limit);
+            location.votes = location.votes.slice(0, limit);
           }
           if (options && options.success) {
             options.success(location);
@@ -132,14 +133,14 @@ var votingService = {
     var self = this;
     this.db.collection(PLAYLISTS_COLLECTION, function(err, collection) {
       if (err) {
-        console.log('Error fetching collection (name=' + PLAYLISTS_COLLECTION  + ')');
+        console.error('Error fetching collection (name=' + PLAYLISTS_COLLECTION  + ')');
         (options && options.error && options.error(err));
         return;
       }
 
       collection.findOne({locationId:obj.locationId}, function(err, location) {
         if (err) {
-          console.log('Error finding collection.', err);
+          console.error('Error finding collection.', err);
           options && options.error && options.error(err);
           return;
         }
@@ -154,21 +155,34 @@ var votingService = {
         }
 
         var track = _.find(location.playlist, function(track) {
-          return track.trackId == obj.trackId;
+          return track.trackId == obj.trackId && !track.played;
         });
 
-        if (!track) {
+        if (track) {
+          track.played = true;
+          
+        }
+        else {
           track = {
             trackId:obj.trackId,
             played:true
           };
+          location.playlist.push(track);
         }
 
-        track.played = true;
+        var topTrack = _.sort(location.votes, function(track) {
+          return track.votes * -1;
+        })[0];
+
+        topTrack.played = false;
+        location.playlist.push(topTrack);
+        while (location.playlist > 20) {
+          location.playlist.unshift();
+        }
 
         collection.update({locationId: location.locationId}, location, {upsert:true}, function(err, obj) {
           if (err) {
-            console.log('Error saving vote.', err);
+            console.error('Error marking track as played.', err);
             (options && options.error && options.error(err));
           }
           else {

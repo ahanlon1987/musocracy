@@ -1,0 +1,6 @@
+<div class="track">
+    <div class="track-name">{{track.trackName}}</div>
+    <div class="artist-name">{{track.artist}}</div>
+  </div>
+  <div><i class="icon-upvote icon-white"/></div>
+</div>

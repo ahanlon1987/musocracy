@@ -63,6 +63,22 @@ module.exports = function(grunt) {
       }
     },
 
+        hogan: {
+            compile: {
+                options: {
+                    prettify:true,
+                    amdWrapper:true,
+                    defaultName:function(filename) {
+                        var name = filename.replace("public/templates/", "");
+                        return name.replace(".hogan", "");
+                    }
+                },
+                files: {
+                    "public/js/templates.js": ["public/templates/**/*.hogan"]
+                }
+            }
+        },
+
         less: {
             development: {
                 options: {
@@ -108,6 +124,7 @@ module.exports = function(grunt) {
     // grunt.loadNpmTasks("require-js");
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-qunit');
+    grunt.loadNpmTasks('grunt-contrib-hogan');
     // grunt.loadNpmTasks("grunt-connect");
 
 
