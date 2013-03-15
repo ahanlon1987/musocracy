@@ -1,4 +1,4 @@
-<div class="navbar navbar-inverse navbar-fixed-top">
+<!-- <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
             <a class="nav nav-back" href="#location"><i class="icon-chevron-left icon-white"></i></a>
@@ -10,17 +10,8 @@
         </div>
     </div>
 </div>
-
+ -->
 <div class="container" id="container-wrapper">
-    <form class="form-search hidden" id="location-submit">
-        <label id="location-label"></label>
-        <fieldset>
-            <div class="input-append">
-                <input type="text" placeholder="enter your location" id="location-input" class="span2 search-query">
-                <button type="submit" class="btn">Submit</button>
-            </div>
-        </fieldset>
-    </form>
 
     <div id="votes">
         <ul class="results"/>

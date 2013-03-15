@@ -10,19 +10,18 @@ require.config( {
         "underscore"  : "lib/lodash",
         "backbone"    : "lib/backbone",
         "amplify"     : "lib/amplify.min",
-        "scroller"    : "lib/scroller/Scroller",
-        "bootstrap"   : "lib/bootstrap",
-        "animate"     : "lib/scroller/Animate",
-        "render"      : "lib/scroller/render",
-        "raf"         : "lib/scroller/Raf"
+        "bootstrap"   : "lib/bootstrap"
     },
 
     // Sets the configuration for your third party scripts that are not AMD compatible
     shim: {
 
-        "backbone": {
+        backbone: {
             "deps": [ "underscore", "jquery" ],
             "exports": "Backbone"  //attaches "Backbone" to the window object
+        },
+        amplify: {
+            exports: "amplify"
         }
 
     } // end Shim Configuration
@@ -30,12 +29,12 @@ require.config( {
 } );
 
 // Includes File Dependencies
-require([ "jquery", "backbone", "hogan", "routers/Router", "scroller", "animate", "render", "raf" ], 
-    function( $, Backbone, Hogan, Router, scroller, animate, render, raf) {
+require([ "jquery", "backbone", "hogan", "routers/Router" ], 
+    function( $, Backbone, Hogan, Router) {
 
 
     this.router = new Router({
-        el: $('.app')
+        el: $('body')
     });
 });
 

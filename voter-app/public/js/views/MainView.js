@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', 'templates', 'views/ToolbarView', 'views/FooterView', 'views/HomeView', 'views/LocationView'], 
-  function($, _, Backbone, templates, ToolbarView, FooterView, HomeView, LocationView) {
+define(['jquery', 'underscore', 'backbone', 'templates', 'views/ToolbarView', 'views/FooterView', 'views/HomeView', 'views/QueueView'], 
+  function($, _, Backbone, templates, ToolbarView, FooterView, HomeView, QueueView) {
     return Backbone.View.extend({
 
       initialize:function() {
@@ -33,7 +33,7 @@ define(['jquery', 'underscore', 'backbone', 'templates', 'views/ToolbarView', 'v
         this.toolbarView.showLocation(locationId);
 
         if (!this.locationView) {
-          this.locationView = new LocationView({
+          this.locationView = new QueueView({
             locationId:locationId
           }).render();
         }

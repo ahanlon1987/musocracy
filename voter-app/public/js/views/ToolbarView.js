@@ -15,12 +15,12 @@ define(['jquery', 'underscore', 'backbone', 'templates'],
       },
 
       showLocation:function (locationName) {
-        this.$('.title').text(locationName);
+        this.$('.brand').text(locationName);
         this.$('.back').show();
       },
 
       showHome:function() {
-        this.$('.title').text('Musocracy');
+        this.$('.brand').text('Musocracy');
         this.$('.back').hide();
       }
     });

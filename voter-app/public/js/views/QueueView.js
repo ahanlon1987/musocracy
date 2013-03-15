@@ -2,7 +2,8 @@
 // =============
 
 // Includes file dependencies
-define([ "jquery", "backbone","amplify", "models/QueueModel", "views/ListItemView", "collections/QueueCollection" ], function( $, Backbone, Amplify, QueueModel, ListItemView, QueueCollection) {
+define([ "jquery", "backbone","amplify", "templates", "models/QueueModel", "views/ListItemView", "collections/QueueCollection" ], 
+    function( $, Backbone, Amplify, templates, QueueModel, ListItemView, QueueCollection) {
 
     // Extends Backbone.View
     var THREE_HOURS_IN_MS = 10800000;
@@ -11,6 +12,7 @@ define([ "jquery", "backbone","amplify", "models/QueueModel", "views/ListItemVie
 
         // The View Constructor
         initialize: function() {
+            this.collection = new QueueCollection();
 
             // The render method is called when Song Models are added to the Collection
             this.collection.on( "reset", this.render, this );
@@ -28,14 +30,16 @@ define([ "jquery", "backbone","amplify", "models/QueueModel", "views/ListItemVie
 
         // Renders all of the Category models on the UI
         render: function() {
+            this.$el.html(templates.queue.render());
 
-            $("#song-search").addClass('hidden');
+            this.$("#song-search").addClass('hidden');
 
             // Renders the view's template inside of the current listview element
-            $(this.el).find('ul.results').empty();
+            this.$el.find('ul.results').empty();
+            var self = this;
             this.collection.each(function(model){
                 var listItemView = new ListItemView();
-                this.$('ul.results').append(listItemView.render(model).$el);
+                self.$('ul.results').append(listItemView.render(model).$el);
             });
 
             // Maintains chainability
