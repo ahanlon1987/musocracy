@@ -1,11 +1,16 @@
-define(['jquery', 'underscore', 'backbone', 'templates'], 
-  function ($, _, Backbone, templates) {
+define(['jquery', 'underscore', 'backbone', 'templates', 'util/dispatcher'], 
+  function ($, _, Backbone, templates, dispatcher) {
     return Backbone.View.extend({
-      initialize:function() {
-        this.title = this.options.title || 'Musocracy';
+      events: {
+        'click .icon-search': 'toggleSearch'
       },
 
-      render:function() {
+      initialize:function () {
+        this.title = this.options.title || 'Musocracy';
+        this.searchShown = false;
+      },
+
+      render:function () {
         var templateJson = {
           title: this.title
         };
@@ -19,9 +24,30 @@ define(['jquery', 'underscore', 'backbone', 'templates'],
         this.$('.back').show();
       },
 
-      showHome:function() {
+      showHome:function () {
         this.$('.brand').text('Musocracy');
         this.$('.back').hide();
+      },
+
+      toggleSearch:function (e) {
+        (e && e.preventDefault());
+
+        this.searchShown ? this.showSearch() : this.hideSearch();
+      },
+
+      showSearch:function () {
+        this.$('.search').show();
+        dispatcher.trigger(dispatcher.events.SHOW_SEARCH);
+      },
+
+      hideSearch:function () {
+        this.$('.search').hide();
+        dispatcher.trigger(dispatcher.events.HIDE_SEARCH);
+      },
+
+      clearSearch:function () {
+        this.$('.search input').val('');
+        dispatcher.trigger(dispatcher.events.CLEAR_SEARCH);
       }
     });
   });
