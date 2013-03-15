@@ -16,7 +16,8 @@
     "grunt-requirejs": "0.3.x",
     "grunt-contrib-jshint": "0.1.x",
     "grunt-contrib-qunit": "0.1.x",
-    "grunt-hogan": "~0.2.2-2"
+    "grunt-hogan": "~0.2.2-2",
+    "hogan.js": "~2.0.0"
   },
   "amd": {},
   "volo": {

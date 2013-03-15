@@ -141,6 +141,6 @@ module.exports = function(grunt) {
     grunt.registerTask('dev-release', 'less:development');
 
     grunt.registerTask('default', ['jshint', 'requirejs:std']);
-  grunt.registerTask('build', ['requirejs:compile',  'less:compile', 'cssmin:compile']);
+  grunt.registerTask('build', ['requirejs:compile',  'less:compile', 'cssmin:compile', 'hogan:compile']);
 
 };

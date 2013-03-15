@@ -1,7 +1,7 @@
 define(['jquery', 'underscore', 'backbone', 'templates'], 
   function ($, _, Backbone, templates) {
     return Backbone.View.extend({
-      initalize:function() {
+      initialize:function() {
         this.title = this.options.title || 'Musocracy';
       },
 
@@ -10,7 +10,7 @@ define(['jquery', 'underscore', 'backbone', 'templates'],
           title: this.title
         };
 
-        this.$el.html(templates.title(templateJson));
+        this.$el.html(templates.toolbar.render(templateJson));
         return this;
       },
 
