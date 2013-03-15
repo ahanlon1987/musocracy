@@ -19,7 +19,7 @@ function( $, Backbone, Amplify, SearchCollection, QueueCollection, SearchView, Q
             this.searchView = new SearchView( { el: "#container-wrapper", collection: new SearchCollection () } );
 
             // Instantiates a new Queue View
-            this.queueView= new QueueView( { el: "#container-wrapper", collection: new QueueCollection() } );
+            this.queueView= new QueueView( { el: "#votes", collection: new QueueCollection() } );
 
             // Tells Backbone to start watching for hashchange events
             Backbone.history.start();

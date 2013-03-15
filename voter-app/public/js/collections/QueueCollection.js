@@ -30,9 +30,10 @@ define([ "jquery","backbone","models/QueueModel"], function( $, Backbone, QueueM
             }
         },
 
-        getFitleredResults:function (filter) {
+        getFilteredResults:function (filter) {
             return _.filter(this.models, function(model) {
-
+                //TODO make this better e.g., to lowercase on everything.
+                return model.get('name') == filter;
             });
         }
 
