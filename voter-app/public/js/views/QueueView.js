@@ -109,7 +109,11 @@ define([ "jquery", "backbone", "templates", "models/QueueModel", "views/ListItem
             (e && e.preventDefault());
 
             var trackId = $(e.currentTarget).data('trackid');
-            var track = this.searchCollection.getTrackById(trackId);
+            var votes = this.locationModel.getVotes();
+            var track = votes.getTrackById(trackId);
+            if (!track) {
+                track = this.searchCollection.getTrackById(trackId);
+            }
             if (track) {
                 persist.vote(track, function(resp) {
                     console.log('Voting complete.', resp);
