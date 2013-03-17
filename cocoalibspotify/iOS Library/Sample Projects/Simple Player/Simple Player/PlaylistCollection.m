@@ -38,7 +38,7 @@
 }
 
 -(void) loadTracksWithSuccess:(void (^)(NSString* msg))onSuccess {
-    NSString * url = [NSString stringWithFormat:@"http://192.168.134.144:3000/location/%@/votes?limit=10&excludePlayed=true", self.locationId];
+    NSString * url = [NSString stringWithFormat:@"http://http://musocracy.aws.af.cm/location/%@/votes?limit=10&excludePlayed=true", self.locationId];
     
     NSLog(@"URL: %@", url);
     NSURLRequest *request = [NSURLRequest requestWithURL:
@@ -117,7 +117,7 @@
 }
 
 -(void) markTrackAsPlayed:(Track *) track {
-    NSString * url = [NSString stringWithFormat:@"http://192.168.134.144:3000/location/%@/track/%@", self.locationId, track.trackId];
+    NSString * url = [NSString stringWithFormat:@"http://http://musocracy.aws.af.cm/location/%@/track/%@", self.locationId, track.trackId];
     
     NSLog(@"URL: %@", url);
 //    self.responseData = [NSMutableData data];

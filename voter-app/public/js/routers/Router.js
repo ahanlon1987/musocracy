@@ -1,5 +1,5 @@
-define(['jquery', 'backbone', 'views/MainView'],
-  function ($, Backbone, MainView) {
+define(['jquery', 'backbone', 'amplify', 'views/MainView'],
+  function ($, Backbone, Amplify, MainView) {
     return Backbone.Router.extend({
 
       routes: {
@@ -31,7 +31,8 @@ define(['jquery', 'backbone', 'views/MainView'],
       },
 
       location:function(locationId) {
-        this.mainView.showLocationView(locationId);
+          amplify.store('locationId', locationId, {expires:21600000}); //expire locationId after six hours.
+          this.mainView.showLocationView(locationId);
       }
     });
   });

@@ -31,7 +31,8 @@ var locationService = {
                     options && options.success && options.success(null)
                 } else {
                     console.log('Found location ' + locationId + '. Returning location');
-                    options && options.success && options.success({"locationId":locationId})
+//                    options && options.success && options.success({"locationId":locationId})
+                    options && options.success && options.success(location);
                 }
             });
         });

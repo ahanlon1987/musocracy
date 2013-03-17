@@ -2,14 +2,14 @@
 // =============
 
 // Includes file dependencies
-define([ "jquery", "backbone", "amplify"], function( $, Backbone, Amplify) {
+define(["jquery", "underscore", "backbone", "amplify"], function( $, _, Backbone, Amplify) {
 
 var Persist = {
 
 
     amplify:Amplify,
 
-    vote:function(track){
+    vote:function(track, options){
 
         var trackId = track.get('trackId') ;
         var trackName = track.get('name');
@@ -24,7 +24,7 @@ var Persist = {
             type: "POST",
             url: '/location/' + amplify.store('locationId')  + '/votes/' + trackId,
             data: {trackId:trackId, name:trackName, artists:artists, album:album},
-            success: function() {
+            success: function(resp) {
                 var previousVotes = (amp.store('previousVotes') || []);
                 previousVotes.push({
                     'trackId':trackId,
@@ -35,6 +35,10 @@ var Persist = {
                 if(collType == 'Queue'){
                     //Automatically triggers a re-fetch
                     router.queue();
+                }
+
+                if (options && _.isFunction(options.success)) {
+                    options.success(resp);
                 }
             },
             failure:function(){
