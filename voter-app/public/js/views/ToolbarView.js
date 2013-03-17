@@ -2,7 +2,8 @@ define(['jquery', 'underscore', 'backbone', 'templates', 'util/dispatcher'],
     function ($, _, Backbone, templates, dispatcher) {
         return Backbone.View.extend({
             events:{
-                'click .icon-refresh':'refresh'
+                'click .icon-refresh':'refresh',
+                'click .refresh':'refresh'
             },
 
             initialize:function () {
@@ -31,7 +32,29 @@ define(['jquery', 'underscore', 'backbone', 'templates', 'util/dispatcher'],
 
             refresh:function (e) {
                 (e && e.preventDefault());
+                this.startRefreshRotation();
+
                 dispatcher.trigger(dispatcher.events.REFRESH);
+            },
+
+            startRefreshRotation:function () {
+                var degrees = 0;
+
+                var self = this;
+                var $refreshIcon = this.$('.icon-refresh');
+//                $refreshIcon.fadeOut(400, function() {
+//                    $refreshIcon.fadeIn(400);
+//                });
+
+                var rotate = function() {
+                    degrees += 10;
+                    $refreshIcon.css('transform', 'rotate(' + degrees + 'deg)');
+
+                    if (degrees !== 360) {
+                        setTimeout(rotate, 50);
+                    }
+                };
+                rotate();
             },
 
             toggleSearch:function (e) {

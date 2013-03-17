@@ -68,7 +68,7 @@ define([ "jquery", "backbone", "templates", "models/QueueModel", "views/ListItem
         onRefresh:function () {
             this.locationModel.fetch({
                 success:$.proxy(this.onLocationFetched, this)
-            }   );
+            });
         },
 
         onLocationFetched: function() {
