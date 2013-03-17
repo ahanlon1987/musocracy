@@ -8,12 +8,12 @@ define(['backbone'],
 
             },
 
-            parse: function(response){
+            parse:function (response) {
                 return response.playlist;
             },
 
             getTrackById:function (trackId) {
-                return this.find(function(model) {
+                return this.find(function (model) {
                     return model.get('trackId') === trackId;
                 });
             },
@@ -24,7 +24,7 @@ define(['backbone'],
                     filter = filter.toLowerCase.replace(regex, '');
                 }
 
-                return _.filter(this.models, function(model) {
+                return _.filter(this.models, function (model) {
                     var name = model.get('name') || '';
                     name = name.toLowerCase().replace(regex, '');
 

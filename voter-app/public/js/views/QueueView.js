@@ -2,9 +2,9 @@
 // =============
 
 // Includes file dependencies
-define([ "jquery", "backbone","amplify", "templates", "models/QueueModel", "views/ListItemView", "collections/VotesCollection",
-    "collections/SpotifySearchCollection", "models/LocationModel", "util/persist"],
-    function( $, Backbone, Amplify, templates, QueueModel, ListItemView, VotesCollection, SpotifySearchCollection, LocationModel, persist) {
+define([ "jquery", "backbone", "templates", "models/QueueModel", "views/ListItemView", "collections/VotesCollection",
+    "collections/SpotifySearchCollection", "models/LocationModel", "util/persist", "util/dispatcher"],
+    function( $, Backbone, templates, QueueModel, ListItemView, VotesCollection, SpotifySearchCollection, LocationModel, persist, dispatcher) {
 
     // Extends Backbone.View
     var THREE_HOURS_IN_MS = 10800000;
@@ -19,23 +19,9 @@ define([ "jquery", "backbone","amplify", "templates", "models/QueueModel", "view
         // The View Constructor
         initialize: function() {
             this.locationId = this.options.locationId;
-
-            // this.collection = new QueueCollection();
-
-            // The render method is called when Song Models are added to the Collection
-            // this.collection.on( "reset", this.render, this );
-
-            //Handles search action, waits until .5s of no keypress to fire
-            // $('#header-song-search').keypress(function(e) {
-            //     console.log('key pressed');
-            //     clearTimeout($.data(this, 'timer'));
-            //     var wait = setTimeout(router.queueView.search, 500);
-            //     $(this).data('timer', wait);
-            // });
+            dispatcher.on(dispatcher.events.REFRESH, this.onRefresh, this);
         },
-
-        amplify:Amplify,
-
+        
         // Renders all of the Category models on the UI
         render: function() {
             this.$el.html(templates.queue.render());
@@ -77,6 +63,12 @@ define([ "jquery", "backbone","amplify", "templates", "models/QueueModel", "view
             });
 
             this.$('.location-queue').html(html);
+        },
+
+        onRefresh:function () {
+            this.locationModel.fetch({
+                success:$.proxy(this.onLocationFetched, this)
+            }   );
         },
 
         onLocationFetched: function() {

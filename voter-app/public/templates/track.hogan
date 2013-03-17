@@ -2,5 +2,5 @@
     <div class="track-name">{{name}}</div>
     <div class="artist-name">{{artists}}</div>
   </div>
-  <div><i class="icon-upvote icon-white"/></div>
+  <div><i class="icon-arrow-up"/></div>
 </div>
