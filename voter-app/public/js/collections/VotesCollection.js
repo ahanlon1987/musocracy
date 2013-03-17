@@ -12,9 +12,9 @@ define(['backbone'],
         return -model.get('votes');
       },
 
-      parse: function(response){
-        return response.playlist;
-      },
+      // parse: function(response){
+      //   return response.playlist;
+      // },
 
       getTrackById:function (trackId) {
           return this.find(function(model) {
@@ -25,7 +25,7 @@ define(['backbone'],
       // filter results by name and artist, ignore case, special chars, and whitespace for now
       getFilteredResults:function (filter) {
         if (filter) {
-          filter = filter.toLowerCase.replace(regex, '');
+          filter = filter.toLowerCase().replace(regex, '');
         }
 
         return _.filter(this.models, function(model) {
@@ -34,7 +34,7 @@ define(['backbone'],
 
           var artists = model.get('artists') || '';
           artists = artists.toLowerCase().replace(regex, '');
-          return name.contains(filter) || artists.contains(filter);
+          return name.match(filter) != null || artists.match(filter) != null;
         });
       }
 

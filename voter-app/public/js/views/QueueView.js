@@ -2,9 +2,9 @@
 // =============
 
 // Includes file dependencies
-define([ "jquery", "backbone","amplify", "templates", "models/QueueModel", "views/ListItemView", "collections/LocationCollection",
-    "collections/SpotifySearchCollection", "util/persist"],
-    function( $, Backbone, Amplify, templates, QueueModel, ListItemView, LocationCollection, SpotifySearchCollection, persist) {
+define([ "jquery", "backbone","amplify", "templates", "models/QueueModel", "views/ListItemView", "collections/VotesCollection",
+    "collections/SpotifySearchCollection", "models/LocationModel", "util/persist"],
+    function( $, Backbone, Amplify, templates, QueueModel, ListItemView, VotesCollection, SpotifySearchCollection, LocationModel, persist) {
 
     // Extends Backbone.View
     var THREE_HOURS_IN_MS = 10800000;
@@ -12,7 +12,7 @@ define([ "jquery", "backbone","amplify", "templates", "models/QueueModel", "view
     var timeoutId;
     return Backbone.View.extend({
         events: {
-            'keypress .search input':'onKeyPress',
+            'keyup .search input':'onKeyPress',
             'click .track':'onTrackClick'
         },
 
@@ -40,13 +40,20 @@ define([ "jquery", "backbone","amplify", "templates", "models/QueueModel", "view
         render: function() {
             this.$el.html(templates.queue.render());
 
-            this.locationCollection = new LocationCollection();
             this.searchCollection = new SpotifySearchCollection();
 
-            this.locationCollection.url = '/location/' + this.locationId;
-            $.when(this.locationCollection.fetch({
-                contentType:'application/json'
-            })).then($.proxy(this.onLocationFetched, this));
+            this.locationModel = new LocationModel({}, {
+                locationId: this.locationId
+            });
+
+            this.locationModel.fetch({
+                success:$.proxy(this.onLocationFetched, this)
+            });
+
+            // this.locationCollection.url = '/location/' + this.locationId;
+            // $.when(this.locationCollection.fetch({
+            //     contentType:'application/json'
+            // })).then($.proxy(this.onLocationFetched, this));
 
 
             // this.$("#song-search").addClass('hidden');
@@ -63,23 +70,47 @@ define([ "jquery", "backbone","amplify", "templates", "models/QueueModel", "view
             return this;
         },
 
-        onLocationFetched: function() {
+        renderQueue:function (tracks) {
             var html = '';
-            this.locationCollection.each(function(model) {
-                html += templates.track.render(model.attributes);
+            _.each(tracks, function (track) {
+                html += templates.track.render(track.attributes);
             });
 
             this.$('.location-queue').html(html);
         },
 
+        onLocationFetched: function() {
+            var html = '';
+            var votesCollection = this.locationModel.getVotes();
+            this.renderQueue(votesCollection.models);
+            // votesCollection.each(function(track) {
+                // html += templates.track.render(track);
+            // });
+
+            // this.$('.location-queue').html(html);
+
+            var nowPlaying = this.locationModel.getNowPlaying();
+            if (nowPlaying) {
+                this.$('.now-playing').html(templates.track.render(track));
+            }
+
+            var upNext = this.locationModel.getUpNext();
+            if (upNext) {
+                this.$('.up-next').html(templates.track.render(upNext));
+            }
+        },
+
         onKeyPress:function(e) {
             window.clearTimeout(timeoutId);
+            var query = this.$('.search input').val();
             if (e && e.which === 13) {
                 this.search();
             }
             else {
                 timeoutId = setTimeout($.proxy(this.search, this), 500);
             }
+
+            this.filterVotesCollection(query);
         },
 
         onTrackClick:function(e) {
@@ -116,6 +147,12 @@ define([ "jquery", "backbone","amplify", "templates", "models/QueueModel", "view
                 $spotifyResults.html(html);
             });
 
+        },
+
+        filterVotesCollection:function (query) {
+            var votesCollection = this.locationModel.getVotes();
+            var models = votesCollection.getFilteredResults(query);
+            this.renderQueue(models);
         }
 
     } );
