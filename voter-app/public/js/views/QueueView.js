@@ -2,9 +2,9 @@
 // =============
 
 // Includes file dependencies
-define([ "jquery", "backbone", "templates", "models/QueueModel", "views/ListItemView", "collections/VotesCollection",
+define(["jquery", "underscore", "backbone", "templates", "models/QueueModel", "views/ListItemView", "collections/VotesCollection",
     "collections/SpotifySearchCollection", "models/LocationModel", "util/persist", "util/dispatcher"],
-    function( $, Backbone, templates, QueueModel, ListItemView, VotesCollection, SpotifySearchCollection, LocationModel, persist, dispatcher) {
+    function( $, _, Backbone, templates, QueueModel, ListItemView, VotesCollection, SpotifySearchCollection, LocationModel, persist, dispatcher) {
 
     // Extends Backbone.View
     var THREE_HOURS_IN_MS = 10800000;

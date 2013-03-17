@@ -1,6 +1,7 @@
 <div class="track" data-trackid="{{trackId}}">
-    <div class="track-name">{{name}}</div>
-    <div class="artist-name">{{artists}}</div>
-  </div>
-  <div><i class="icon-arrow-up"/></div>
+    <div class="metadata">
+        <div class="track-name">{{name}}</div>
+        <div class="artist-name">{{artists}}</div>
+    </div>
+    <div class="votes">{{votes}}<i class="icon-arrow-up"/></div>
 </div>
