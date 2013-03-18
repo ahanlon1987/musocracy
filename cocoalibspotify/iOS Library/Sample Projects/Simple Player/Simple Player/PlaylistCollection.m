@@ -18,15 +18,22 @@
 @synthesize playlist;
 @synthesize currentTrack;
 @synthesize nextTrack;
+@synthesize baseUrl;
+@synthesize localPlayed;
 
 -(id) init {
     self = [super init];
+    self.baseUrl = @"http://192.168.0.101:3000";
+
+    
     return self;
 }
 
 -(id) initWithLocationId:(NSString *)theLocationId {
     if (self = [super init]) {
         locationId = theLocationId;
+        self.baseUrl = @"http://192.168.0.101:3000";
+
     }
     return self;
 }
@@ -38,7 +45,7 @@
 }
 
 -(void) loadTracksWithSuccess:(void (^)(NSString* msg))onSuccess {
-    NSString * url = [NSString stringWithFormat:@"http://http://musocracy.aws.af.cm/location/%@/votes?limit=10&excludePlayed=true", self.locationId];
+    NSString * url = [NSString stringWithFormat:@"%@/location/%@/votes?limit=10&excludePlayed=true", self.baseUrl, self.locationId];
     
     NSLog(@"URL: %@", url);
     NSURLRequest *request = [NSURLRequest requestWithURL:
@@ -60,7 +67,7 @@
 }
 
 -(void) processData:(id)data {
-    NSArray *playlistArray = [data valueForKeyPath:@"playlist"];
+    NSArray *playlistArray = [data valueForKeyPath:@"votes"];
     NSMutableArray *tracks = [[NSMutableArray alloc] init];
     
     for (NSDictionary * track in playlistArray) {
@@ -96,8 +103,10 @@
 }
 
 -(BOOL) hasBeenPlayed:(Track *) track {
-    if (([self.currentTrack.trackId isEqualToString:track.trackId])) {
-        return YES;
+    for (Track *playedTrack in self.localPlayed) {
+        if ([playedTrack.trackId isEqualToString:track.trackId]) {
+            return YES;
+        }
     }
     return NO;
 }
@@ -117,7 +126,7 @@
 }
 
 -(void) markTrackAsPlayed:(Track *) track {
-    NSString * url = [NSString stringWithFormat:@"http://http://musocracy.aws.af.cm/location/%@/track/%@", self.locationId, track.trackId];
+    NSString * url = [NSString stringWithFormat:@"%@/location/%@/track/%@", self.baseUrl, self.locationId, track.trackId];
     
     NSLog(@"URL: %@", url);
 //    self.responseData = [NSMutableData data];

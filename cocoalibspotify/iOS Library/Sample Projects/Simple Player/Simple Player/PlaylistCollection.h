@@ -16,6 +16,8 @@
 @property NSArray * playlist;
 @property Track *currentTrack;
 @property Track *nextTrack;
+@property NSString * baseUrl;
+@property NSArray *localPlayed;
 
 -(id) initWithLocationId: (NSString *)theLocationId;
 -(void) loadTracks;

@@ -66,7 +66,7 @@
         
         //        [self performSelector:@selector(checkAuth) withObject:nil afterDelay:0.0];
         
-        self.locationId = @"1";
+        self.locationId = @"slalom";
         self.firstLoad = YES;
         
         self.playlistCollection = [[PlaylistCollection alloc] initWithLocationId:self.locationId];

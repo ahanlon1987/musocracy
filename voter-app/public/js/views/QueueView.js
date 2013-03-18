@@ -72,18 +72,12 @@ define(["jquery", "underscore", "backbone", "templates", "models/QueueModel", "v
         },
 
         onLocationFetched: function() {
-            var html = '';
             var votesCollection = this.locationModel.getVotes();
             this.renderQueue(votesCollection.models);
-            // votesCollection.each(function(track) {
-                // html += templates.track.render(track);
-            // });
-
-            // this.$('.location-queue').html(html);
 
             var nowPlaying = this.locationModel.getNowPlaying();
             if (nowPlaying) {
-                this.$('.now-playing').html(templates.track.render(track));
+                this.$('.now-playing').html(templates.track.render(nowPlaying));
             }
 
             var upNext = this.locationModel.getUpNext();
