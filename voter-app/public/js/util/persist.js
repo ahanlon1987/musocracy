@@ -15,7 +15,6 @@ define(["jquery", "underscore", "backbone", "amplify"], function ($, _, Backbone
             var trackName = track.get('name');
             var artists = track.get('artists');
             var album = track.get('album');
-            var collType = track.collection.type;
 
             console.log('Voting for trackId: ' + trackId + ', trackName: ' + trackName + ', artists: ' + artists + ', album: ' + album);
             var amp = amplify;
@@ -31,11 +30,6 @@ define(["jquery", "underscore", "backbone", "amplify"], function ($, _, Backbone
                         'voteTime':new Date()
                     });
                     amp.store('previousVotes', previousVotes);
-
-                    if (collType == 'Queue') {
-                        //Automatically triggers a re-fetch
-                        router.queue();
-                    }
 
                     if (options && _.isFunction(options.success)) {
                         options.success(resp);

@@ -3,8 +3,8 @@
 
 // Includes file dependencies
 define(["jquery", "underscore", "backbone", "templates", "models/QueueModel", "views/ListItemView", "collections/VotesCollection",
-    "collections/SpotifySearchCollection", "models/LocationModel", "util/persist", "util/dispatcher"],
-    function( $, _, Backbone, templates, QueueModel, ListItemView, VotesCollection, SpotifySearchCollection, LocationModel, persist, dispatcher) {
+"collections/SpotifySearchCollection", "models/LocationModel", "util/persist", "util/dispatcher"],
+function( $, _, Backbone, templates, QueueModel, ListItemView, VotesCollection, SpotifySearchCollection, LocationModel, persist, dispatcher) {
 
     // Extends Backbone.View
     var THREE_HOURS_IN_MS = 10800000;
@@ -13,7 +13,7 @@ define(["jquery", "underscore", "backbone", "templates", "models/QueueModel", "v
     return Backbone.View.extend({
         events: {
             'keyup .search input':'onKeyPress',
-            'click .track':'onTrackClick'
+            'click .track:not(.disabled)':'onTrackClick'
         },
 
         // The View Constructor
@@ -21,7 +21,7 @@ define(["jquery", "underscore", "backbone", "templates", "models/QueueModel", "v
             this.locationId = this.options.locationId;
             dispatcher.on(dispatcher.events.REFRESH, this.onRefresh, this);
         },
-        
+
         // Renders all of the Category models on the UI
         render: function() {
             this.$el.html(templates.queue.render());
@@ -36,22 +36,6 @@ define(["jquery", "underscore", "backbone", "templates", "models/QueueModel", "v
                 success:$.proxy(this.onLocationFetched, this)
             });
 
-            // this.locationCollection.url = '/location/' + this.locationId;
-            // $.when(this.locationCollection.fetch({
-            //     contentType:'application/json'
-            // })).then($.proxy(this.onLocationFetched, this));
-
-
-            // this.$("#song-search").addClass('hidden');
-
-            // Renders the view's template inside of the current listview element
-            // this.$el.find('ul.results').empty();
-            // var self = this;
-            // this.collection.each(function(model){
-            //     var listItemView = new ListItemView();
-            //     self.$('ul.results').append(listItemView.render(model).$el);
-            // });
-
             // Maintains chainability
             return this;
         },
@@ -59,6 +43,18 @@ define(["jquery", "underscore", "backbone", "templates", "models/QueueModel", "v
         renderQueue:function (tracks) {
             var html = '';
             _.each(tracks, function (track) {
+
+                track.set('disabled', '');
+                var index = $.inArray(track.get('trackId'), _.pluck(amplify.store('previousVotes'), 'trackId'));
+                if (index >= 0){
+                    var oldVote = amplify.store('previousVotes')[index];
+                    if(oldVote){
+                        if((new Date()) - (new Date(oldVote.voteTime)) < THREE_HOURS_IN_MS){
+                            track.set('disabled', 'disabled');
+                        }
+                    }
+                }
+
                 html += templates.track.render(track.attributes);
             });
 
@@ -109,8 +105,12 @@ define(["jquery", "underscore", "backbone", "templates", "models/QueueModel", "v
                 track = this.searchCollection.getTrackById(trackId);
             }
             if (track) {
-                persist.vote(track, function(resp) {
-                    console.log('Voting complete.', resp);
+                persist.vote(track, {
+                    success:function(resp) {
+                        console.log('Voting complete.', resp);
+                        dispatcher.trigger(dispatcher.events.REFRESH);
+
+                    }
                 });
             }
         },
@@ -119,13 +119,9 @@ define(["jquery", "underscore", "backbone", "templates", "models/QueueModel", "v
             var query = this.$('.search input').val();
             console.log('Executing search on: ' + query);
 
-            //TODO use the unfiltered collection to re-render this view once the search is cleared out.
-
             var $spotifyResults = this.$('.spotify-results');
             $spotifyResults.html('Loading....');
 
-//            var searchResults = new SpotifySearchCollection();
-//            searchResults.url = '/search/track?q=' + query;
             this.searchCollection.url = '/search/track?q=' + query;
             var self = this;
             this.searchCollection.fetch().done(function(){
