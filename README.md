@@ -11,6 +11,8 @@ musocracy
 4. Run application
     * `node app.js`
     * Starts an http server on port 3000
+5. Monitor Hogan templates for changes
+    * `grunt watch:templates`
 
 # Voter Application Structure
 * *app.js*: root app server
