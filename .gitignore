@@ -4,3 +4,5 @@
 voter-app/atlassian-ide-plugin.xml
 
 voter-app/public/css/app.css
+
+voter-app/public/js/templates.js
