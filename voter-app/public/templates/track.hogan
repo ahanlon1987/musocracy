@@ -1,7 +1,7 @@
 <div class="track {{disabled}}"  data-trackid="{{trackId}}">
     <div class="metadata">
         <div class="track-name">{{name}}</div>
-        <div class="artist-name">{{artists}}</div>
+        <div class="artist-name">{{artists}} - {{album}}</div>
     </div>
     <div class="votes">{{votes}}<i class="icon-arrow-up"/></div>
 </div>
