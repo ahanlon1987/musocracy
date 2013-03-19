@@ -4,7 +4,7 @@
     <div>Up Next: <div class="up-next"></div></div>
 
     <div class="search">
-        <input type="text" class="search-query" />
+        <input type="text" class="search-query" placeholder="Song, Artist, or Album"/>
     </div>
 
     <div class="location-queue">
