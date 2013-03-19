@@ -8,7 +8,7 @@
             </div>
         </fieldset>
     </form>
-    <div id="result-wrapper">
-        <ul id="results" class="media-list"></ul>
+    <div id="logo-container">
+        <img src="/img/musocracy_logo.png"/>
     </div>
 </div>
