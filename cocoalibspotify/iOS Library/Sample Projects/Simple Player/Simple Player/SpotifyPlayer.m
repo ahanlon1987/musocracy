@@ -50,22 +50,10 @@
         
         self.playbackManager = [[SPPlaybackManager alloc] initWithPlaybackSession:self.session];
         [self.playbackManager setDelegate:self];
-        //        self.session = [SPSession sharedSession];
-        //        [self.session setDelegate:self];
-        
-//        [self.playbackManager.playbackSession setPlaybackDelegate:self];
-        
-//        [self addObserver:self forKeyPath:@"currentTrack.name" options:0 context:nil];
-//        [self addObserver:self forKeyPath:@"currentTrack.artists" options:0 context:nil];
-//        [self addObserver:self forKeyPath:@"currentTrack.duration" options:0 context:nil];
-//        [self addObserver:self forKeyPath:@"currentTrack.album.cover.image" options:0 context:nil];
-//        [self addObserver:self forKeyPath:@"playbackManager.trackPosition" options:0 context:nil];
-//        [self addObserver:self forKeyPath:@"session.starredPlaylist" options:0 context:nil];
+
         [self addObserver:self forKeyPath:@"playlistCollection.nextTrack.trackName" options:0 context:nil];
         [self addObserver:self forKeyPath:@"playlistCollection.nextTrack.artistName" options:0 context:nil];
-        
-        //        [self performSelector:@selector(checkAuth) withObject:nil afterDelay:0.0];
-        
+                
         self.locationId = @"slalom";
         self.firstLoad = YES;
         

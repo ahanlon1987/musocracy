@@ -7,6 +7,7 @@ require.config({
         // Core Libraries
         "hogan":"lib/hogan/hogan-2.0.0.amd",
         "jquery":"lib/jquery-1.9.1",
+        "jqueryui":"lib/jquery-ui-1.10.2.custom",
         "underscore":"lib/lodash",
         "backbone":"lib/backbone",
         "amplify":"lib/amplify.min",
@@ -15,7 +16,9 @@ require.config({
 
     // Sets the configuration for your third party scripts that are not AMD compatible
     shim:{
-
+        jqueryui: {
+            deps: ["jquery"]
+        },
         backbone:{
             "deps":[ "underscore", "jquery" ],
             "exports":"Backbone"  //attaches "Backbone" to the window object

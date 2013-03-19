@@ -28,26 +28,16 @@ define(['underscore', 'backbone', 'collections/VotesCollection'],
             },
 
             getNowPlaying:function () {
-                var playlist = this.get('playlist') || [],
-                    i = playlist.length - 1;
-
-                // return the last track that has been marked played
-                for (; i >= 0; i--) {
-                    if (playlist[i].played) {
-                        return playlist[i];
-                    }
+                var played = this.get('played');
+                if (played && played.length > 0) {
+                    return played[played.length -1];
                 }
 
                 return null;
             },
 
             getUpNext:function () {
-                var playlist = this.get('playlist') || [];
-
-                // return the first track that has not been played
-                return _.find(playlist, function (track) {
-                    return !track.played;
-                });
+                return this.get('upNext');
             }
 
         });

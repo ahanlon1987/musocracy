@@ -69,7 +69,6 @@
 	[self.window makeKeyAndVisible];
     
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
-//    NowPlayingViewController *nowPlayingViewController = [[NowPlayingViewController alloc] initWithNibName:@"NowPlayingViewController.xib" bundle:nil];
     
 	NSError *error = nil;
 	[SPSession initializeSharedSessionWithApplicationKey:[NSData dataWithBytes:&g_appkey length:g_appkey_size]
@@ -81,12 +80,10 @@
 		abort();
 	}
 
-//	self.playbackManager = [[SPPlaybackManager alloc] initWithPlaybackSession:[SPSession sharedSession]];
 	self.session = [SPSession sharedSession];
     [self.session setDelegate:self];
     
-//    self.window.rootViewController = self.navigationController;
-    
+   
     self.loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
     self.loginViewController.session = self.session;
     
@@ -94,18 +91,7 @@
     
     [self.window makeKeyAndVisible];
 
-
-//	[self addObserver:self forKeyPath:@"currentTrack.name" options:0 context:nil];
-//	[self addObserver:self forKeyPath:@"currentTrack.artists" options:0 context:nil];
-//	[self addObserver:self forKeyPath:@"currentTrack.duration" options:0 context:nil];
-//	[self addObserver:self forKeyPath:@"currentTrack.album.cover.image" options:0 context:nil];
-//	[self addObserver:self forKeyPath:@"playbackManager.trackPosition" options:0 context:nil];
-//    [self addObserver:self forKeyPath:@"session.starredPlaylist" options:0 context:nil];
-//	
 	[self performSelector:@selector(checkAuth) withObject:nil afterDelay:0.0];
-//
-//    self.playlistName = @"1";
-//    self.firstLoad = YES;
     return YES;
 }
 

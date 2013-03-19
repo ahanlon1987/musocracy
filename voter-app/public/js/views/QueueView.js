@@ -98,20 +98,29 @@ function( $, _, Backbone, templates, QueueModel, ListItemView, VotesCollection, 
         onTrackClick:function(e) {
             (e && e.preventDefault());
 
-            var trackId = $(e.currentTarget).data('trackid');
+            var $currentTarget = this.$(e.currentTarget);
+            var trackId = $currentTarget.data('trackid');
             var votes = this.locationModel.getVotes();
             var track = votes.getTrackById(trackId);
             if (!track) {
                 track = this.searchCollection.getTrackById(trackId);
             }
             if (track) {
+                var self = this;
                 persist.vote(track, {
                     success:function(resp) {
                         console.log('Voting complete.', resp);
-                        dispatcher.trigger(dispatcher.events.REFRESH);
-
+//                        dispatcher.trigger(dispatcher.events.REFRESH);
+                        self.locationModel = new LocationModel(resp, {locationId: self.locationId});
+                        self.onLocationFetched();
+                        $(e.currentTarget).animate({
+                            backgroundColor: "#aa0000",
+                            color: "#aa0000"
+//                            width: 500
+                        }, 1000 );
                     }
                 });
+
             }
         },
 

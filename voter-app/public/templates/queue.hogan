@@ -1,10 +1,11 @@
 <div class="container" id="container-wrapper">
-    <div class="search">
-        <input type="text" class="search-query" />
-    </div>
 
     <div>Now Playing: <div class="now-playing"></div></div>
     <div>Up Next: <div class="up-next"></div></div>
+
+    <div class="search">
+        <input type="text" class="search-query" />
+    </div>
 
     <div class="location-queue">
         <!-- <ul class="results"/> -->

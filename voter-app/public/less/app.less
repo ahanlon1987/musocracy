@@ -4,6 +4,7 @@
 
 @import 'bootstrap/bootstrap.less';
 @import 'bootstrap/responsive.less';
+@import 'jquery-ui-1.10.2.custom.less';
 
 li.song-list {
     list-style: none;
@@ -17,41 +18,14 @@ li.song-list {
     white-space: nowrap;
 }
 
-#container-wrapper{
-    padding-top:50px;
-    padding-left:10px;
-}
-
 a.vote-icon {
     padding-right:15px;
     margin-left:20px;
     margin-top:15px;
 }
 
-#location-submit{
-    padding-top:25px;
-}
-
-ul#header-list,
-.form-search {
-    margin-left:25px;
-}
-
-ul#results {
-    margin-left:5px;
-}
-
 .hidden {
     display:none;
-}
-
-li.song-list.disabled{
-    opacity:.5;
-    cursor:default;
-}
-
-#song-search-input {
-    width:220px;
 }
 
 #location-input {
@@ -62,6 +36,13 @@ li.song-list.disabled{
     float: left;
     margin-right: 11px;
     margin-top: 4px;
+}
+
+body {
+    padding-top:40px;
+    position:relative;
+//background-color: @grayDarker;
+//color:@white;
 }
 
 @media (max-width: 979px) and (min-width: 768px) {
@@ -76,6 +57,8 @@ li.song-list.disabled{
         padding:0 20px;
         width:auto;
     }
+
+
 }
 .vote-count{
     float: left;
@@ -92,17 +75,6 @@ li.song-list.disabled{
 
 .nav.nav-search{
     float:right;
-}
-
-div.media-body a.vote-icon {
-    padding-right:15px;
-    margin-left:20px;
-    margin-top:15px;
-    float:right;
-}
-
-ul.results{
-    margin-left:10px;
 }
 
 .track {

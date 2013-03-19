@@ -163,6 +163,7 @@ var votingService = {
                 return;
             }
 
+            console.log('Receving mark as played request: ' + JSON.stringify(obj));
             collection.findOne({locationId:obj.locationId}, function (err, location) {
                 if (err) {
                     console.error('Error finding collection.', err);
@@ -196,6 +197,7 @@ var votingService = {
 
 
                 if (track) {
+                    console.log('Found track: ' + JSON.stringify(track));
                     track.played = true;
                     location.votes.splice(trackIndex, 1);
                 }
@@ -206,16 +208,18 @@ var votingService = {
                     };
                 }
 
+                console.log('pushing track onto played list: ' + JSON.stringify(track));
+                location.played.push(track);
+                while (location.played > MAX_PLAYED_LENGTH) {
+                    location.played.unshift();
+                }
+
+
                 var topTrack = _.sortBy(location.votes, function (track) {
                     return track.votes * -1;
                 })[0];
 
-                topTrack.played = false;
-                console.log('Top Track: ' + JSON.stringify(topTrack));
-                location.played.push(topTrack);
-                while (location.played > MAX_PLAYED_LENGTH) {
-                    location.played.unshift();
-                }
+                location.upNext = topTrack;
 
                 collection.update({locationId:location.locationId}, location, {upsert:true}, function (err, obj) {
                     if (err) {
