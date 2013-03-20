@@ -3,8 +3,12 @@
     <div>Now Playing: <div class="now-playing"></div></div>
     <div>Up Next: <div class="up-next"></div></div>
 
-    <div class="search">
-        <input type="text" class="search-query" placeholder="Song, Artist, or Album"/>
+    <div class="form-search search">
+        <!--<input type="text" class="search-query" placeholder="Song, Artist, or Album"/>-->
+        <div class="input-append">
+            <input type="text" class="search-query span2" placeholder="Song, Asrtist, or Album">
+            <span type="submit" class="btn clear-search"><i class="icon-remove"/></span>
+      </div>
     </div>
 
     <div class="location-queue">

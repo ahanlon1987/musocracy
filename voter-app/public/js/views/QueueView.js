@@ -13,7 +13,8 @@ function( $, _, Backbone, templates, QueueModel, ListItemView, VotesCollection, 
     return Backbone.View.extend({
         events: {
             'keyup .search input':'onKeyPress',
-            'click .track:not(.disabled)':'onTrackClick'
+            'click .track:not(.disabled)':'onTrackClick',
+            'click .clear-search':'onClearSearch'
         },
 
         // The View Constructor
@@ -87,6 +88,9 @@ function( $, _, Backbone, templates, QueueModel, ListItemView, VotesCollection, 
             var query = this.$('.search input').val();
             if (e && e.which === 13) {
                 this.search();
+            } else if (e && e.which === 8 && query == ''){
+                console.log('backspace pressed with no no content in search field, clearing search results');
+                this.onClearSearch()
             }
             else {
                 timeoutId = setTimeout($.proxy(this.search, this), 500);
@@ -122,6 +126,17 @@ function( $, _, Backbone, templates, QueueModel, ListItemView, VotesCollection, 
                 });
 
             }
+        },
+
+        onClearSearch:function(e){
+
+            //Clear the search text
+            this.$('.search input').val('');
+            //clear the spotify results div
+            this.$('.spotify-results').empty();
+            //Redraw the queue
+            this.renderQueue(this.locationModel.getVotes().models);
+
         },
 
         search:function(){
