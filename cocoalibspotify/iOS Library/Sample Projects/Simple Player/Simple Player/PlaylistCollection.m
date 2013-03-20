@@ -93,12 +93,10 @@
 //    }
     
     self.playlist = tracks;
-    if (tracks.count > 0) {
+    if (tracks.count > 0 && !self.nextTrack) {
         self.nextTrack = [tracks objectAtIndex:0];
     }
-    else {
-        self.nextTrack = nil;
-    }
+    
 //    self.nextTrack = firstTrack;
 }
 
@@ -112,16 +110,12 @@
 }
 
 -(Track *) dequeueNextTrack {
-    Track *track = nil;
+    if (self.nextTrack) {
+        self.currentTrack = self.nextTrack;
+        self.nextTrack = nil;
+    }
     if (self.playlist.count > 0) {
-        track = [self.playlist objectAtIndex:0];
-        self.currentTrack = track;
-        
-        if (self.playlist.count > 1) {
-            Track *nextTrack = [self.playlist objectAtIndex:1];
-            self.nextTrack = nextTrack;
-        }
-        
+        self.nextTrack = [self.playlist objectAtIndex:0];;
 //        [self markTrackAsPlayed:track];
         [self updateNowPlaying:self.currentTrack AndQueueNext:self.nextTrack];
     }
@@ -129,7 +123,7 @@
         [self loadTracks];
     }
     
-    return track;
+    return self.currentTrack;
 }
 
 -(void) markTrackAsPlayed:(Track *) track {

@@ -28,12 +28,7 @@ define(['underscore', 'backbone', 'collections/VotesCollection'],
             },
 
             getNowPlaying:function () {
-                var played = this.get('played');
-                if (played && played.length > 0) {
-                    return played[played.length -1];
-                }
-
-                return null;
+                return this.get('nowPlaying');
             },
 
             getUpNext:function () {
