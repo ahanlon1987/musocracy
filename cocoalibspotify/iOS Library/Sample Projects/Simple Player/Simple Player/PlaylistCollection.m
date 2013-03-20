@@ -116,7 +116,14 @@
     if (self.playlist.count > 0) {
         track = [self.playlist objectAtIndex:0];
         self.currentTrack = track;
-        [self markTrackAsPlayed:track];
+        
+        if (self.playlist.count > 1) {
+            Track *nextTrack = [self.playlist objectAtIndex:1];
+            self.nextTrack = nextTrack;
+        }
+        
+//        [self markTrackAsPlayed:track];
+        [self updateNowPlaying:self.currentTrack AndQueueNext:self.nextTrack];
     }
     else {
         [self loadTracks];
@@ -143,6 +150,26 @@
                                        }];
     [jsonReq start];
 }
+
+-(void) updateNowPlaying:(Track*) nowPlaying AndQueueNext:(Track *) upNext {
+    NSString * url = [NSString stringWithFormat:@"%@/location/%@/updateQueue?nowPlaying=%@&upNext=%@", self.baseUrl, self.locationId, nowPlaying.trackId, upNext.trackId];
+    
+    NSLog(@"URL: %@", url);
+    //    self.responseData = [NSMutableData data];
+    NSURLRequest *request = [NSURLRequest requestWithURL:
+                             [NSURL URLWithString:url]];
+    [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    AFJSONRequestOperation *jsonReq = [AFJSONRequestOperation
+                                       JSONRequestOperationWithRequest:request
+                                       success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                           NSLog(@"Mark as played returned for track %@", nowPlaying.trackId);
+                                           [self processData:JSON];
+                                       } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                           NSLog(@"Error marking track %@ as played.", nowPlaying.trackId);
+                                       }];
+    [jsonReq start];
+}
+
 
 
 @end
