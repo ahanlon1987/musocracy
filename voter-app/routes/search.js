@@ -32,38 +32,51 @@ var doSearch = function(type, req, resp) {
     });
 
     response.on('end', function() {
-      var respObj = JSON.parse(respData);
+
+        try {
+            var respObj = JSON.parse(respData);
+
+            var info  = respObj.info;
+
+            //Clean up the search result to only bring back what we need: id, name, artist(s), album.
+            var formattedTracks = [];
+            if (respObj.tracks){
+                _.each(respObj.tracks, function(track){
+                    var trackId = track.href;
+                    var name = track.name;
+                    var artists = '';
+                    var delim = ' ';
+                    _.each(track.artists, function(artist){
+                        artists += delim + artist.name;
+                        delim = ', ';
+                    });
+                    var album = track.album ? track.album.name : '';
+
+                    formattedTracks.push({
+                        "trackId":trackId,
+                        "name":name,
+                        "artists":artists,
+                        "album":album
+                    })
+
+                });
+            }
+
+            resp.writeHead(200, {'Content-Type':'application/json'});
+            resp.write(JSON.stringify({"info":info, "playlist":formattedTracks}));
+            resp.end();
+
+        } catch(e){
+            console.log('Error caught parsing response data from Spotify ' + e);
+            console.log("Response was: " + respData);
+            resp.writeHead(500);
+            resp.write('Error parsing search results from Spotify');
+            resp.end();
+        }
+
 //      console.log(respData);
 
-      var info  = respObj.info;
 
-     //Clean up the search result to only bring back what we need: id, name, artist(s), album.
-      var formattedTracks = [];
-      if (respObj.tracks){
-          _.each(respObj.tracks, function(track){
-              var trackId = track.href;
-              var name = track.name;
-              var artists = '';
-              var delim = ' ';
-              _.each(track.artists, function(artist){
-                  artists += delim + artist.name;
-                  delim = ', ';
-              });
-              var album = track.album ? track.album.name : '';
-
-              formattedTracks.push({
-                  "trackId":trackId,
-                  "name":name,
-                  "artists":artists,
-                  "album":album
-              })
-
-          });
-      }
-
-      resp.writeHead(200, {'Content-Type':'application/json'});
-      resp.write(JSON.stringify({"info":info, "playlist":formattedTracks}));
-      resp.end();
     });
   })
 }
