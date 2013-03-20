@@ -146,16 +146,25 @@ function( $, _, Backbone, templates, QueueModel, ListItemView, VotesCollection, 
             var $spotifyResults = this.$('.spotify-results');
 
             if(query){
-                $spotifyResults.html('Loading....');
+                   $spotifyResults.html('Loading....');
                 this.searchCollection.url = '/search/track?q=' + query;
                 var self = this;
-                this.searchCollection.fetch().done(function(){
-                    var html = '';
-                    self.searchCollection.each(function(model) {
-                        html += templates.track.render(model.attributes);
+                this.searchCollection.fetch()
+                    .done(function(){
+                        var html = '';
+                        if(!self.searchCollection.isEmpty()){
+                            self.searchCollection.each(function(model) {
+                                html += templates.track.render(model.attributes);
+                            });
+                        } else {
+                            html = 'No Results Found, please try again.'
+                        }
+                        $spotifyResults.html(html);
+                    }).fail(function(){
+                        console.log('Handling failed spotify search, redrawing...');
+                        $spotifyResults.html('Search failed, please try again.');
+
                     });
-                    $spotifyResults.html(html);
-                });
             } else {
                 $spotifyResults.empty();
             }
