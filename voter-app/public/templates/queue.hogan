@@ -6,7 +6,7 @@
     <div class="form-search search">
         <!--<input type="text" class="search-query" placeholder="Song, Artist, or Album"/>-->
         <div class="input-append">
-            <input type="text" class="search-query span2" placeholder="Song, Asrtist, or Album">
+            <input type="text" class="search-query span2" placeholder="Song, Artist, or Album">
             <span type="submit" class="btn clear-search"><i class="icon-remove"/></span>
       </div>
     </div>
