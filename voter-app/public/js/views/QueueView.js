@@ -121,19 +121,34 @@ function( $, _, Backbone, templates, QueueModel, ListItemView, VotesCollection, 
             var track = this.searchCollection.getTrackById(trackId);
 
             if (track) {
+                var votesCollection = this.locationModel.getVotes();
+                votesCollection.add(track);
                 this.addVote(track);
             }
         },
 
         addVote:function(track) {
             var self = this;
+
+            var votes = track.get('votes');
+            if (!votes) {
+                votes = 1;
+            }
+            else{
+                votes++;
+            }
+            track.set('votes', votes);
+
+            this.onLocationFetched();
+            this.highlightTrack(track);
+
             persist.vote(track, {
                 success:function(resp) {
 //                    console.log('Voting complete.', resp);
 //                        dispatcher.trigger(dispatcher.events.REFRESH);
                     self.locationModel = new LocationModel(resp, {locationId: self.locationId});
-                    self.onLocationFetched();
-                    self.highlightTrack(track);
+//                    self.onLocationFetched();
+//                    self.highlightTrack(track);
                 }
             });
 
