@@ -1,9 +1,9 @@
 {
   "name": "application-name",
-  "version": "0.0.1",
+  "version": "0.0.1-4",
   "private": true,
   "scripts": {
-    "start": "node app"
+    "start": "node app.js"
   },
   "dependencies": {
     "express": "3.1.0",
@@ -11,13 +11,7 @@
     "less-middleware": "*",
     "q": "*",
     "underscore": "*",
-    "mongodb": "*",
-    "grunt": "0.4.x",
-    "grunt-requirejs": "0.3.x",
-    "grunt-contrib-jshint": "0.1.x",
-    "grunt-contrib-qunit": "0.1.x",
-    "grunt-hogan": "~0.2.2-2",
-    "hogan.js": "~2.0.0"
+    "mongodb": "*"
   },
   "amd": {},
   "volo": {
@@ -27,10 +21,20 @@
     }
   },
   "devDependencies": {
+    "grunt": "0.4.x",
+    "grunt-requirejs": "0.3.x",
+    "grunt-contrib-jshint": "0.1.x",
+    "grunt-contrib-qunit": "0.1.x",
+    "grunt-hogan": "~0.2.2-2",
+    "hogan.js": "~2.0.0",
     "grunt-contrib-hogan": "~0.2.0",
     "grunt-contrib-cssmin": "~0.4.2",
     "grunt-contrib-csslint": "~0.1.1",
     "grunt-contrib-less": "~0.5.0",
     "grunt-contrib-watch": "~0.3.1"
+  },
+  "subdomain": "musocracyapp",
+  "engines": {
+    "node": "0.8.x"
   }
 }

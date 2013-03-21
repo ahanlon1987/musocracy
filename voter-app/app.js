@@ -86,8 +86,16 @@ app.configure('production', function () {
     app.use(express.static(path.join(__dirname, 'public-built')));
 
     config = require('./config/production.json');
-    app.set('port', process.env.VCAP_APP_PORT || 3000);
-    mongourl = process.env.MONGOLAB_URI;
+//    app.set('port', process.env.VCAP_APP_PORT || 3000);
+    mongourl = "mongodb://musocracy:slalom123@dbh44.mongolab.com:27447/musocracy";
+});
+
+app.configure(function() {
+    app.use(express.static(path.join(__dirname, 'public')));
+
+    config = require('./config/production.json');
+//    app.set('port', process.env.VCAP_APP_PORT || 3000);
+    mongourl = "mongodb://musocracy:slalom123@dbh44.mongolab.com:27447/musocracy";
 });
 
 if (!mongourl) {
