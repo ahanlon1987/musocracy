@@ -4,6 +4,8 @@ var http = require('http');
 var Q = require('q');
 var _ = require('underscore');
 
+var filter = require('util/filter').filter;
+
 
 var BASE_URL = 'http://ws.spotify.com/';
 
@@ -72,6 +74,7 @@ var doSearch = function(opts) {
                 });
             }
 
+            filter()
             opts.success({info:info, playlist: formattedTracks});
         });
     })
@@ -139,4 +142,4 @@ exports.lookup = function(opts) {
             opts.success(track);
         });
     })
-}
+};
