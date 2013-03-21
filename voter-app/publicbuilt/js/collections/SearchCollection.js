@@ -1,0 +1,1 @@
+define(["jquery","backbone","models/SearchModel"],function(e,t,n){var r=t.Collection.extend({initialize:function(){},isEmpty:function(){return this.models.length<1},type:"Search",model:n,parse:function(e){return e.playlist}});return r});

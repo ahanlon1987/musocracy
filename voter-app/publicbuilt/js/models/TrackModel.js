@@ -1,0 +1,1 @@
+define(["backbone"],function(e){return e.Model.extend({initialize:function(){this.attributes.trackId&&this.set("domId",this.attributes.trackId.replace(/:/g,"_"))}})});

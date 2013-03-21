@@ -14,7 +14,7 @@ module.exports = function (grunt) {
 
                     },
 
-                    dir:'public-built',
+                    dir:'publicbuilt',
 
                     mainConfigFile:'public/js/app.js',
 
@@ -57,7 +57,7 @@ module.exports = function (grunt) {
         cssmin:{
             compile:{
                 files:{
-                    'public-built/css/app.css':['public/css/app.css']
+                    'publicbuilt/css/app.css':['public/css/app.css']
                 }
             }
         },
@@ -108,9 +108,9 @@ module.exports = function (grunt) {
     // grunt.loadNpmTasks("grunt-connect");
 
 
-    grunt.registerTask('dev-release', 'less:development');
 
     grunt.registerTask('default', ['jshint', 'requirejs:std']);
-    grunt.registerTask('build', ['requirejs:compile', 'less:compile', 'cssmin:compile', 'hogan:compile']);
+    grunt.registerTask('default', ['less:compile', 'cssmin:compile', 'hogan:compile', 'requirejs:compile']);
+    grunt.registerTask('build', ['less:compile', 'cssmin:compile', 'hogan:compile', 'requirejs:compile']);
 
 };

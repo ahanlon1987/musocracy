@@ -1,0 +1,1 @@
+define(["jquery","underscore","backbone","templates"],function(e,t,n,r){return n.View.extend({initialize:function(){this.tracks=new n.Collection},render:function(){var e="";return t.each(this.tracks,function(t){e+=r.track(t.attributes)}),this.$el.html(e),this}})});

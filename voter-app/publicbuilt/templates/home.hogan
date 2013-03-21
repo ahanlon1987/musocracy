@@ -1,0 +1,14 @@
+<div class="container" id="container-wrapper">
+    <form class="form-search" id="location-submit">
+        <label id="location-label"></label>
+        <fieldset>
+            <div class="input-append">
+                <input type="text" placeholder="enter your location" id="location-input" class="span2 search-query">
+                <button type="submit" class="btn">Submit</button>
+            </div>
+        </fieldset>
+    </form>
+    <div id="logo-container">
+        <img src="/img/musocracy_logo.png"/>
+    </div>
+</div>

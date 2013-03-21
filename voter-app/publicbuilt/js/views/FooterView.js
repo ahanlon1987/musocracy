@@ -1,0 +1,1 @@
+define(["jquery","underscore","backbone","templates"],function(e,t,n,r){return n.View.extend({initialize:function(){},render:function(){return this.$el.html(r.footer.render()),this}})});

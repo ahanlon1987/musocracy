@@ -24,12 +24,6 @@ define(['jquery', 'underscore', 'backbone', 'templates', 'models/LocationModel',
                     this.homeView = new HomeView().render();
                 }
                 this._updateBody(this.homeView);
-
-                if (!this.footerView) {
-                    this.footerView = new InfoFooterView({
-                        el:this.$('.footer')
-                    }).render();
-                }
             },
 
             showLocationView:function (locationId) {

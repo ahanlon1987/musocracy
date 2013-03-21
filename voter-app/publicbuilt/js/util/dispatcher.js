@@ -1,0 +1,1 @@
+define(["underscore","backbone"],function(e,t){return e.extend({},t.Events,{events:{SEARCH:"SEARCH",CLEAR_SEARCH:"CLEAR_SEARCH",REFRESH:"REFRESH",LOCATION_UPDATED:"LOCATION_UPDATED"}})});

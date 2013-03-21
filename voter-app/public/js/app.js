@@ -16,9 +16,9 @@ require.config({
 
     // Sets the configuration for your third party scripts that are not AMD compatible
     shim:{
-//        jqueryui: {
-//            deps: ["jquery"]
-//        },
+        jqueryui: {
+            deps: ["jquery"]
+        },
         backbone:{
             "deps":[ "underscore", "jquery" ],
             "exports":"Backbone"  //attaches "Backbone" to the window object

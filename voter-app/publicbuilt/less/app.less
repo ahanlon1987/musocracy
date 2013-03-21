@@ -1,0 +1,196 @@
+
+@import 'scroll.less';
+@import 'ui.less';
+
+@import 'bootstrap/bootstrap.less';
+@import 'bootstrap/responsive.less';
+@import 'jquery-ui-1.10.2.custom.less';
+
+body {
+    background-color: @grayLighter;
+}
+
+li.song-list {
+    list-style: none;
+    cursor:pointer;
+    border-bottom: 1px dotted;
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+a.vote-icon {
+    padding-right:15px;
+    margin-left:20px;
+    margin-top:15px;
+}
+
+.hidden {
+    display:none;
+}
+
+#location-input {
+    width:200px;
+}
+
+.vote-count{
+    float: left;
+    margin-right: 11px;
+    margin-top: 4px;
+}
+
+body {
+    padding-top:40px;
+    position:relative;
+//background-color: @grayDarker;
+//color:@white;
+}
+
+@media (max-width: 979px) and (min-width: 768px) {
+    body {
+        padding:0;
+        width:auto;
+    }
+    .navbar-fixed-bottom {
+        position: fixed;
+    }
+
+    input {
+        width:400px;
+    }
+}
+
+@media (max-width:767px) {
+    body {
+        padding:0 20px;
+        width:auto;
+    }
+    .navbar-fixed-bottom {
+        position: fixed;
+        padding: 0 10px;
+    }
+}
+
+.vote-count{
+    float: left;
+    margin-right: 11px;
+    margin-top: 4px;
+}
+
+.nav.nav-back,
+.nav.nav-search{
+    margin-top: 9px;
+    margin-right: 25px;
+    margin-left:10px;
+}
+
+.nav.nav-search{
+    float:right;
+}
+
+.spotify-results {
+    border-top: 1px solid @grayDark;
+}
+
+.track {
+    .clearfix();
+    border-bottom: 1px solid @grayLighter;
+    padding:4px 0;
+    height:44px;
+    max-height: 44px;
+    cursor:pointer;
+}
+
+.track.disabled {
+    opacity:.5;
+    cursor:default;
+}
+
+.track .metadata {
+    float:left;
+    width:80%
+}
+
+.track .votes {
+    float:right;
+    font-size: 2em;
+}
+
+.track-name {
+    color: @black;
+    font-weight:bold;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.artist-name {
+    color: @grayLight;
+    font-size:.9em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#logo-container img{
+    height: 160px;
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    opacity: .2;
+    margin-top:50px;
+}
+
+.form-search,
+.search{
+    text-align:center;
+    padding-bottom:20px;
+    padding-top:20px;
+}
+
+.footer .container {
+    text-align:center;
+}
+
+.footer {
+    color: @grayLight;
+    margin-top:60px;
+
+    .container {
+        padding: 0 15px;
+    }
+
+    .pull-left {
+        width: 45%;
+        text-align: left;
+    }
+
+    .pull-right {
+        width: 45%;
+        text-align: right;
+    }
+
+    .label-small {
+        font-weight:bold;
+        color:@gray;
+    }
+
+    .track-small {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow:ellipsis;
+    }
+}
+
+.votes{
+  margin-right:2px;
+  margin-top:10px
+}
+.votes i{
+  margin-top:5px;
+  margin-left:5px;
+}
