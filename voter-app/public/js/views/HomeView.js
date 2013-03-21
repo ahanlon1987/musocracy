@@ -39,7 +39,7 @@ define(['jquery', 'amplify', 'backbone', 'templates'],
                 if(data) {
                     console.log('found location: ' + data.locationId);
                     amplify.store('locationId', data.locationId, {expires:21600000}); //expire locationId after six hours.
-                    window.location.href = '#location/' + data.locationId;
+                    window.location.href = '/#location/' + data.locationId;
 
                 } else {
                     console.log('No such location: ' + location);

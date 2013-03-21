@@ -83,20 +83,20 @@ app.configure('production', function () {
 
     console.log('Loading production configuration');
 
-    app.use(express.static(path.join(__dirname, 'public-built')));
-
-    config = require('./config/production.json');
-//    app.set('port', process.env.VCAP_APP_PORT || 3000);
-    mongourl = "mongodb://musocracy:slalom123@dbh44.mongolab.com:27447/musocracy";
-});
-
-app.configure(function() {
     app.use(express.static(path.join(__dirname, 'public')));
 
     config = require('./config/production.json');
 //    app.set('port', process.env.VCAP_APP_PORT || 3000);
     mongourl = "mongodb://musocracy:slalom123@dbh44.mongolab.com:27447/musocracy";
 });
+//
+//app.configure(function() {
+//    app.use(express.static(path.join(__dirname, 'public')));
+//
+//    config = require('./config/production.json');
+////    app.set('port', process.env.VCAP_APP_PORT || 3000);
+//    mongourl = "mongodb://musocracy:slalom123@dbh44.mongolab.com:27447/musocracy";
+//});
 
 if (!mongourl) {
     console.log("Couldn't find mongolab URI! Exiting now");

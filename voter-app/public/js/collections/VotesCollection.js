@@ -1,8 +1,10 @@
-define(['backbone'],
-    function (Backbone) {
+define(['backbone', 'models/TrackModel'],
+    function (Backbone, TrackModel) {
 
         var regex = /[^A-Za-z\d]/g;
         return Backbone.Collection.extend({
+
+            model: TrackModel,
 
             initialize:function () {
 

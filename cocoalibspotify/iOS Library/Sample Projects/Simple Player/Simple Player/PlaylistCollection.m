@@ -32,7 +32,7 @@
 -(id) initWithLocationId:(NSString *)theLocationId {
     if (self = [super init]) {
         locationId = theLocationId;
-        self.baseUrl = @"http://192.168.0.101:3000";
+        self.baseUrl = @"http://musocracyapp.nodejitsu.com";
 
     }
     return self;

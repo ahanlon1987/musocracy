@@ -55,6 +55,7 @@ function( $, _, Backbone, templates, QueueModel, ListItemView, VotesCollection, 
                         }
                     }
                 }
+//                track.set('domId', track.get('trackId').replace(":", "_"));
 
                 html += templates.track.render(track.attributes);
             });
@@ -117,15 +118,26 @@ function( $, _, Backbone, templates, QueueModel, ListItemView, VotesCollection, 
 //                        dispatcher.trigger(dispatcher.events.REFRESH);
                         self.locationModel = new LocationModel(resp, {locationId: self.locationId});
                         self.onLocationFetched();
-                        $(e.currentTarget).animate({
-                            backgroundColor: "#aa0000",
-                            color: "#aa0000"
-//                            width: 500
-                        }, 1000 );
+                        self.highlightTrack(track);
                     }
                 });
 
             }
+        },
+
+        highlightTrack:function(track) {
+            var domId = track.get('domId');
+            var $track = this.$('#' + domId);
+            var origColor = $track.css('background-color');
+            $track.animate({
+                'background-color': "#C7F5C1"
+            }, 750);
+
+            setTimeout(function() {
+                $track.animate({
+                    'background-color': origColor
+                }, 750);
+            }, 500);
         },
 
         onClearSearch:function(e){
