@@ -4,7 +4,7 @@ var http = require('http');
 var Q = require('q');
 var _ = require('underscore');
 
-var filter = require('util/filter').filter;
+var filter = require('./util/filter').filter;
 
 
 var BASE_URL = 'http://ws.spotify.com/';
@@ -30,7 +30,8 @@ var LOOKUP_URL = BASE_URL + 'lookup/1/.json';
  */
 var doSearch = function(opts) {
     // console.log('searching by track');
-    var query = opts.query,
+    var locationId = opts.locationId,
+        query = opts.query,
         type = opts.type;
 
     var requestUrl = SEARCH_URLS[type] + '?q=' + query;

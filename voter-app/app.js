@@ -39,9 +39,9 @@ app.configure(function () {
 });
 
 app.get('/', routes.index);
-app.get('/search/track', search.byTrack);
-app.get('/search/artist', search.byArtist);
-app.get('/search/album', search.byAlbum);
+app.get('/location/:locationId/search/track', search.byTrack);
+app.get('/location/:locationId/search/artist', search.byArtist);
+app.get('/location/:locationId/search/album', search.byAlbum);
 app.get('/lookup', lookup.lookup);
 app.get('/location/:locationId', location.getLocation);
 app.get('/location/:locationId/votes', votes.getVotes);

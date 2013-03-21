@@ -147,7 +147,7 @@ function( $, _, Backbone, templates, QueueModel, ListItemView, VotesCollection, 
 
             if(query){
                    $spotifyResults.html('Loading....');
-                this.searchCollection.url = '/search/track?q=' + query;
+                this.searchCollection.url = '/location/' + this.locationId + '/search/track?q=' + query;
                 var self = this;
                 this.searchCollection.fetch()
                     .done(function(){
