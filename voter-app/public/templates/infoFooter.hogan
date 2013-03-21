@@ -1,0 +1,15 @@
+<div class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="navbar-inner">
+        <div class="container">
+            <div class="now-playing pull-left">
+                <div class="label-small">NOW PLAYING</div>
+                <div class="track-small">{{nowPlayingTrackName}}</div>
+            </div>
+
+            <div class="up-next pull-right">
+                <div class="label-small">UP NEXT</div>
+                <div class="track-small">{{upNextTrackName}}</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -20,6 +20,8 @@ function( $, _, Backbone, templates, QueueModel, ListItemView, VotesCollection, 
         // The View Constructor
         initialize: function() {
             this.locationId = this.options.locationId;
+            this.locationModel = this.options.locationModel;
+
             dispatcher.on(dispatcher.events.REFRESH, this.onRefresh, this);
         },
 
@@ -29,9 +31,9 @@ function( $, _, Backbone, templates, QueueModel, ListItemView, VotesCollection, 
 
             this.searchCollection = new SpotifySearchCollection();
 
-            this.locationModel = new LocationModel({}, {
-                locationId: this.locationId
-            });
+//            this.locationModel = new LocationModel({}, {
+//                locationId: this.locationId
+//            });
 
             this.locationModel.fetch({
                 success:$.proxy(this.onLocationFetched, this)
@@ -73,15 +75,15 @@ function( $, _, Backbone, templates, QueueModel, ListItemView, VotesCollection, 
             var votesCollection = this.locationModel.getVotes();
             this.renderQueue(votesCollection.models);
 
-            var nowPlaying = this.locationModel.getNowPlaying();
-            if (nowPlaying) {
-                this.$('.now-playing').html(templates.track.render(nowPlaying));
-            }
-
-            var upNext = this.locationModel.getUpNext();
-            if (upNext) {
-                this.$('.up-next').html(templates.track.render(upNext));
-            }
+//            var nowPlaying = this.locationModel.getNowPlaying();
+//            if (nowPlaying) {
+//                this.$('.now-playing').html(templates.track.render(nowPlaying));
+//            }
+//
+//            var upNext = this.locationModel.getUpNext();
+//            if (upNext) {
+//                this.$('.up-next').html(templates.track.render(upNext));
+//            }
         },
 
         onKeyPress:function(e) {
@@ -131,7 +133,7 @@ function( $, _, Backbone, templates, QueueModel, ListItemView, VotesCollection, 
             var origColor = $track.css('background-color');
             $track.animate({
                 'background-color': "#C7F5C1"
-            }, 750);
+            }, 250);
 
             setTimeout(function() {
                 $track.animate({

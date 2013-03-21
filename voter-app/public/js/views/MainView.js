@@ -1,48 +1,74 @@
-define(['jquery', 'underscore', 'backbone', 'templates', 'views/ToolbarView', 'views/FooterView', 'views/HomeView', 'views/QueueView'], 
-  function($, _, Backbone, templates, ToolbarView, FooterView, HomeView, QueueView) {
-    return Backbone.View.extend({
+define(['jquery', 'underscore', 'backbone', 'templates', 'models/LocationModel', 'views/ToolbarView', 'views/InfoFooterView', 'views/HomeView', 'views/QueueView'],
+    function ($, _, Backbone, templates, LocationModel, ToolbarView, InfoFooterView, HomeView, QueueView) {
+        return Backbone.View.extend({
 
-      initialize:function() {
+            initialize:function () {
+            },
 
-      },
+            render:function () {
+                this.$el.html(templates.main.render({}));
+                this.toolbarView = new ToolbarView({
+                    el:this.$('.toolbar')
+                }).render();
+                ;
 
-      render:function() {
-        this.$el.html(templates.main.render({}));
-        this.toolbarView = new ToolbarView({
-          el:this.$('.toolbar')
-        }).render();;
 
-        this.footerView = new FooterView({
-          el:this.$('.footer')
-        }).render();
 
-        return this;
-      },
+                return this;
+            },
 
-      showHomeView:function() {
-        this.toolbarView.showHome();
+            showHomeView:function () {
+                this.toolbarView.showHome();
 
-        if (!this.homeView) {
-          this.homeView = new HomeView().render();
-        }
-        this._updateView(this.homeView);
-      },
+                if (!this.homeView) {
+                    this.homeView = new HomeView().render();
+                }
+                this._updateBody(this.homeView);
 
-      showLocationView:function(locationId) {
-        // TODO: provide location name
-        this.toolbarView.showLocation(locationId);
+                if (!this.footerView) {
+                    this.footerView = new InfoFooterView({
+                        el:this.$('.footer')
+                    }).render();
+                }
+            },
 
-        if (!this.locationView) {
-          this.locationView = new QueueView({
-            locationId:locationId
-          }).render();
-        }
-        this._updateView(this.locationView);
-      },
+            showLocationView:function (locationId) {
+                // TODO: provide location name
+                this.toolbarView.showLocation(locationId);
 
-      _updateView:function(view) {
-        this.$('.body').html(view.el);
-      }
+                if (!this.locationModel) {
+                    this.locationModel = new LocationModel(null, {
+                        locationId: locationId
+                    });
+                }
 
+                if (!this.locationView) {
+//                    this.locationModel = new LocationModel({}, {
+//                        locationId:this.locationId
+//                    });
+                    this.locationModel.set('locationId', this.locationId);
+                    this.locationView = new QueueView({
+                        locationId:locationId,
+                        locationModel: this.locationModel
+                    }).render();
+                }
+                this._updateBody(this.locationView);
+
+                if (!this.locationFooterView) {
+                    this.locationFooterView = new InfoFooterView({
+                        locationModel:this.locationModel
+                    }).render();
+                }
+                this._updateFooter(this.locationFooterView);
+            },
+
+            _updateBody:function (view) {
+                this.$('.body').html(view.el);
+            },
+
+            _updateFooter:function (view) {
+                this.$('.footer').html(view.el);
+            }
+
+        });
     });
-  });

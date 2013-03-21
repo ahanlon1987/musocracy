@@ -4,7 +4,8 @@ define(['underscore', 'backbone'],
             events:{
                 SEARCH:'SEARCH',
                 CLEAR_SEARCH:'CLEAR_SEARCH',
-                REFRESH: 'REFRESH'
+                REFRESH: 'REFRESH',
+                LOCATION_UPDATED: 'LOCATION_UPDATED'
             }
         });
     });

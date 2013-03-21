@@ -6,6 +6,10 @@
 @import 'bootstrap/responsive.less';
 @import 'jquery-ui-1.10.2.custom.less';
 
+body {
+    background-color: @grayLighter;
+}
+
 li.song-list {
     list-style: none;
     cursor:pointer;
@@ -66,6 +70,7 @@ body {
     }
     .navbar-fixed-bottom {
         position: fixed;
+        padding: 0 10px;
     }
 }
 
@@ -84,6 +89,10 @@ body {
 
 .nav.nav-search{
     float:right;
+}
+
+.spotify-results {
+    border-top: 1px solid @grayDark;
 }
 
 .track {
@@ -148,7 +157,33 @@ body {
 }
 
 .footer {
+    color: @grayLight;
     margin-top:60px;
+
+    .container {
+        padding: 0 15px;
+    }
+
+    .pull-left {
+        width: 45%;
+        text-align: left;
+    }
+
+    .pull-right {
+        width: 45%;
+        text-align: right;
+    }
+
+    .label-small {
+        font-weight:bold;
+        color:@gray;
+    }
+
+    .track-small {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow:ellipsis;
+    }
 }
 
 .votes{

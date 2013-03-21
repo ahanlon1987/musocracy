@@ -23,17 +23,16 @@
 
 -(id) init {
     self = [super init];
-    self.baseUrl = @"http://192.168.0.101:3000";
+    self.baseUrl = @"http://musocracyapp.com";
+//    self.baseUrl = @"http://192.168.0.101:3000";
 
     
     return self;
 }
 
 -(id) initWithLocationId:(NSString *)theLocationId {
-    if (self = [super init]) {
+    if (self = [self init]) {
         locationId = theLocationId;
-        self.baseUrl = @"http://musocracyapp.nodejitsu.com";
-
     }
     return self;
 }
