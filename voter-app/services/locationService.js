@@ -19,7 +19,8 @@ var locationService = {
             }
 
             console.log('found collection; searching for location.');
-            collection.findOne({locationId:locationId}, function(err, location) {
+
+            collection.findOne({locationId:locationId.toLowerCase()}, function(err, location) {
                 if (err) {
                     console.log('Error finding collection.', err);
                     options && options.error && options.error(err);

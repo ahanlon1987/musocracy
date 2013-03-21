@@ -39,7 +39,7 @@ var votingService = {
             }
 
             console.error('found collection; searching for location.');
-            collection.findOne({locationId:locationId}, function (err, location) {
+            collection.findOne({locationId:locationId.toLowerCase()}, function (err, location) {
                 if (err) {
                     console.error('Error finding collection.', err);
                     options && options.error && options.error(err);
@@ -48,7 +48,7 @@ var votingService = {
 
                 if (!location) {
                     location = {
-                        locationId:locationId
+                        locationId:locationId.toLowerCase()
                     };
                 }
                 if (!location.votes) {

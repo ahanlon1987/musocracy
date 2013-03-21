@@ -13,7 +13,8 @@ function( $, _, Backbone, templates, QueueModel, ListItemView, VotesCollection, 
     return Backbone.View.extend({
         events: {
             'keyup .search input':'onKeyPress',
-            'click .track:not(.disabled)':'onTrackClick',
+            'click .location-queue .track:not(.disabled)':'onTrackClick',
+            'click .spotify-results .track:not(.disabled)':'onSearchResultClick',
             'click .clear-search':'onClearSearch'
         },
 
@@ -73,7 +74,13 @@ function( $, _, Backbone, templates, QueueModel, ListItemView, VotesCollection, 
 
         onLocationFetched: function() {
             var votesCollection = this.locationModel.getVotes();
-            this.renderQueue(votesCollection.models);
+            var query = this.$('.search input').val();
+            if (query) {
+                this.filterVotesCollection(query);
+            }
+            else {
+                this.renderQueue(votesCollection.models);
+            }
 
 //            var nowPlaying = this.locationModel.getNowPlaying();
 //            if (nowPlaying) {
@@ -93,7 +100,7 @@ function( $, _, Backbone, templates, QueueModel, ListItemView, VotesCollection, 
                 this.search();
             } else if (e && e.which === 8 && query == ''){
                 console.log('backspace pressed with no no content in search field, clearing search results');
-                this.onClearSearch()
+                this.onClearSearch();
             }
             else {
                 timeoutId = setTimeout($.proxy(this.search, this), 500);
@@ -109,22 +116,37 @@ function( $, _, Backbone, templates, QueueModel, ListItemView, VotesCollection, 
             var trackId = $currentTarget.data('trackid');
             var votes = this.locationModel.getVotes();
             var track = votes.getTrackById(trackId);
-            if (!track) {
-                track = this.searchCollection.getTrackById(trackId);
-            }
-            if (track) {
-                var self = this;
-                persist.vote(track, {
-                    success:function(resp) {
-                        console.log('Voting complete.', resp);
-//                        dispatcher.trigger(dispatcher.events.REFRESH);
-                        self.locationModel = new LocationModel(resp, {locationId: self.locationId});
-                        self.onLocationFetched();
-                        self.highlightTrack(track);
-                    }
-                });
 
+            if (track) {
+                this.addVote(track);
             }
+        },
+
+        onSearchResultClick:function(e) {
+            (e && e.preventDefault());
+            var $currentTarget = this.$(e.currentTarget);
+            $currentTarget.remove();
+
+            var trackId = $currentTarget.data('trackid');
+            var track = this.searchCollection.getTrackById(trackId);
+
+            if (track) {
+                this.addVote(track);
+            }
+        },
+
+        addVote:function(track) {
+            var self = this;
+            persist.vote(track, {
+                success:function(resp) {
+//                    console.log('Voting complete.', resp);
+//                        dispatcher.trigger(dispatcher.events.REFRESH);
+                    self.locationModel = new LocationModel(resp, {locationId: self.locationId});
+                    self.onLocationFetched();
+                    self.highlightTrack(track);
+                }
+            });
+
         },
 
         highlightTrack:function(track) {
