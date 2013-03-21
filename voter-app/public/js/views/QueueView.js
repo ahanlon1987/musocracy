@@ -81,16 +81,6 @@ function( $, _, Backbone, templates, QueueModel, ListItemView, VotesCollection, 
             else {
                 this.renderQueue(votesCollection.models);
             }
-
-//            var nowPlaying = this.locationModel.getNowPlaying();
-//            if (nowPlaying) {
-//                this.$('.now-playing').html(templates.track.render(nowPlaying));
-//            }
-//
-//            var upNext = this.locationModel.getUpNext();
-//            if (upNext) {
-//                this.$('.up-next').html(templates.track.render(upNext));
-//            }
         },
 
         onKeyPress:function(e) {
