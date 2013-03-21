@@ -8846,3 +8846,9 @@ body {
   margin-top: 5px;
   margin-left: 5px;
 }
+.navbar-inverse .container {
+  text-align: center;
+}
+.navbar-inverse .brand {
+  color: #0064cd;
+}

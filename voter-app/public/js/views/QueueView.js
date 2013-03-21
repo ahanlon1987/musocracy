@@ -48,7 +48,7 @@ function( $, _, Backbone, templates, QueueModel, ListItemView, VotesCollection, 
             var html = '';
             _.each(tracks, function (track) {
 
-                track.set('disabled', '');
+//                track.set('disabled', '');
                 var index = $.inArray(track.get('trackId'), _.pluck(amplify.store('previousVotes'), 'trackId'));
                 if (index >= 0){
                     var oldVote = amplify.store('previousVotes')[index];
@@ -138,9 +138,11 @@ function( $, _, Backbone, templates, QueueModel, ListItemView, VotesCollection, 
                 votes++;
             }
             track.set('votes', votes);
+            track.set('disabled', 'disabled');
 
             this.onLocationFetched();
             this.highlightTrack(track);
+            this.disableTrack(track);
 
             persist.vote(track, {
                 success:function(resp) {
@@ -167,6 +169,13 @@ function( $, _, Backbone, templates, QueueModel, ListItemView, VotesCollection, 
                     'background-color': origColor
                 }, 750);
             }, 500);
+        },
+
+        disableTrack:function(track) {
+            var domId = track.get('domId');
+            var $track = this.$('#' + domId);
+
+            $track.addClass('disabled');
         },
 
         onClearSearch:function(e){

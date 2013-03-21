@@ -22,7 +22,7 @@ define(['jquery', 'amplify', 'backbone', 'templates'],
           this.verifyLocation(location);
         } else {
         console.log('No value found, enter a value and try again.');
-          $('label#location-label').html('Enter a value and try again.');
+          this.$('label#location-label').html('Enter a value and try again.');
         }
 
         return false;
