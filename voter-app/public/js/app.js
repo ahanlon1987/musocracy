@@ -7,7 +7,7 @@ require.config({
         // Core Libraries
         "hogan":"lib/hogan/hogan-2.0.0.amd",
         "jquery":"lib/jquery-1.9.1",
-        "jqueryui":"lib/jquery-ui-1.10.2.custom",
+        "jqueryui":"lib/jquery-ui-1.10.2.custom.min",
         "underscore":"lib/lodash",
         "backbone":"lib/backbone",
         "amplify":"lib/amplify.min",
