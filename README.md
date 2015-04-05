@@ -1,5 +1,7 @@
 musocracy
 =========
+A simple node-backed mobile first Web Applciation that allows patrons to search for, and vote on the music being played.  
+
 
 # Node Application
 1. Install nodejs
